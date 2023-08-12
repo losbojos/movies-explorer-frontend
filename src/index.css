@@ -1,5 +1,2 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+@import url("./vendor/normalize.css");
+@import url("./vendor/fonts/Inter-3.19/InterWeb/inter.css");
