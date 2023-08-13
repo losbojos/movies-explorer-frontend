@@ -1,0 +1,11 @@
+.techs__line {
+    width: 100%;
+    margin: 28px auto;
+    padding: 0;
+
+    height: 1px;
+    border: none;
+    background-color: #000;
+    color: #000;
+    flex-shrink: 0;
+}

@@ -1,0 +1,21 @@
+@import url("./techs__header.css");
+@import url("./techs__line.css");
+@import url("./techs__title.css");
+@import url("./techs__text.css");
+@import url("./techs__list.css");
+@import url("./techs__item.css");
+
+/* FIGMA 320 design (default) */
+.techs {
+    margin: 0;
+    padding: 70px 18px;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+    background: #202020;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,13 @@
+.techs__text {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 145.455% */
+    letter-spacing: -0.44px;
+
+    margin: 24px auto 0;
+}
