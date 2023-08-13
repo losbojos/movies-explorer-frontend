@@ -1,0 +1,7 @@
+.about-project__item {
+    list-style-type: none;
+}
+
+.about-project__item:not(:first-of-type) {
+    margin-top: 56px;
+}
