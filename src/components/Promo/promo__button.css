@@ -1,0 +1,21 @@
+/* FIGMA 320 design (default) */
+.promo__button {
+
+    margin: 80px auto 30px;
+    padding: 10px 20px;
+
+    color: #FFF;
+    background-color: #073042;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 133.333% */
+
+    border-radius: 3px;
+    border: 1px solid #FFF;
+    opacity: 0.6;
+
+    flex-shrink: 0;
+}
