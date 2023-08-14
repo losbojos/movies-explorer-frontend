@@ -1,0 +1,13 @@
+.aboutme__bio {
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 145.455% */
+
+    margin: 20px 0 0;
+    padding: 0;
+}

@@ -1,0 +1,11 @@
+.aboutme__line {
+    width: 100%;
+    margin: 28px auto;
+    padding: 0;
+
+    height: 1px;
+    border: none;
+    background-color: #DADADA;
+    color: #DADADA;
+    flex-shrink: 0;
+}

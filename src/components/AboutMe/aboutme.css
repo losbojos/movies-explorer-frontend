@@ -1,0 +1,22 @@
+@import url("./aboutme__header.css");
+@import url("./aboutme__line.css");
+@import url("./aboutme__foto.css");
+@import url("./aboutme__title.css");
+@import url("./aboutme__bio.css");
+@import url("./aboutme__text.css");
+@import url("./aboutme__link.css");
+
+/* FIGMA 320 design (default) */
+.aboutme {
+    margin: 0;
+    padding: 70px 14px;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+    background: #202020;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
