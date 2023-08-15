@@ -1,0 +1,14 @@
+@import url("./navtab__line.css");
+@import url("./navtab__link.css");
+@import url("./navtab__text.css");
+@import url("./navtab__pointer.css");
+
+.navtab {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+    background: #202020;
+}

@@ -1,0 +1,18 @@
+@import url("./portfolio__header.css");
+@import url("./portfolio__list.css");
+@import url("./portfolio__listitem.css");
+
+/* FIGMA 320 design (default) */
+.portfolio {
+    margin: 0;
+    padding: 0 14px;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+    background: #202020;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
