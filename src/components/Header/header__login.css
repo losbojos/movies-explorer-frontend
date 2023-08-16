@@ -1,0 +1,18 @@
+.header__login {
+    flex-shrink: 0;
+    border-radius: 3px;
+    background: #3DDC84;
+
+    color: #000;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 160% */
+
+    padding: 5px 12px;
+    margin: 24px 14px;
+
+    text-decoration: none;
+}
