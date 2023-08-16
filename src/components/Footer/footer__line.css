@@ -1,0 +1,11 @@
+.footer__line {
+    width: 100%;
+    margin: 21px auto;
+    padding: 0;
+
+    height: 1px;
+    border: none;
+    background-color: #424242;
+    color: #424242;
+    flex-shrink: 0;
+}
