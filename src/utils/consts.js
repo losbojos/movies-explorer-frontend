@@ -7,7 +7,7 @@ const PAGES = {
     MOVIES: "/movies",
     SAVED_MOVIES: "/saved",
     ACCOUNT: "/account",
-    NOT_FOUNT_404: "/404",
+    NOT_FOUNT: "/404",
 };
 
 export {
