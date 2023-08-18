@@ -11,7 +11,7 @@ function Navtab(props) {
                     <hr className="navtab__line"></hr>
                 )
             }
-            <a className="navtab__link" href={link}>
+            <a className="navtab__link" href={link} target="_blank">
                 <p className="navtab__text">{title}</p>
                 <p className="navtab__pointer">↗</p>
             </a>

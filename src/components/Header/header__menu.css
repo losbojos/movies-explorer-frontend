@@ -1,6 +1,6 @@
 .header__menu {
     flex-shrink: 0;
-    margin: auto 14px auto auto;
+    margin: auto;
     padding: 0;
     box-sizing: border-box;
     border: none;

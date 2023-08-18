@@ -1,0 +1,30 @@
+/* FIGMA 320 design (default) */
+
+.auth__title {
+    margin: 24px 0;
+    padding: 0;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* NO FIGMA design */
+@media screen and (min-width: 768px) {
+    .auth__title {
+        font-size: 22px;
+        line-height: 27px;
+    }
+}
+
+/* FIGMA 1280 */
+@media screen and (min-width: 1024px) {
+    .auth__title {
+        font-size: 24px;
+        line-height: 29px;
+    }
+}

@@ -1,0 +1,17 @@
+.error-span {
+    color: #EE3465;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    display: inline-block;
+    /* min-height: 24px; */
+
+    /* Для резервирования пространства размещения элемента, иначе с нулевой шириной элемент схлопывается и контролы пляшут от валидации */
+    min-width: 1px;
+}

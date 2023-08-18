@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
 import './header.css';
-import headerLogoImage from '../../images/header__logo.svg';
-import headerMenuImage from '../../images/header__menu.svg';
+import menuImage from '../../images/menu.svg';
 import { PAGES } from '../../utils/consts';
+import Logo from '../Logo/Logo';
 
 function Header() {
     // const isLogged = false;
     const isLogged = true;
     return (
         <header className="header">
-            <img className="header__logo" src={headerLogoImage} alt="логотип" />
+            <Logo />
             <nav className="header__nav">
                 {isLogged &&
                     (
-                        <button className="header__menu"><img src={headerMenuImage}></img></button>
+                        <button className="header__menu"><img src={menuImage}></img></button>
                     )
                 }
                 {!isLogged &&

@@ -4,6 +4,8 @@ import './index.css';
 import { PAGES } from '../../utils/consts';
 
 import Main from '../Main/Main';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 
 class App extends Component {
@@ -11,7 +13,10 @@ class App extends Component {
     return (
       <Routes>
         <Route path={PAGES.MAIN} element={<Main />} />
+        <Route path={PAGES.REGISTER} element={<Register />} />
+        <Route path={PAGES.LOGIN} element={<Login />} />
         <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
+        <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
         <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
       </Routes>
     );
