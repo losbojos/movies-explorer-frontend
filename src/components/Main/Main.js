@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './main.css';
 import Promo from '../Promo/Promo';
 import AboutProject from '../AboutProject/AboutProject';
@@ -11,15 +11,17 @@ import Header from '../Header/Header';
 function Main(props) {
 
     return (
-        <main className="main">
-            <Header />
-            <Promo />
-            <AboutProject />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
+        <Fragment>
+            <Header addHeaderClass='header_main-background' />
+            <main className="main">
+                <Promo />
+                <AboutProject />
+                <Techs />
+                <AboutMe />
+                <Portfolio />
+            </main >
             <Footer />
-        </main >
+        </Fragment>
     );
 }
 

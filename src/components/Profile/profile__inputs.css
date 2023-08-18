@@ -1,0 +1,7 @@
+/* FIGMA 320 design (default) */
+.profile__inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 80px 30px 30px;
+    align-items: stretch;
+}

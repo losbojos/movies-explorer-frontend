@@ -1,0 +1,7 @@
+.profile__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: auto 30px 40px;
+    padding: 0;
+}

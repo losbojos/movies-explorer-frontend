@@ -1,0 +1,23 @@
+.profile__input {
+    flex-shrink: 0;
+
+    color: #FFF;
+    text-align: right;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border: none;
+    background-color: transparent;
+    outline: none;
+    /* padding: 5px 0 9px; */
+    /* width: 100%; */
+    margin: 0;
+    padding: 0;
+
+    min-width: 50%;
+    text-align: end;
+
+}

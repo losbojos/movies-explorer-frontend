@@ -1,8 +1,4 @@
 .header__login {
-    flex-shrink: 0;
-    border-radius: 3px;
-    background: #3DDC84;
-
     color: #000;
     font-family: Inter;
     font-size: 10px;
@@ -11,8 +7,13 @@
     line-height: 16px;
     /* 160% */
 
-    padding: 5px 12px;
-    margin: 24px 14px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    background: #3DDC84;
+    box-sizing: border-box;
+
+    padding: 7px 12px;
+    margin: 0 0 0 14px;
 
     text-decoration: none;
 }

@@ -6,7 +6,7 @@ const PAGES = {
     REGISTER: "/signup",
     MOVIES: "/movies",
     SAVED_MOVIES: "/saved",
-    ACCOUNT: "/account",
+    PROFILE: "/profile",
     NOT_FOUNT: "/404",
 };
 

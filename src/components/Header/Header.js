@@ -1,30 +1,29 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './header.css';
-import menuImage from '../../images/menu.svg';
 import { PAGES } from '../../utils/consts';
 import Logo from '../Logo/Logo';
 
-function Header() {
-    // const isLogged = false;
+function Header({ addHeaderClass }) {
+    //const isLogged = false;
     const isLogged = true;
+    const headerClasses = `header ${addHeaderClass ? addHeaderClass : ''}`;
+
     return (
-        <header className="header">
+        <header className={headerClasses}>
             <Logo />
-            <nav className="header__nav">
-                {isLogged &&
-                    (
-                        <button className="header__menu"><img src={menuImage}></img></button>
-                    )
-                }
-                {!isLogged &&
-                    (
-                        <Fragment>
-                            <a href={PAGES.REGISTER} className="header__register">Регистрация</a>
-                            <a href={PAGES.LOGIN} className="header__login">Войти</a>
-                        </Fragment>
-                    )
-                }
-            </nav>
+            {isLogged &&
+                (
+                    <button className="header__menu" />
+                )
+            }
+            {!isLogged &&
+                (
+                    <nav className="header__nav">
+                        <a href={PAGES.REGISTER} className="header__register">Регистрация</a>
+                        <a href={PAGES.LOGIN} className="header__login">Войти</a>
+                    </nav>
+                )
+            }
         </header>
     );
 }

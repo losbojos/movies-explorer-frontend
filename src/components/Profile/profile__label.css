@@ -1,0 +1,14 @@
+.profile__label {
+    flex-shrink: 0;
+
+    color: #FFF;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin: 0;
+    padding: 0;
+
+}
