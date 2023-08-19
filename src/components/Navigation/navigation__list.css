@@ -1,0 +1,9 @@
+.navigation__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: auto 0;
+    padding: 0;
+    height: 100%;
+}

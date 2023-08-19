@@ -4,26 +4,29 @@ import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
-function Profile({ onSubmit, name, email }) {
+function Profile({ name = 'ТестИмя', email = 'Тест@email.ru' }) {
 
     const inputName = 'name'; // Имя инпута с именем
     const inputEmail = 'email'; // Имя инпута с email
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(values);
+        // TODO
     }
 
     const { values, handleChange, errors, isValid } = useFormAndValidation();
 
+    values[inputName] = name;
+    values[inputEmail] = email;
+
     return (
-        <form className='profile' onSubmit={handleSubmit}>
+        <form className='profile' onSubmit={handleSubmit} noValidate>
             <Header />
             <h1 className="profile__title">Привет, {name}!</h1>
             <div className="profile__inputs">
 
                 <div className="profile__input-container">
-                    <label className="profile__label" for="name">Имя</label>
+                    <label className="profile__label" htmlFor="name">Имя</label>
                     <input id="name" required name={inputName} type="text"
                         value={values[inputName] || ''} onChange={handleChange}
                         className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
@@ -32,7 +35,7 @@ function Profile({ onSubmit, name, email }) {
                 <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
 
                 <div className="profile__input-container">
-                    <label className="profile__label" for="email">E-mail</label>
+                    <label className="profile__label" htmlFor="email">E-mail</label>
                     <input id="email" required name={inputEmail} type="email"
                         value={values[inputEmail] || ''} onChange={handleChange}
                         className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}

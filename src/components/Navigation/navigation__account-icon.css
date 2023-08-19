@@ -1,0 +1,7 @@
+.navigation__account-icon {
+    margin-left: 13px;
+    padding: 9px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background-color: #313131;
+}

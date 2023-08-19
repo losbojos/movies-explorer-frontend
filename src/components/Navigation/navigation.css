@@ -1,0 +1,27 @@
+@import url("./navigation_opened.css");
+@import url("./navigation_closed.css");
+@import url("./navigation__close-button.css");
+@import url("./navigation__link.css");
+@import url("./navigation__link_account.css");
+@import url("./navigation__menu.css");
+@import url("./navigation__list.css");
+@import url("./navigation__listitem.css");
+@import url("./navigation__account-icon.css");
+@import url("./navigation__account_text.css");
+
+.navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #202020;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: opacity 600ms, visibility 600ms;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

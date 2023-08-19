@@ -1,0 +1,16 @@
+.navigation__close-button {
+    background-image: url(../../images/close-button.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+
+    position: absolute;
+    top: 13.44px;
+    right: 13.44px;
+    border: none;
+    padding: 0;
+
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
