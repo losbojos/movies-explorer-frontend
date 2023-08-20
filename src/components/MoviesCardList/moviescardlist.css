@@ -1,0 +1,15 @@
+@import url('./moviescardlist__listitem.css');
+
+.moviescardlist {
+    margin: 0 auto;
+    padding: 50px 0 0;
+    max-width: calc(100% - 10px * 2);
+
+    border-top: 1px solid #AAAAAA33;
+
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(271px, 1fr));
+
+}

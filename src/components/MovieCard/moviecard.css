@@ -1,0 +1,20 @@
+@import url("./moviecard__header.css");
+@import url("./moviecard__name.css");
+@import url("./moviecard__duration.css");
+@import url("./moviecard__image.css");
+@import url("./moviecard__button.css");
+@import url("./moviecard__button_save.css");
+@import url("./moviecard__button_remove-from-all.css");
+
+.moviecard {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+
+    border-radius: 6px;
+    background: #222;
+    box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+
+
+}
