@@ -1,0 +1,22 @@
+.searchform__submit {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    /* 128.571% */
+
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: none;
+    background: #4285F4;
+    padding: 13px 10px;
+    box-sizing: border-box;
+    min-width: 80px;
+
+    margin: 6px;
+}
+
+/* см также button:disabled в app.css */

@@ -8,6 +8,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
+import Movies from '../Movies/Movies';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
         <Route path={PAGES.LOGIN} element={<Login />} />
         <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
         <Route path={PAGES.PROFILE} element={<Profile />} />
+        <Route path={PAGES.MOVIES} element={<Movies />} />
         <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
         <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
       </Routes>
