@@ -5,12 +5,11 @@
 @import url("./profile__input_invalid.css");
 @import url("./profile__input-container.css");
 @import url("./profile__error-span.css");
-@import url("./profile__footer");
-@import url("./profile__button-edit");
-@import url("./profile__button-exit");
-@import url("./profile__save-error");
-@import url("./profile__button-save");
-@import url("./profile__button-save_disabled");
+@import url("./profile__footer.css");
+@import url("./profile__button-edit.css");
+@import url("./profile__button-exit.css");
+@import url("./profile__save-error.css");
+@import url("./profile__button-save.css");
 
 /* FIGMA 320 design (default) */
 .profile {

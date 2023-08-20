@@ -4,3 +4,14 @@
 @import url("./html.css");
 @import url("./body.css");
 @import url("./page.css");
+
+button:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    user-select: none;
+
+    /* pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; */
+}

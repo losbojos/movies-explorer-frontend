@@ -10,12 +10,12 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
     const inputEmail = 'email'; // Имя инпута с email
     const inputPwd = 'password'; // Имя инпута с паролем
 
+    const { values, handleChange, errors, isValid } = useFormAndValidation();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         handleAuth(values);
     }
-
-    const { values, handleChange, errors, isValid } = useFormAndValidation();
 
     return (
         <form className="auth" onSubmit={handleSubmit}>
@@ -61,7 +61,8 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
             <div className="auth__footer">
                 <button
                     type="submit"
-                    className={`auth__submit cursor-pointer ${!isValid && 'auth__submit_disabled'}`}
+                    className="auth__submit"
+                    disabled={!isValid}
                 >
                     {buttonSubmitText}
                 </button>

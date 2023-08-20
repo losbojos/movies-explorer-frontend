@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
-function Profile({ name = 'ТестИмя', email = 'Тест@email.ru' }) {
+function Profile({ name, email }) {
 
     const inputName = 'name'; // Имя инпута с именем
     const inputEmail = 'email'; // Имя инпута с email
@@ -51,7 +51,8 @@ function Profile({ name = 'ТестИмя', email = 'Тест@email.ru' }) {
                 <span className="profile__save-error">При обновлении профиля произошла ошибка.</span>
                 <button
                     type="submit"
-                    className={`profile__button-save cursor-pointer ${!isValid && 'profile__button-save_disabled'}`}
+                    className="profile__button-save"
+                    disabled={!isValid}
                 >
                     Сохранить
                 </button>
