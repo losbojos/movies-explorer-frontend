@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import SearchForm from '../SearchForm/SearchForm';
+import SearchMovies from '../SearchMovies/SearchMovies';
 
 import './movies.css';
 
@@ -15,7 +15,7 @@ function Movies(props) {
     return (
         <Fragment>
             <Header />
-            <SearchForm searchPlaceholder='Фильм' handleSearch={handleSearch} />
+            <SearchMovies handleSearch={handleSearch} />
             <Footer />
         </Fragment>
     );

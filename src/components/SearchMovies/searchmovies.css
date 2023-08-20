@@ -1,0 +1,6 @@
+.searchmovies {
+    display: flex;
+    flex-direction: column;
+    margin: 70px 14px 64px;
+    row-gap: 30px;
+}
