@@ -8,7 +8,7 @@ function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handle
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleSearch(values[searchStringInput]);
+        handleSearch({ searchString: values[searchStringInput] });
     }
 
     const searchStringInput = 'searchString';

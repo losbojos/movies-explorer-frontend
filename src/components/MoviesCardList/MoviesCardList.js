@@ -5,16 +5,16 @@ import './moviescardlist.css';
 function MoviesCardList(props) {
 
     const {
-        cards, // Массив карточек
+        movies,
     } = props;
 
     return (
         <ul className="moviescardlist">
             {
-                cards.map(card => {
+                movies.map(movie => {
                     return (
-                        <li className="moviescardlist__listitem" key={card._id}>
-                            <MovieCard {...card} />
+                        <li className="moviescardlist__listitem" key={movie._id}>
+                            <MovieCard {...movie} />
                         </li>
                     );
                 })
