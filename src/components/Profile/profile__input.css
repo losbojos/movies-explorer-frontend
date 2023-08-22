@@ -12,7 +12,8 @@
     /* outline: none; */
 
     margin: 0;
+    margin-left: 10px;
     padding: 0;
-    min-width: 50%;
+    width: 50%;
     flex-shrink: 0;
 }

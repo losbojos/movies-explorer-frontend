@@ -45,6 +45,7 @@ function Profile(props) {
                         value={values[inputName] || ''}
                         onChange={handleChange}
                         className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
+                        maxlength="30"
                     />
                 </div>
                 <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
@@ -59,6 +60,7 @@ function Profile(props) {
                         value={values[inputEmail] || ''}
                         onChange={handleChange}
                         className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
+                        maxlength="254"
                     />
                 </div>
                 <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
