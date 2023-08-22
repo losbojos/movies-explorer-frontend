@@ -16,6 +16,10 @@
     margin: 0;
 }
 
+.auth__input:focus {
+    border-bottom-color: #4285F4;
+}
+
 .auth__input::placeholder {
     color: #CCCCCC;
 }

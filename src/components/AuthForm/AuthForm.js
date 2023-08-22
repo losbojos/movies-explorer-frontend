@@ -40,8 +40,13 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                 {showInputName && (
                     <Fragment>
                         <label className="auth__label">Имя
-                            <input id="name" required name={inputName} type="text"
-                                value={values[inputName] || ''} onChange={handleChange}
+                            <input
+                                id="name"
+                                required
+                                name={inputName}
+                                type="text"
+                                value={values[inputName] || ''}
+                                onChange={handleChange}
                                 className={`auth__input ${errors[inputName] && 'auth__input_invalid'}`}
                             />
                         </label>
