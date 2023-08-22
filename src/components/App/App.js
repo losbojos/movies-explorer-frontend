@@ -22,7 +22,7 @@ function App() {
   ];
 
   const [filteredMovies, setFilteredMovies] = useState([]);
-
+  const [likedMovies, setLikedMovies] = useState([]);
 
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
@@ -39,6 +39,21 @@ function App() {
 
   }
 
+  const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
+
+    return new Promise((resolve, reject) => {
+
+      // TODO: Здесь будет фильтрация
+      console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
+
+      setTimeout(() => {
+        setLikedMovies(testMovies);
+        resolve();
+      }, 3000); // эмулируем загрузку 3 сек
+    });
+
+  }
+
   return (
     <Routes>
       <Route path={PAGES.MAIN} element={<Main />} />
@@ -47,6 +62,7 @@ function App() {
       <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
       <Route path={PAGES.PROFILE} element={<Profile />} />
       <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
+      <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
       <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
       <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
     </Routes>

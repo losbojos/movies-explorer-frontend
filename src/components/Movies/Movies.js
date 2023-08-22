@@ -4,14 +4,15 @@ import Footer from '../Footer/Footer';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
-import errorHandler from '../../utils/errorHandler';
+import { errorHandler } from '../../utils/errorHandler.js';
 import './movies.css';
 
 function Movies(props) {
 
     const {
         movies, // Массив фильмов
-        handleSearch // Обработчик поиска с параметрами { searchString, onlyShortFilms } должен возвращать Promise
+        handleSearch, // Обработчик поиска с параметрами { searchString, onlyShortFilms } должен возвращать Promise
+        likedMovies = false // Окно любимых фильмов
     } = props;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,7 @@ function Movies(props) {
             <section className='movies'>
                 <SearchMovies handleSearch={preprocessSearch} />
                 {isLoading && (<Preloader />)}
-                <MoviesCardList movies={movies} />
+                <MoviesCardList movies={movies} likedMovies={likedMovies} />
             </section>
             <Footer />
         </Fragment>

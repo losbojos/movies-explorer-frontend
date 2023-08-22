@@ -6,6 +6,7 @@ function MoviesCardList(props) {
 
     const {
         movies,
+        likedMovies
     } = props;
 
     return (
@@ -14,7 +15,7 @@ function MoviesCardList(props) {
                 movies.map(movie => {
                     return (
                         <li className="moviescardlist__listitem" key={movie._id}>
-                            <MovieCard {...movie} />
+                            <MovieCard movie={movie} likedMoviesView={likedMovies} />
                         </li>
                     );
                 })

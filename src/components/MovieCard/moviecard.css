@@ -5,6 +5,7 @@
 @import url("./moviecard__button.css");
 @import url("./moviecard__button_save.css");
 @import url("./moviecard__button_remove-from-all.css");
+@import url("./moviecard__button_remove-from-liked");
 
 .moviecard {
     display: flex;
