@@ -1,5 +1,7 @@
+/* FIGMA 320 design */
 .notfound__text {
-    margin: 10px 0 0;
+    margin: 0;
+    margin-top: 10px;
     padding: 0;
 
     color: #FFF;
@@ -10,3 +12,17 @@
     font-weight: 400;
     line-height: normal;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .notfound__text {
+        margin-top: 5px;
+        font-size: 16px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}
