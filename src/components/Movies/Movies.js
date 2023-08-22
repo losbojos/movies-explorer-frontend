@@ -6,6 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import { errorHandler } from '../../utils/errorHandler.js';
 import './movies.css';
+import './movies__button.css';
 
 function Movies(props) {
 
@@ -25,6 +26,10 @@ function Movies(props) {
             .finally(() => setIsLoading(false));
     }
 
+    const handleMore = () => {
+
+    }
+
     return (
         <Fragment>
             <Header />
@@ -32,6 +37,15 @@ function Movies(props) {
                 <SearchMovies handleSearch={preprocessSearch} />
                 {isLoading && (<Preloader />)}
                 <MoviesCardList movies={movies} likedMovies={likedMovies} />
+                <button
+                    className='movies__button'
+                    type='button'
+                    aria-label='Показать больше фильмов'
+                    disabled={likedMovies}
+                    onClick='handleMore'
+                >
+                    Ещё
+                </button>
             </section>
             <Footer />
         </Fragment>
