@@ -21,10 +21,25 @@
     display: inline-flex;
     align-items: center;
     user-select: none;
+
+    padding-right: 5px;
 }
 
-/* Вариант с обычной галкой на синем фоне
 
+.customcheckbox:focus-visible+label {
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
+/* В Firefox по-другому выглядят рамки фокуса */
+@-moz-document url-prefix() {
+    .customcheckbox:focus-visible+label {
+        border: 1px dotted #000;
+        border-radius: 5px;
+    }
+}
+
+
+/* Вариант с обычной галкой на синем фоне
 .customcheckbox+label::before {
     content: '';
     display: inline-block;

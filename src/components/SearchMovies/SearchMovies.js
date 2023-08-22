@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 import './searchmovies.css';
+import './searchmovies__checkbox-container.css';
 
 function SearchMovies(props) {
 
@@ -21,11 +22,13 @@ function SearchMovies(props) {
     return (
         <section className='searchmovies'>
             <SearchForm searchPlaceholder='Фильм' handleSearch={handleSearchString} />
-            <CustomCheckBox
-                caption='Короткометражки'
-                checked={shortFilmsChecked}
-                onChanged={handleCheckBoxChanged}
-            />
+            <div className='searchmovies__checkbox-container'>
+                <CustomCheckBox
+                    caption='Короткометражки'
+                    checked={shortFilmsChecked}
+                    onChanged={handleCheckBoxChanged}
+                />
+            </div>
         </section>
     );
 
