@@ -1,5 +1,13 @@
 import React, { useContext } from 'react';
 import "./moviecard.css";
+import './moviecard__header.css';
+import './moviecard__name.css';
+import './moviecard__duration.css';
+import './moviecard__image.css';
+import './moviecard__button.css';
+import './moviecard__button_save.css';
+import './moviecard__button_remove-from-all.css';
+import './moviecard__button_remove-from-liked.css';
 
 function MovieCard(props) {
 

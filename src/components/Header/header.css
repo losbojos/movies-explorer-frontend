@@ -1,9 +1,3 @@
-@import url("./header__nav.css");
-@import url("./header__menu-button.css");
-@import url("./header__register.css");
-@import url("./header__login.css");
-@import url("./header_main-background");
-
 /* FIGMA 320 design (default) */
 .header {
     margin: 0;

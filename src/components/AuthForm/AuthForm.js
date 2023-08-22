@@ -1,8 +1,19 @@
 import React, { Fragment } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
-import './auth.css'
 import Logo from '../Logo/Logo';
+
+import './auth.css'
+import './auth__input.css';
+import './auth__input_invalid.css';
+import './auth__inputs.css';
+import './auth__submit.css';
+import './auth__text.css';
+import './auth__text_link.css';
+import './auth__title.css';
+import './auth__label.css';
+import './auth__logo-container.css';
+import './auth__footer.css';
 
 function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = false, children }) {
 

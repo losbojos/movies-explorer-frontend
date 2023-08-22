@@ -1,5 +1,12 @@
 import React from 'react';
+
 import './techs.css';
+import './techs__header.css';
+import './techs__line.css';
+import './techs__title.css';
+import './techs__text.css';
+import './techs__list.css';
+import './techs__item.css';
 
 function Techs(props) {
 

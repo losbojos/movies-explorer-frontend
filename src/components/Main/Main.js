@@ -12,7 +12,7 @@ function Main(props) {
 
     return (
         <Fragment>
-            <Header addHeaderClass='header_main-background' />
+            <Header addHeaderClass='header_bluebackground' />
             <main className="main">
                 <Promo />
                 <AboutProject />

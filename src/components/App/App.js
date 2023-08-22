@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import './index.css';
 import { PAGES } from '../../utils/consts';
 
 import Main from '../Main/Main';
@@ -9,6 +8,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import Movies from '../Movies/Movies';
+
+import './app.css';
 
 function App() {
 

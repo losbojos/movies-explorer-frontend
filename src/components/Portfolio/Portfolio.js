@@ -1,6 +1,11 @@
 import React from 'react';
-import './portfolio.css';
 import Navtab from '../Navtab/Navtab'
+
+import './portfolio.css';
+import './portfolio__header.css';
+import './portfolio__list.css';
+import './portfolio__listitem.css';
+
 
 function Portfolio(props) {
 

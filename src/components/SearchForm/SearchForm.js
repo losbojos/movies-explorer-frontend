@@ -1,6 +1,9 @@
 import React from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
+
 import './searchform.css';
+import './searchform__input.css';
+import './searchform__submit.css';
 
 function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch }) {
 

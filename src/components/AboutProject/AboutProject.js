@@ -1,5 +1,17 @@
 import React from 'react';
 import './about-project.css';
+import './about-project__header.css';
+import './about-project__line.css';
+import './about-project__list.css';
+import './about-project__item.css';
+import './about-project__text.css';
+import './about-project__roadmap.css';
+import './about-project__roadmap-list.css';
+import './about-project__roadmap-list-item.css';
+import './about-project__roadmap-content.css';
+import './about-project__roadmap-content_diagram.css';
+import './about-project__roadmap-content_diagram_highlighted.css';
+import './about-project__roadmap-content_text.css';
 
 function AboutProject(props) {
 

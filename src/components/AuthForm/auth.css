@@ -1,14 +1,3 @@
-@import url("./auth__input.css");
-@import url("./auth__input_invalid.css");
-@import url("./auth__inputs.css");
-@import url("./auth__submit.css");
-@import url("./auth__text.css");
-@import url("./auth__text_link.css");
-@import url("./auth__title.css");
-@import url("./auth__label.css");
-@import url("./auth__logo-container.css");
-@import url("./auth__footer.css");
-
 /* FIGMA 320 design (default) */
 .auth {
     display: flex;

@@ -1,5 +1,10 @@
 import React from 'react';
+
 import './navtab.css';
+import './navtab__line.css';
+import './navtab__link.css';
+import './navtab__text.css';
+import './navtab__pointer.css';
 
 function Navtab(props) {
     const { title, link, showline = true } = props;

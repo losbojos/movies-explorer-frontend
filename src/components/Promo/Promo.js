@@ -1,6 +1,11 @@
 import React from 'react';
-import './promo.css';
 import promoImage from '../../images/promo.svg';
+
+import './promo.css';
+import './promo__banner.css';
+import './promo__header.css';
+import './promo__text.css';
+import './promo__button.css';
 
 function Promo(props) {
 

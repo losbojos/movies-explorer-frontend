@@ -1,8 +1,21 @@
 import React from 'react';
-import './profile.css';
 import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
+
+import './profile.css';
+import './profile__title.css';
+import './profile__inputs.css';
+import './profile__label.css';
+import './profile__input.css';
+import './profile__input_invalid.css';
+import './profile__input-container.css';
+import './profile__error-span.css';
+import './profile__footer.css';
+import './profile__button-edit.css';
+import './profile__button-exit.css';
+import './profile__save-error.css';
+import './profile__button-save.css';
 
 function Profile({ name, email }) {
 

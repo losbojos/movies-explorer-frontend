@@ -1,6 +1,12 @@
 import React from 'react';
-import './footer.css';
 import { GITHUB_HREF } from '../../utils/consts';
+
+import './footer.css';
+import './footer__title.css';
+import './footer__line.css';
+import './footer__company.css';
+import './footer__link.css';
+import './footer__copyright.css';
 
 function Footer() {
     return (

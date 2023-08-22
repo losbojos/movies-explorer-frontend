@@ -1,6 +1,3 @@
-@import url('./searchform__input.css');
-@import url('./searchform__submit.css');
-
 .searchform {
     display: flex;
     flex-direction: row;

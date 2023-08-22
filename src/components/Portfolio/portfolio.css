@@ -1,7 +1,3 @@
-@import url("./portfolio__header.css");
-@import url("./portfolio__list.css");
-@import url("./portfolio__listitem.css");
-
 /* FIGMA 320 design (default) */
 .portfolio {
     margin: 0;

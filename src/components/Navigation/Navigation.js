@@ -1,9 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './navigation.css';
 import { PAGES } from '../../utils/consts';
 import accountImage from '../../images/account.svg';
 import { usePopupClose } from '../../hooks/usePopupClose';
+
+import './navigation.css';
+import './navigation_opened.css';
+import './navigation_closed.css';
+import './navigation__close-button.css';
+import './navigation__link.css';
+import './navigation__link_account.css';
+import './navigation__menu.css';
+import './navigation__list.css';
+import './navigation__listitem.css';
+import './navigation__account-icon.css';
+import './navigation__account_text.css';
 
 function Navigation(props) {
     const { isOpen, onClose } = props;

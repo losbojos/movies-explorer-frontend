@@ -1,16 +1,3 @@
-@import url("./about-project__header.css");
-@import url("./about-project__line.css");
-@import url("./about-project__list.css");
-@import url("./about-project__item.css");
-@import url("./about-project__text.css");
-@import url("./about-project__roadmap.css");
-@import url("./about-project__roadmap-list.css");
-@import url("./about-project__roadmap-list-item.css");
-@import url("./about-project__roadmap-content.css");
-@import url("./about-project__roadmap-content_diagram.css");
-@import url("./about-project__roadmap-content_diagram_highlighted.css");
-@import url("./about-project__roadmap-content_text.css");
-
 /* FIGMA 320 design (default) */
 .about-project {
     margin: 0;

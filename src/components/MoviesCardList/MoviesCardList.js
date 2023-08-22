@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import './moviescardlist.css';
+import './moviescardlist__listitem.css';
 
 function MoviesCardList(props) {
 

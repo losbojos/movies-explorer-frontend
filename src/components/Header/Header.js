@@ -1,8 +1,14 @@
 import React, { Fragment, useState } from 'react';
-import './header.css';
 import { PAGES } from '../../utils/consts';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
+
+import './header.css';
+import './header__nav.css';
+import './header__menu-button.css';
+import './header__register.css';
+import './header__login.css';
+import './header_bluebackground.css';
 
 function Header({ addHeaderClass }) {
 

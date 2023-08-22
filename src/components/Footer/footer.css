@@ -1,9 +1,3 @@
-@import url("./footer__title.css");
-@import url("./footer__line.css");
-@import url("./footer__company.css");
-@import url("./footer__link.css");
-@import url("./footer__copyright.css");
-
 /* FIGMA 320 design (default) */
 .footer {
     margin: auto 0 0;

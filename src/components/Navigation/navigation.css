@@ -1,14 +1,3 @@
-@import url("./navigation_opened.css");
-@import url("./navigation_closed.css");
-@import url("./navigation__close-button.css");
-@import url("./navigation__link.css");
-@import url("./navigation__link_account.css");
-@import url("./navigation__menu.css");
-@import url("./navigation__list.css");
-@import url("./navigation__listitem.css");
-@import url("./navigation__account-icon.css");
-@import url("./navigation__account_text.css");
-
 .navigation {
     position: fixed;
     top: 0;
