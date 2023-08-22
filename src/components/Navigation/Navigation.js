@@ -10,6 +10,7 @@ import './navigation_closed.css';
 import './navigation__close-button.css';
 import './navigation__link.css';
 import './navigation__link_account.css';
+import './navigation__link_active.css';
 import './navigation__menu.css';
 import './navigation__list.css';
 import './navigation__listitem.css';
@@ -36,7 +37,7 @@ function Navigation(props) {
                         <a className='navigation__link' href={PAGES.MAIN}>Главная</a>
                     </li>
                     <li className='navigation__listitem'>
-                        <a className='navigation__link' href={PAGES.MOVIES}>Фильмы</a>
+                        <a className='navigation__link navigation__link_active' href={PAGES.MOVIES}>Фильмы</a>
                     </li>
                     <li className='navigation__listitem'>
                         <a className='navigation__link' href={PAGES.SAVED_MOVIES}>Сохранённые фильмы</a>
