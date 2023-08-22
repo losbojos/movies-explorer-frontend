@@ -1,18 +1,33 @@
+/* External styles */
 @import url('../../vendor/normalize.css');
 @import url('../../vendor/fonts/Inter-3.19/InterWeb/inter.css');
 
+/* App styles (as index.css file) */
 @import url('./html.css');
 @import url('./body.css');
 @import url('./page.css');
 
+/* ****************************************************** */
+/* Common app styles */
 
 button:disabled {
     opacity: 0.2;
     cursor: not-allowed;
-    user-select: none;
 
-    /* pointer-events: none;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none; */
+    -ms-user-select: none;
+
+    /* pointer-events: none; */
+}
+
+button:hover:not([disabled]) {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+a:hover:not([disabled]) {
+    opacity: 0.7;
+    cursor: pointer;
 }
