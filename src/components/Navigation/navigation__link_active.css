@@ -1,4 +1,20 @@
+/* FIGMA 320 design */
 .navigation__link_active {
     border-bottom: 2px solid #fff;
     padding-bottom: 7px;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .navigation__link_active {
+        font-weight: 500;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

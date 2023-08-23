@@ -32,7 +32,10 @@ function Header({ addHeaderClass }) {
                 <Logo />
                 {isLogged &&
                     (
-                        <button className="header__menu-button" onClick={openMenu} />
+                        <Fragment>
+                            <Navigation inHeader={true} />
+                            <button className="header__menu-button" onClick={openMenu} />
+                        </Fragment>
                     )
                 }
                 {!isLogged &&

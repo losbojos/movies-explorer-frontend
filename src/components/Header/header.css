@@ -1,4 +1,4 @@
-/* FIGMA 320 design (default) */
+/* FIGMA 320 design */
 .header {
     margin: 0;
     padding: 18px 14px;
@@ -12,4 +12,25 @@
     align-items: center;
 
     position: relative;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .header {
+        padding: 18px 30px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .header {
+        max-height: 74px;
+    }
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .header {
+        padding: 18px 70px;
+    }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
@@ -30,57 +30,60 @@ function Profile(props) {
     const { values, handleChange, errors, isValid } = useFormAndValidation();
 
     return (
-        <form className='profile' onSubmit={handleSubmit} noValidate>
+        <Fragment>
+
             <Header />
-            <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
-            <div className="profile__inputs">
+            <form className='profile' onSubmit={handleSubmit} noValidate>
+                <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
+                <div className="profile__inputs">
 
-                <div className="profile__input-container">
-                    <label className="profile__label" htmlFor={inputName}>Имя</label>
-                    <input
-                        id={inputName}
-                        required
-                        name={inputName}
-                        type="text"
-                        value={values[inputName] || ''}
-                        onChange={handleChange}
-                        className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
-                        maxlength="30"
-                    />
+                    <div className="profile__input-container">
+                        <label className="profile__label" htmlFor={inputName}>Имя</label>
+                        <input
+                            id={inputName}
+                            required
+                            name={inputName}
+                            type="text"
+                            value={values[inputName] || ''}
+                            onChange={handleChange}
+                            className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
+                            maxLength="30"
+                        />
+                    </div>
+                    <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
+
+                    <div className="profile__input-container">
+                        <label className="profile__label" htmlFor={inputEmail}>E-mail</label>
+                        <input
+                            id={inputEmail}
+                            required
+                            name={inputEmail}
+                            type="email"
+                            value={values[inputEmail] || ''}
+                            onChange={handleChange}
+                            className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
+                            maxLength="254"
+                        />
+                    </div>
+                    <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
+
                 </div>
-                <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
 
-                <div className="profile__input-container">
-                    <label className="profile__label" htmlFor={inputEmail}>E-mail</label>
-                    <input
-                        id={inputEmail}
-                        required
-                        name={inputEmail}
-                        type="email"
-                        value={values[inputEmail] || ''}
-                        onChange={handleChange}
-                        className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
-                        maxlength="254"
-                    />
+                <div className="profile__footer">
+                    <button className="profile__button-edit">Редактировать</button>
+                    <button className="profile__button-exit">Выйти из аккаунта</button>
+                    <span className="profile__save-error">При обновлении профиля произошла ошибка.</span>
+                    <button
+                        type="submit"
+                        className="profile__button-save"
+                        disabled={!isValid}
+                    >
+                        Сохранить
+                    </button>
                 </div>
-                <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
 
-            </div>
-
-            <div className="profile__footer">
-                <button className="profile__button-edit">Редактировать</button>
-                <button className="profile__button-exit">Выйти из аккаунта</button>
-                <span className="profile__save-error">При обновлении профиля произошла ошибка.</span>
-                <button
-                    type="submit"
-                    className="profile__button-save"
-                    disabled={!isValid}
-                >
-                    Сохранить
-                </button>
-            </div>
-
-        </form>
+            </form>
+        </Fragment>
     );
 }
 

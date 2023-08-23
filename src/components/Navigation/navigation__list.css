@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .navigation__list {
     display: flex;
     flex-direction: column;
@@ -7,3 +8,16 @@
     padding: 0;
     height: 100%;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .navigation__list {
+        flex-direction: row;
+    }
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

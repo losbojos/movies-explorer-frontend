@@ -18,19 +18,21 @@ import './navigation__account-icon.css';
 import './navigation__account_text.css';
 
 function Navigation(props) {
-    const { isOpen, onClose } = props;
-    const classNames = `navigation ${isOpen ? 'navigation_opened' : 'navigation_closed'}`;
+    const { isOpen, onClose, inHeader = false } = props;
+    const classNames = `navigation ${(inHeader || isOpen) ? 'navigation_opened' : 'navigation_closed'}`;
     const navigate = useNavigate();
 
     usePopupClose(isOpen, onClose);
 
     return (
         <div className={classNames}>
-            <button
-                className='navigation__close-button'
-                aria-label="Закрыть меню"
-                onClick={onClose}>
-            </button>
+            {!inHeader && (
+                <button
+                    className='navigation__close-button'
+                    aria-label="Закрыть меню"
+                    onClick={onClose}>
+                </button>
+            )}
             <nav className='navigation__menu'>
                 <ul className='navigation__list'>
                     <li className='navigation__listitem'>
