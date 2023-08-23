@@ -1,9 +1,10 @@
+/* FIGMA 320 design */
 .page {
     margin: 0 auto;
 
     min-width: 320px;
     max-width: 1280px;
-    width: 100%;
+    width: calc(100% - 2*10px);
 
     min-height: 480px;
     height: 100%;
@@ -22,4 +23,24 @@
     /* В Safari и во всех браузерах на платформе Chromium (например, Google Chrome, Яндекс Браузер или Opera): */
     -moz-osx-font-smoothing: grayscale;
     /* В Mozilla Firefox */
+}
+
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .page {
+        width: calc(100% - 2*30px);
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .page {}
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .page {
+        width: calc(100% - 2*70px);
+    }
 }
