@@ -14,6 +14,7 @@
 /* NO FIGMA design */
 @media screen and (min-width: 768px) {
     .auth__text {
+        font-size: 14px;
         margin: 17px 0 0;
     }
 }

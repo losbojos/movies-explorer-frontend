@@ -20,15 +20,11 @@
 /* NO FIGMA design */
 @media screen and (min-width: 768px) {
     .auth__submit {
-        font-size: 17px;
-        line-height: 21px;
+        margin: 0;
+        font-size: 14px;
+        padding: 13px 15px 15px;
     }
 }
 
 /* FIGMA 1280 */
-@media screen and (min-width: 1024px) {
-    .auth__submit {
-        font-size: 18px;
-        line-height: 22px;
-    }
-}
+@media screen and (min-width: 1024px) {}
