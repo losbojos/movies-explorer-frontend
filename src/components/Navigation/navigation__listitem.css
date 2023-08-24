@@ -8,10 +8,20 @@
 
 .navigation__listitem:last-of-type {
     margin-top: auto;
+    margin-bottom: 0;
 }
 
 /* FIGMA 768 design */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .navigation__listitem {
+        margin-bottom: 28px;
+    }
+
+    .navigation__listitem:last-of-type {
+        margin-top: auto;
+        margin-bottom: 0;
+    }
+}
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {

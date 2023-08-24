@@ -1,0 +1,21 @@
+/* FIGMA 320 design */
+.navigation__list_horizontal {
+    display: none;
+}
+
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .navigation__list_horizontal {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

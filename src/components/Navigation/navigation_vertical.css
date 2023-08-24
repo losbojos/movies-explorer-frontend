@@ -1,12 +1,17 @@
 /* FIGMA 320 design */
-.navigation__list {
-    margin: auto 0;
-    padding: 0;
+.navigation_vertical {
+    margin: 100px 0 38px;
     height: 100%;
+    /* padding: 10px; */
+    box-sizing: border-box;
 }
 
 /* FIGMA 768 design */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .navigation_vertical {
+        margin: 106px 0 73px;
+    }
+}
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {}

@@ -1,12 +1,9 @@
 /* FIGMA 320 design */
-.header__menu-button {
+.burger-button {
     flex-shrink: 0;
     box-sizing: border-box;
     border: 2px solid transparent;
 
-    position: absolute;
-    right: 15px;
-    top: 14px;
     width: 40px;
     height: 43px;
 
@@ -16,6 +13,7 @@
     background-position: center;
     background-color: transparent;
 
+    display: inherit;
 }
 
 
@@ -24,8 +22,8 @@
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {
-    .header__menu-button {
-        visibility: hidden;
+    .burger-button {
+        display: none;
     }
 }
 

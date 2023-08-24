@@ -18,7 +18,7 @@ function Main(props) {
 
     return (
         <Fragment>
-            <Header addHeaderClass='header_bluebackground' />
+            <Header isLandingPage={true} />
             <main className="main">
                 <Promo showButtonMore={!viewMore} onClickMore={handleMore} />
                 {viewMore && (

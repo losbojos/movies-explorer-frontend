@@ -7,7 +7,7 @@ function CustomCheckBox({ caption, checked, onChanged }) {
 
     const handleChange = (e) => {
         const newValue = e.target.checked;
-        console.log(`onChange from ${checkedValue} to ${newValue}`);
+        // console.log(`onChange from ${checkedValue} to ${newValue}`);
         setCheckedValue(newValue);
         onChanged(newValue);
     }
