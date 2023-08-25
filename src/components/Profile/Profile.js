@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
@@ -17,23 +17,58 @@ import './profile__button-exit.css';
 import './profile__save-error.css';
 import './profile__button-save.css';
 
-function Profile(props) {
+function Profile({ handleSave }) {
 
     const inputName = 'profileName'; // Имя инпута с именем
     const inputEmail = 'profileEmail'; // Имя инпута с email
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // TODO
+    const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+
+    const FORM_STATE = { READ: 0, EDIT: 1, SAVING: 2 };
+    const [formState, setFormState] = useState(FORM_STATE.READ);
+    const [lastError, setLastError] = useState("");
+
+    const handleEdit = () => {
+        setFormState(FORM_STATE.EDIT);
     }
 
-    const { values, handleChange, errors, isValid } = useFormAndValidation();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setLastError("");
+        setFormState(FORM_STATE.SAVING);
+        handleSave(values)
+            .then(() => setFormState(FORM_STATE.READ))
+            .catch(error => {
+                setLastError(error);
+                setFormState(FORM_STATE.EDIT)
+            })
+            .finally();
+    }
+
+    const handleReset = () => {
+        console.log('handle reset');
+        setLastError("");
+        setFormState(FORM_STATE.READ);
+        resetForm();
+    }
+
+    const handleKeyUp = (e) => {
+        if (e.key === "Escape") {
+            handleReset();
+        }
+    }
 
     return (
         <Fragment>
 
             <Header />
-            <form className='profile' onSubmit={handleSubmit} noValidate>
+            <form
+                className='profile'
+                onSubmit={handleSubmit}
+                // onReset={handleReset} Не работает почему то
+                onKeyUp={handleKeyUp}
+                noValidate>
                 <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
                 <div className="profile__inputs">
 
@@ -48,6 +83,7 @@ function Profile(props) {
                             onChange={handleChange}
                             className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
                             maxLength="30"
+                            disabled={formState === FORM_STATE.READ}
                         />
                     </div>
                     <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
@@ -63,6 +99,7 @@ function Profile(props) {
                             onChange={handleChange}
                             className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
                             maxLength="254"
+                            disabled={formState === FORM_STATE.READ}
                         />
                     </div>
                     <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
@@ -70,16 +107,24 @@ function Profile(props) {
                 </div>
 
                 <div className="profile__footer">
-                    <button className="profile__button-edit">Редактировать</button>
-                    <button className="profile__button-exit">Выйти из аккаунта</button>
-                    <span className="profile__save-error">При обновлении профиля произошла ошибка.</span>
-                    <button
-                        type="submit"
-                        className="profile__button-save"
-                        disabled={!isValid}
-                    >
-                        Сохранить
-                    </button>
+                    {formState === FORM_STATE.READ && (
+                        <Fragment>
+                            <button className="profile__button-edit" type="button" onClick={handleEdit}>Редактировать</button>
+                            <button className="profile__button-exit" type="button">Выйти из аккаунта</button>
+                        </Fragment>
+                    )}
+                    {formState !== FORM_STATE.READ && (
+                        <Fragment>
+                            <span className="profile__save-error">{lastError}</span>
+                            <button
+                                type="submit"
+                                className="profile__button-save"
+                                disabled={!isValid || formState === FORM_STATE.SAVING}
+                            >
+                                {formState === FORM_STATE.SAVING ? 'Сохранение...' : 'Сохранить'}
+                            </button>
+                        </Fragment>
+                    )}
                 </div>
 
             </form>

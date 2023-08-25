@@ -11,6 +11,8 @@ import Movies from '../Movies/Movies';
 
 import './app.css';
 
+let testCounter = 0;
+
 function App() {
 
   const testMovies = [
@@ -34,7 +36,7 @@ function App() {
 
       setTimeout(() => {
         setFilteredMovies(testMovies);
-        resolve(); // эмулируем загрузку 3 сек
+        resolve(); // эмулируем загрузку
       }, 5000);
     });
 
@@ -50,10 +52,31 @@ function App() {
       setTimeout(() => {
         setLikedMovies(testMovies);
         resolve();
-      }, 3000); // эмулируем загрузку 3 сек
+      }, 3000); // эмулируем загрузку
     });
 
   }
+
+  const saveProfile = (newValues) => {
+
+    return new Promise((resolve, reject) => {
+
+      // TODO: Здесь будет обращение к API за сохранением профиля
+      console.log(`Running save profile... ${newValues}`);
+
+      setTimeout(() => {
+
+        if (++testCounter % 3 === 0) {
+          resolve();
+        } else {
+          reject("При обновлении профиля произошла ошибка.");
+        }
+
+      }, 5000);
+    });
+
+  }
+
 
   return (
     <Routes>
@@ -61,7 +84,7 @@ function App() {
       <Route path={PAGES.REGISTER} element={<Register />} />
       <Route path={PAGES.LOGIN} element={<Login />} />
       <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
-      <Route path={PAGES.PROFILE} element={<Profile />} />
+      <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} />} />
       <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
       <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
       <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />

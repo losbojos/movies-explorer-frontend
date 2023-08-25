@@ -12,7 +12,7 @@ export default function useFormAndValidation(inputValues = {}, initialIsValid = 
         setIsValid(e.target.closest('form').checkValidity());
     };
 
-    const resetForm = useCallback((newValues = {}, newErrors = {}, newIsValid = false) => {
+    const resetForm = useCallback((newValues = {}, newErrors = {}, newIsValid = initialIsValid) => {
         setValues(newValues);
         setErrors(newErrors);
         setIsValid(newIsValid);
