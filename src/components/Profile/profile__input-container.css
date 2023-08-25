@@ -6,7 +6,7 @@
 }
 
 .profile__input-container:not(:first-of-type) {
-    padding-top: 15px;
+    padding-top: 17px;
     border-top: 1px solid #424242;
-    margin-top: 17px;
+    margin-top: 12px;
 }

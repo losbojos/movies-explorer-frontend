@@ -1,13 +1,30 @@
-/* FIGMA 320 design (default) */
+/* FIGMA 320 design */
 .profile {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    justify-content: stretch;
 
     margin: 0 auto;
     padding: 0;
+
     height: 100%;
+    max-height: calc(100% - 74px);
+
     flex-shrink: 0;
     width: 100%;
-    max-width: calc(100% - 2 * 30px);
+    max-width: calc(100% - (2 * 30px));
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .profile {
+        max-width: 410px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}
