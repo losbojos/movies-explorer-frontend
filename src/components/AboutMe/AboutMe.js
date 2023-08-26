@@ -1,6 +1,6 @@
 import React from 'react';
 import myFoto from '../../images/myfoto.png';
-import { GITHUB_HREF } from '../../utils/consts';
+import { HREFS } from '../../utils/consts';
 
 import './aboutme.css';
 
@@ -22,7 +22,7 @@ function AboutMe(props) {
             <h3 className="aboutme__title">Евгений</h3>
             <p className="aboutme__bio">Фронтенд-разработчик, 43 года</p>
             <p className="aboutme__text">Я родился и живу в Новосибирске, закончил факультет прикладной математики и информатики НГТУ. Работал C++\C# разработчиком и менеджером проектов. У меня есть жена и дети. Также увлекаюсь инвестированием в акции. Стало интересно освоить WEB и сменить специализацию. Прошел курс по веб-разработке от Я.Практикум.</p>
-            <a className="aboutme__link" href={GITHUB_HREF}>Github</a>
+            <a className="aboutme__link" href={HREFS.GITHUB} target="_blank">Github</a>
         </div >
     );
 }

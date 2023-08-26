@@ -1,4 +1,8 @@
-const GITHUB_HREF = "https://github.com/losbojos";
+
+const HREFS = {
+    GITHUB: "https://github.com/losbojos",
+    YANDEX_PRACTICUM: "https://practicum.yandex.ru",
+}
 
 const PAGES = {
     MAIN: "/main",
@@ -11,5 +15,5 @@ const PAGES = {
 };
 
 export {
-    GITHUB_HREF, PAGES,
+    HREFS, PAGES,
 }
