@@ -1,3 +1,6 @@
+/* см также button:disabled в app.css */
+
+/* FIGMA 320 design */
 .searchform__submit {
     color: #FFF;
     text-align: center;
@@ -19,4 +22,21 @@
     margin: 6px;
 }
 
-/* см также button:disabled в app.css */
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .searchform__submit {
+        margin: 9px;
+        padding: 17px 20px;
+        min-width: 100px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .searchform__submit {}
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .searchform__submit {}
+}

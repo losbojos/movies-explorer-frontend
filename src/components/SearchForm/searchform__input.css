@@ -19,5 +19,10 @@
 }
 
 .searchform__input::placeholder {
+    font-size: 18px;
+    line-height: 20px;
+    /* 111.111% */
+
     color: #8B8B8B;
+    padding: 13px;
 }

@@ -37,15 +37,16 @@ function Movies(props) {
                 <SearchMovies handleSearch={preprocessSearch} />
                 {isLoading && (<Preloader />)}
                 <MoviesCardList movies={movies} likedMovies={likedMovies} />
-                <button
-                    className='movies__button'
-                    type='button'
-                    aria-label='Показать больше фильмов'
-                    disabled={likedMovies}
-                    onClick='handleMore'
-                >
-                    Ещё
-                </button>
+                {!likedMovies && (
+                    <button
+                        className='movies__button'
+                        type='button'
+                        aria-label='Показать больше фильмов'
+                        onClick='handleMore'
+                    >
+                        Ещё
+                    </button>
+                )}
             </section>
             <Footer />
         </Fragment>

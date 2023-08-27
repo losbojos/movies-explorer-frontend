@@ -3,6 +3,8 @@
     https://itchief.ru/html-and-css/styling-checkbox-and-radio
     */
 
+/* FIGMA 320 design */
+
 .customcheckbox {
     position: absolute;
     z-index: -1;
@@ -72,7 +74,8 @@
 
     border: none;
     border-radius: 20px;
-    margin-right: 0.5em;
+    /* margin-right: 0.5em; */
+    margin-right: 1.2em;
 
     background-image: url('../../images/smalltumboff.svg');
     background-repeat: no-repeat;
@@ -83,3 +86,16 @@
     background-image: url('../../images/smalltumb.svg');
 
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .customcheckbox+label {
+        font-size: 13px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

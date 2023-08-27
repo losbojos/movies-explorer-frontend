@@ -18,7 +18,13 @@
 
 
 /* FIGMA 768 design */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .burger-button {
+        /* width: 44px;
+        height: 44px; */
+        background-size: 130%;
+    }
+}
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {

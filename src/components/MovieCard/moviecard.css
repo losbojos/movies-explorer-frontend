@@ -1,7 +1,6 @@
 .moviecard {
     display: flex;
     flex-direction: column;
-    row-gap: 14px;
 
     border-radius: 6px;
     background: #222;
