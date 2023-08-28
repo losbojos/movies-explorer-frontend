@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .moviecard__name {
     color: #FFF;
     font-family: Inter;
@@ -9,3 +10,16 @@
     margin: 0;
     padding: 0;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .moviecard__name {
+        font-size: 15px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

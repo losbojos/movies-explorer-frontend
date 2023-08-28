@@ -1,0 +1,36 @@
+/* FIGMA 320 design */
+.movies__button-more {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 6px;
+    background: #2F2F2F;
+
+    margin: 50px 10px 80px;
+    padding: 11px 0 9px 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .movies__button-more {
+        margin: 50px 30px 80px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .movies__button-more {
+        margin: 50px 70px 80px;
+    }
+}

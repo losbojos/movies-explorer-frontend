@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .moviecard__header {
 
     display: flex;
@@ -7,3 +8,16 @@
     margin: 14px;
     padding: 0;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .moviecard__header {
+        margin: 18px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

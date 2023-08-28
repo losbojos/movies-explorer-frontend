@@ -5,7 +5,6 @@
     row-gap: 29px;
 
     margin: 70px 14px 0;
-    align-self: stretch;
 
     padding-bottom: 60px;
     border-bottom: 1px solid #AAAAAA33;
@@ -25,4 +24,10 @@
 @media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1280px) {
+    .searchmovies {
+        margin: 70px 70px 0;
+        row-gap: 26px;
+        padding-bottom: 42px;
+    }
+}

@@ -6,7 +6,8 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import { errorHandler } from '../../utils/errorHandler.js';
 import './movies.css';
-import './movies__button.css';
+import './movies__button-more.css';
+import './movies__footer.css';
 
 function Movies(props) {
 
@@ -37,16 +38,18 @@ function Movies(props) {
                 <SearchMovies handleSearch={preprocessSearch} />
                 {isLoading && (<Preloader />)}
                 <MoviesCardList movies={movies} likedMovies={likedMovies} />
-                {!likedMovies && (
-                    <button
-                        className='movies__button'
-                        type='button'
-                        aria-label='Показать больше фильмов'
-                        onClick='handleMore'
-                    >
-                        Ещё
-                    </button>
-                )}
+                <div className="movies__footer">
+                    {!likedMovies && (
+                        <button
+                            className='movies__button-more'
+                            type='button'
+                            aria-label='Показать больше фильмов'
+                            onClick='handleMore'
+                        >
+                            Ещё
+                        </button>
+                    )}
+                </div>
             </section>
             <Footer />
         </Fragment>
