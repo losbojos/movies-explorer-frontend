@@ -1,21 +1,22 @@
 /* FIGMA 320 design */
-.about-project__list {
-    margin: 32px 0 0;
-    padding: 0;
+.guest-menu__text {
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 160% */
 
-    display: grid;
-    grid-template-columns: auto;
-    row-gap: 56px;
-    /* or 58& */
-    column-gap: 30px;
+    padding: 0;
+    margin: 0;
+
+    text-decoration: none;
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__list {
-        margin: 47px 0 0;
-
-        grid-template-columns: auto auto;
+    .guest-menu__text {
+        font-size: 12px;
     }
 }
 

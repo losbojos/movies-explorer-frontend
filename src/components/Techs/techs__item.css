@@ -1,6 +1,7 @@
+/* FIGMA 320 design */
 .techs__item {
     margin: 0;
-    padding: 21px 15px;
+    padding: 21px 15.5px;
     list-style-type: none;
 
     border-radius: 10px;
@@ -15,4 +16,19 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.48px;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .techs__item {
+        font-size: 14px;
+        letter-spacing: -0.56px;
+        padding: 21px 14px;
+    }
 }

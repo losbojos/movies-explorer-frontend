@@ -1,22 +1,13 @@
 /* FIGMA 320 design */
-.about-project__line {
-    width: 100%;
-    margin: 27px auto;
-    padding: 0;
-
-    height: 1px;
-    border: none;
-    background-color: #DADADA;
-    color: #DADADA;
-    flex-shrink: 0;
-}
+.portfolio-ref__title_pointer {}
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__line {
-        margin: 23px auto;
+    .portfolio-ref__title_pointer {
+        line-height: 60px;
     }
 }
+
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {}

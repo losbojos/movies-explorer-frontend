@@ -1,8 +1,8 @@
-/* FIGMA 320 design (default) */
+/* FIGMA 320 design */
 .promo__button {
 
     margin: 50px auto 30px;
-    padding: 10px 20px;
+    padding: 9px 19px;
 
     color: #FFF;
     background-color: #073042;
@@ -14,8 +14,25 @@
     /* 133.333% */
 
     border-radius: 3px;
-    border: 1px solid #FFF;
-    opacity: 0.6;
+    border: 1px solid #FFFFFF99;
+    /* opacity of border: 0.6; */
 
     flex-shrink: 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .promo__button {
+        margin: 16px auto 76px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .promo__button {
+        margin: 84px auto 0 0;
+    }
 }

@@ -1,21 +1,16 @@
 /* FIGMA 320 design */
-.about-project__list {
-    margin: 32px 0 0;
+.aboutme__text-data-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 40px 0 0;
     padding: 0;
-
-    display: grid;
-    grid-template-columns: auto;
-    row-gap: 56px;
-    /* or 58& */
-    column-gap: 30px;
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__list {
-        margin: 47px 0 0;
-
-        grid-template-columns: auto auto;
+    .aboutme__text-data-section {
+        margin: 0;
     }
 }
 

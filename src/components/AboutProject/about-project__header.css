@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .about-project__header {
 
     color: #FFF;
@@ -5,10 +6,27 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    /* line-height подогнал по PerfectPixel */
+    /* line-height: normal; */
+    line-height: 1.25;
     letter-spacing: -0.72px;
 
     margin: 0;
     padding: 0;
     align-self: flex-start;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__header {
+        font-size: 22px;
+        line-height: normal;
+        letter-spacing: -0.88px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

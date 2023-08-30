@@ -1,4 +1,14 @@
+/* FIGMA 320 design */
 .about-project__roadmap-content_diagram_highlighted {
     color: #000;
     background: #3DDC84;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

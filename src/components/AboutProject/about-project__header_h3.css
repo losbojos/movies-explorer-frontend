@@ -1,20 +1,11 @@
 /* FIGMA 320 design */
-.about-project__line {
-    width: 100%;
-    margin: 27px auto;
-    padding: 0;
-
-    height: 1px;
-    border: none;
-    background-color: #DADADA;
-    color: #DADADA;
-    flex-shrink: 0;
-}
+.about-project__header_h3 {}
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__line {
-        margin: 23px auto;
+    .about-project__header_h3 {
+        font-size: 20px;
+        letter-spacing: -0.8px;
     }
 }
 

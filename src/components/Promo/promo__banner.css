@@ -1,5 +1,28 @@
-/* FIGMA 320 design (default) */
+/* FIGMA 320 design */
 .promo__banner {
     margin: 70px auto 0;
     padding: 0;
+
+    width: 65.625vw;
+    max-width: 310px;
+    max-height: 304px;
+
+    align-self: center;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .promo__banner {
+        margin: 140px 48px 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .promo__banner {
+        margin: 0 0 0 70px;
+    }
 }

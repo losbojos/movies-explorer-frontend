@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .techs__text {
     color: #FFF;
     text-align: center;
@@ -10,4 +11,28 @@
     letter-spacing: -0.44px;
 
     margin: 24px auto 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .techs__text {
+        font-size: 12px;
+        line-height: 18px;
+        /* 150% */
+        letter-spacing: -0.48px;
+        max-width: 460px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .techs__text {
+        font-size: 14px;
+        line-height: 20px;
+        /* 142.857% */
+        letter-spacing: -0.56px;
+    }
 }

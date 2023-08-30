@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .portfolio-ref__title {
     color: #FFF;
     font-family: Inter;
@@ -10,4 +11,25 @@
 
     margin: 0;
     padding: 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .portfolio-ref__title {
+        font-size: 28px;
+        line-height: 50px;
+        /* 178.571% */
+        letter-spacing: -1.12px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .portfolio-ref__title {
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
 }

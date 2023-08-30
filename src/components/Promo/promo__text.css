@@ -1,7 +1,7 @@
-/* FIGMA 320 design (default) */
+/* FIGMA 320 design */
 .promo__text {
 
-    margin: 24px 30px 30px;
+    margin: 24px auto 30px;
     padding: 0;
 
     color: #FFF;
@@ -14,4 +14,26 @@
     line-height: normal;
 
     opacity: 0.5;
+
+    max-width: 260px;
+
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .promo__text {
+        margin: 22px auto 76px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .promo__text {
+        margin: 36px auto 0 0;
+        max-width: 310px;
+        text-align: unset;
+    }
 }

@@ -1,20 +1,21 @@
 /* FIGMA 320 design */
-.about-project__line {
-    width: 100%;
-    margin: 27px auto;
-    padding: 0;
+.guest-menu__text_login {
+    color: #000;
 
-    height: 1px;
-    border: none;
-    background-color: #DADADA;
-    color: #DADADA;
     flex-shrink: 0;
+    border-radius: 3px;
+    background: #3DDC84;
+    box-sizing: border-box;
+
+    padding: 7px 12px;
+    margin-left: 14px;
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__line {
-        margin: 23px auto;
+    .guest-menu__text_login {
+        padding: 8px 20px;
+        margin-left: 30px;
     }
 }
 

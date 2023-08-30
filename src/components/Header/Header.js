@@ -8,8 +8,8 @@ import './header_landing.css';
 
 function Header({ isLandingPage = false }) {
 
-    //const isLogged = false;
-    const isLogged = true;
+    const isLogged = false;
+    //const isLogged = true;
 
     const headerClasses = `header ${isLandingPage ? 'header_landing' : ''}`;
 

@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .about-project__text {
     color: #FFF;
     font-family: Inter;
@@ -7,5 +8,31 @@
     line-height: 16px;
     /* 145.455% */
 
-    margin: 16px 0 0;
+    margin: 14px 0 0;
+    /* 16 px по дизайну*/
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__text {
+        font-size: 12px;
+        line-height: 18px;
+        /* 150% */
+
+        margin: 22px 0 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .about-project__text {
+        font-size: 14px;
+        line-height: 20px;
+        /* 142.857% */
+
+        margin: 26px 0 0;
+    }
 }

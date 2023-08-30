@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .aboutme__link {
     color: #FFF;
     font-family: Inter;
@@ -9,3 +10,16 @@
     margin: 40px 0 0;
     text-decoration: none;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .aboutme__link {
+        margin: 15px 0 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

@@ -1,4 +1,25 @@
+/* FIGMA 320 design */
+
 .about-project__roadmap-content_text {
     color: #A0A0A0;
     background: inherit;
+
+    line-height: normal;
+    padding-top: 10px;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__roadmap-content_text {
+        padding-top: 14px;
+
+        line-height: 17px;
+        /* 121.429% */
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}
