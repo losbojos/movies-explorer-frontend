@@ -12,9 +12,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .auth__logo-container {
-        /* margin: 232px auto 40px; */
-        /* margin: 60px auto 40px; */
-        margin: 22.5vh auto 40px;
+        margin: 0 auto 40px;
         justify-content: flex-start;
     }
 }
@@ -23,8 +21,4 @@
 @media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {
-    .auth__logo-container {
-        margin: 70px auto 40px;
-    }
-}
+@media screen and (min-width: 1280px) {}

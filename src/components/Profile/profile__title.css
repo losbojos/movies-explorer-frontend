@@ -17,7 +17,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .profile__title {
-        margin: 23.05vh auto 0;
+        margin: 0 auto auto;
     }
 }
 
@@ -25,8 +25,4 @@
 @media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {
-    .profile__title {
-        margin: 10.57vh auto 0;
-    }
-}
+@media screen and (min-width: 1280px) {}

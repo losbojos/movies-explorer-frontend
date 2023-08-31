@@ -10,7 +10,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .profile__footer {
-        margin: auto 0 26.27vh;
+        margin: auto 0 20px;
     }
 }
 
@@ -20,6 +20,6 @@
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
     .profile__footer {
-        margin: auto 0 10vh;
+        margin: auto 0 0;
     }
 }

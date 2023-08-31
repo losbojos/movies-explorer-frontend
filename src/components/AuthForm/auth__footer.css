@@ -11,20 +11,10 @@
 
 
 /* FIGMA 768 design */
-@media screen and (min-width: 768px) {
-    .auth__footer {
-        /* margin: 179px 0 auto; */
-        /* margin: auto 0 auto; */
-        margin: auto 0 22.2vh;
-    }
-}
+@media screen and (min-width: 768px) {}
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {
-    .auth__footer {
-        margin: auto 0 70px;
-    }
-}
+@media screen and (min-width: 1280px) {}
