@@ -32,7 +32,7 @@ function App() {
   ];
 
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [likedMovies, setLikedMovies] = useState([]);
+  const [likedMovies, setLikedMovies] = useState(testMovies.slice(0, 3));
 
   // Текущий контекст авторизаци
   const [authorizationContext, setAuthorizationContext] = useState(
