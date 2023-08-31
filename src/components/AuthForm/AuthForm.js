@@ -48,6 +48,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                                 value={values[inputName] || ''}
                                 onChange={handleChange}
                                 className={`auth__input ${errors[inputName] && 'auth__input_invalid'}`}
+                                placeholder='Ваше имя'
                             />
                         </label>
                         <ErrorSpan errors={errors[inputName]} />
@@ -59,6 +60,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                     <input id="email" required name={inputEmail} type="email"
                         value={values[inputEmail] || ''} onChange={handleChange}
                         className={`auth__input ${errors[inputEmail] && 'auth__input_invalid'}`}
+                        placeholder='Ваш email'
                     />
                 </label>
                 <ErrorSpan errors={errors[inputEmail]} />
@@ -68,6 +70,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                         autoComplete='off'
                         value={values[inputPwd] || ''} onChange={handleChange}
                         className={`auth__input ${errors[inputPwd] && 'auth__input_invalid'}`}
+                        placeholder='Ваш пароль'
                     />
                 </label>
                 <ErrorSpan errors={errors[inputPwd]} />

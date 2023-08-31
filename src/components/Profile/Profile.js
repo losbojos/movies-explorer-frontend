@@ -84,6 +84,7 @@ function Profile({ handleSave, handleLogOut }) {
                             className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
                             maxLength="30"
                             disabled={formState === FORM_STATE.READ}
+                            placeholder='Ваше имя'
                         />
                     </div>
                     <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
@@ -100,6 +101,7 @@ function Profile({ handleSave, handleLogOut }) {
                             className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
                             maxLength="254"
                             disabled={formState === FORM_STATE.READ}
+                            placeholder='Ваш email'
                         />
                     </div>
                     <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
