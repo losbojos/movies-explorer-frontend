@@ -27,6 +27,10 @@
     padding-right: 5px;
 }
 
+.customcheckbox:hover:not([disabled])+label {
+    cursor: pointer;
+    opacity: 0.8;
+}
 
 .customcheckbox:focus-visible+label {
     outline: -webkit-focus-ring-color auto 1px;
