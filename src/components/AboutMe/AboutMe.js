@@ -16,7 +16,7 @@ import './aboutme__link.css';
 function AboutMe(props) {
 
     return (
-        <div className="aboutme">
+        <section className="aboutme">
             <h2 className="aboutme__header">Студент</h2>
             <hr className="aboutme__line"></hr>
             <div className="aboutme__data-section">
@@ -28,8 +28,7 @@ function AboutMe(props) {
                     <a className="aboutme__link" href={HREFS.GITHUB} target="_blank">Github</a>
                 </div>
             </div>
-
-        </div >
+        </section >
     );
 }
 

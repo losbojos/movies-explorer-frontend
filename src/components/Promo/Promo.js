@@ -9,10 +9,10 @@ import './promo__header.css';
 import './promo__text.css';
 import './promo__button.css';
 
-function Promo({ showButtonMore, onClickMore }) {
+function Promo() {
 
     return (
-        <div className="promo">
+        <section className="promo">
             <div className="promo__data-container">
                 <img className="promo__banner" alt="баннер" src={promoImage} />
                 <div className="promo__text-container">
@@ -20,10 +20,8 @@ function Promo({ showButtonMore, onClickMore }) {
                     <p className="promo__text">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
                 </div>
             </div>
-            {showButtonMore && (
-                <button className="promo__button" type="button" onClick={onClickMore} >Узнать больше</button>
-            )}
-        </div>
+            <a href='#about-project-section' className="promo__button">Узнать больше</a>
+        </section>
     );
 }
 

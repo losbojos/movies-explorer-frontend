@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import './main.css';
 import Promo from '../Promo/Promo';
 import AboutProject from '../AboutProject/AboutProject';
@@ -10,25 +10,15 @@ import Header from '../Header/Header';
 
 function Main(props) {
 
-    const [viewMore, setViewMore] = useState(false);
-
-    const handleMore = () => {
-        setViewMore(true);
-    }
-
     return (
         <Fragment>
             <Header isLandingPage={true} />
             <main className="main">
-                <Promo showButtonMore={!viewMore} onClickMore={handleMore} />
-                {viewMore && (
-                    <Fragment>
-                        <AboutProject />
-                        <Techs />
-                        <AboutMe />
-                        <Portfolio />
-                    </Fragment>
-                )}
+                <Promo />
+                <AboutProject />
+                <Techs />
+                <AboutMe />
+                <Portfolio />
             </main >
             <Footer />
         </Fragment>

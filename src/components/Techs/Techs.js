@@ -11,7 +11,7 @@ import './techs__item.css';
 function Techs(props) {
 
     return (
-        <div className="techs">
+        <section className="techs">
             <h2 className="techs__header">Технологии</h2>
             <hr className="techs__line"></hr>
             <h3 className="techs__title">7 технологий</h3>
@@ -25,7 +25,7 @@ function Techs(props) {
                 <li className="techs__item">Express.js</li>
                 <li className="techs__item">mongoDB</li>
             </ul>
-        </div >
+        </section >
     );
 }
 

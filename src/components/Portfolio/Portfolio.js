@@ -10,7 +10,7 @@ import './portfolio__listitem.css';
 function Portfolio(props) {
 
     return (
-        <div className="portfolio">
+        <section className="portfolio">
             <h2 className="portfolio__header">Портфолио</h2>
             <ul className="portfolio__list">
                 <li className="portfolio__listitem">
@@ -31,7 +31,7 @@ function Portfolio(props) {
                         link='https://losbojos.mesto.nomoreparties.co' />
                 </li>
             </ul>
-        </div >
+        </section >
     );
 }
 

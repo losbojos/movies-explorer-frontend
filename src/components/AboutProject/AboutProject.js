@@ -17,7 +17,7 @@ import './about-project__roadmap-content_text.css';
 function AboutProject(props) {
 
     return (
-        <div className="about-project">
+        <section className="about-project" id="about-project-section">
             <h2 className="about-project__header">О проекте</h2>
             <hr className="about-project__line"></hr>
             <ul className="about-project__list">
@@ -51,7 +51,7 @@ function AboutProject(props) {
                     </li>
                 </ul>
             </div>
-        </div >
+        </section >
     );
 }
 

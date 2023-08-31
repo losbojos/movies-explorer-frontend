@@ -18,6 +18,8 @@
     /* opacity of border: 0.6; */
 
     flex-shrink: 0;
+
+    text-decoration: none;
 }
 
 /* FIGMA 768 design */
