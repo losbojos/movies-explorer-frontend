@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '../Logo/Logo';
 import GuestMenu from '../GuestMenu/GuestMenu';
 import MainMenu from '../MainMenu/MainMenu';
+import { AuthorizationContext } from '../../contexts/AuthorizationContext'
 
 import './header.css';
 import './header_landing.css';
 
 function Header({ isLandingPage = false }) {
 
-    const isLogged = false;
-    //const isLogged = true;
+    const authorizationContext = useContext(AuthorizationContext);
 
     const headerClasses = `header ${isLandingPage ? 'header_landing' : ''}`;
 
     return (
         <header className={headerClasses}>
             <Logo />
-            {isLogged ? (<MainMenu isLandingPage={isLandingPage} />) : (<GuestMenu />)}
+            {authorizationContext.loggedIn ? (<MainMenu isLandingPage={isLandingPage} />) : (<GuestMenu />)}
         </header>
     );
 }

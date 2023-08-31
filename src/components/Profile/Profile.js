@@ -17,7 +17,7 @@ import './profile__button-exit.css';
 import './profile__save-error.css';
 import './profile__button-save.css';
 
-function Profile({ handleSave }) {
+function Profile({ handleSave, handleLogOut }) {
 
     const inputName = 'profileName'; // Имя инпута с именем
     const inputEmail = 'profileEmail'; // Имя инпута с email
@@ -110,7 +110,7 @@ function Profile({ handleSave }) {
                     {formState === FORM_STATE.READ && (
                         <Fragment>
                             <button className="profile__button-edit" type="button" onClick={handleEdit}>Редактировать</button>
-                            <button className="profile__button-exit" type="button">Выйти из аккаунта</button>
+                            <button className="profile__button-exit" type="button" onClick={handleLogOut}>Выйти из аккаунта</button>
                         </Fragment>
                     )}
                     {formState !== FORM_STATE.READ && (

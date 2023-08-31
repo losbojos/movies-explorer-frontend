@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { PAGES } from '../../utils/consts';
 
 import Main from '../Main/Main';
@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import Movies from '../Movies/Movies';
+import { AuthorizationContext } from '../../contexts/AuthorizationContext'
 
 import './app.css';
 
@@ -32,6 +33,13 @@ function App() {
 
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
+
+  // Текущий контекст авторизаци
+  const [authorizationContext, setAuthorizationContext] = useState(
+    { loggedIn: false }
+  );
+
+  const navigate = useNavigate();
 
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
@@ -85,19 +93,30 @@ function App() {
 
   }
 
+  const handleLogin = () => {
+    setAuthorizationContext({ loggedIn: true });
+    navigate(PAGES.MOVIES);
+  }
+
+  const handleLogOut = () => {
+    setAuthorizationContext({ loggedIn: false });
+    navigate(PAGES.MAIN);
+  }
 
   return (
-    <Routes>
-      <Route path={PAGES.MAIN} element={<Main />} />
-      <Route path={PAGES.REGISTER} element={<Register />} />
-      <Route path={PAGES.LOGIN} element={<Login />} />
-      <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
-      <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} />} />
-      <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
-      <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
-      <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
-      <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
-    </Routes>
+    <AuthorizationContext.Provider value={authorizationContext}>
+      <Routes>
+        <Route path={PAGES.MAIN} element={<Main />} />
+        <Route path={PAGES.REGISTER} element={<Register />} />
+        <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
+        <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
+        <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
+        <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
+        <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
+        <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
+        <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
+      </Routes>
+    </AuthorizationContext.Provider>
   );
 }
 
