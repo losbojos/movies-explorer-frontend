@@ -44,7 +44,7 @@ function Movies(props) {
                             className='movies__button-more'
                             type='button'
                             aria-label='Показать больше фильмов'
-                            onClick='handleMore'
+                            onClick={handleMore}
                         >
                             Ещё
                         </button>
