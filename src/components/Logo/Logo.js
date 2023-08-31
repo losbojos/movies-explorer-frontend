@@ -1,10 +1,11 @@
 import React from 'react';
 import './logo.css';
-import logoImage from '../../images/logo.svg';
+import { PAGES } from '../../utils/consts';
 
 function Logo() {
+
     return (
-        <img className="logo" src={logoImage} alt="логотип" />
+        <a className="logo" href={PAGES.MAIN} aria-label="Главная" />
     );
 }
 

@@ -33,9 +33,6 @@ function Navigation(props) {
         <nav className={navClasses}>
             <ul className={listClasses}>
                 <li className='navigation__listitem'>
-                    <a className='navigation__link' href={PAGES.MAIN}>Главная</a>
-                </li>
-                <li className='navigation__listitem'>
                     <a className='navigation__link navigation__link_active' href={PAGES.MOVIES}>Фильмы</a>
                 </li>
                 <li className='navigation__listitem'>
