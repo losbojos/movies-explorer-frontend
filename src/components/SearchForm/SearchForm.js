@@ -31,7 +31,6 @@ function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handle
                 className="searchform__submit"
                 disabled={!isValid}
                 type="submit"
-                aria-label="Запустить поиск"
             >
                 {buttonSubmitText}
             </button>
