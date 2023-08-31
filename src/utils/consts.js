@@ -5,11 +5,11 @@ const HREFS = {
 }
 
 const PAGES = {
-    MAIN: "/main",
+    MAIN: "/",
     LOGIN: "/signin",
     REGISTER: "/signup",
     MOVIES: "/movies",
-    SAVED_MOVIES: "/saved",
+    SAVED_MOVIES: "/saved-movies",
     PROFILE: "/profile",
     NOT_FOUNT: "/404",
 };

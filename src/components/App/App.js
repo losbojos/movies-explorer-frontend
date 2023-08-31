@@ -113,7 +113,6 @@ function App() {
         <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
         <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
         <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
-        <Route path="/" element={<Navigate to={PAGES.MAIN} replace />} />
         <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
       </Routes>
     </AuthorizationContext.Provider>
