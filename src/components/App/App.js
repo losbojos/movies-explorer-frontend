@@ -107,7 +107,7 @@ function App() {
     <AuthorizationContext.Provider value={authorizationContext}>
       <Routes>
         <Route path={PAGES.MAIN} element={<Main />} />
-        <Route path={PAGES.REGISTER} element={<Register />} />
+        <Route path={PAGES.REGISTER} element={<Register handleRegister={handleLogin} />} />
         <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
         <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
         <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
