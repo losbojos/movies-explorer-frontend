@@ -79,6 +79,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                     type="submit"
                     className="auth__submit"
                     disabled={!isValid}
+                    aria-label={buttonSubmitText}
                 >
                     {buttonSubmitText}
                 </button>

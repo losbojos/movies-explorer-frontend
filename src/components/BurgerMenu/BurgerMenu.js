@@ -25,7 +25,7 @@ function BurgerMenu(props) {
 
     return (
         <Fragment>
-            <button className="burger-button" onClick={openBurgerMenu} />
+            <button className="burger-button" onClick={openBurgerMenu} aria-label="Открыть меню" />
             <section className={burgerMenuClasses}>
                 <button
                     className='burger-menu__close-button'

@@ -21,7 +21,7 @@ function Promo({ showButtonMore, onClickMore }) {
                 </div>
             </div>
             {showButtonMore && (
-                <button className="promo__button" type="button" onClick={onClickMore}>Узнать больше</button>
+                <button className="promo__button" type="button" onClick={onClickMore} aria-label="Показать дополнительную информацию о проекте">Узнать больше</button>
             )}
         </div>
     );

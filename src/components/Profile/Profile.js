@@ -109,8 +109,8 @@ function Profile({ handleSave, handleLogOut }) {
                 <div className="profile__footer">
                     {formState === FORM_STATE.READ && (
                         <Fragment>
-                            <button className="profile__button-edit" type="button" onClick={handleEdit}>Редактировать</button>
-                            <button className="profile__button-exit" type="button" onClick={handleLogOut}>Выйти из аккаунта</button>
+                            <button className="profile__button-edit" type="button" onClick={handleEdit} aria-label="Редактировать профиль">Редактировать</button>
+                            <button className="profile__button-exit" type="button" onClick={handleLogOut} aria-label="Выйти из аккаунта">Выйти из аккаунта</button>
                         </Fragment>
                     )}
                     {formState !== FORM_STATE.READ && (
@@ -120,6 +120,7 @@ function Profile({ handleSave, handleLogOut }) {
                                 type="submit"
                                 className="profile__button-save"
                                 disabled={!isValid || formState === FORM_STATE.SAVING}
+                                aria-label="Сохранить изменения профиля"
                             >
                                 {formState === FORM_STATE.SAVING ? 'Сохранение...' : 'Сохранить'}
                             </button>
