@@ -41,7 +41,7 @@ function Navigation(props) {
                 <li className='navigation__listitem'>
                     <a className='navigation__link_account' href={PAGES.PROFILE}>
                         <span className='navigation__account_text'>Аккаунт</span>
-                        <img className={iconClasses} src={accountImage} alt="Иконка аккаунт" />
+                        <img className={iconClasses} src={accountImage} alt="Иконка со ссылкой на страницу профиля" />
                     </a>
                 </li>
             </ul>
