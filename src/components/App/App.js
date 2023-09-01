@@ -31,7 +31,7 @@ function App() {
     // { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: "" },
   ];
 
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState(testMovies);
   const [likedMovies, setLikedMovies] = useState(testMovies.slice(0, 3));
 
   // Текущий контекст авторизаци
