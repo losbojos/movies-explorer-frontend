@@ -16,7 +16,7 @@ function Portfolio(props) {
                 <li className="portfolio__listitem">
                     <PortfolioRef
                         title='Статичный сайт'
-                        link='https://losbojos.github.io/russian-travel/index.html'
+                        link='https://losbojos.github.io/how-to-learn/index.html'
                         showline={false} />
                 </li>
                 <li className="portfolio__listitem">
