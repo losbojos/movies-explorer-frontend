@@ -21,7 +21,7 @@
     .profile {
         max-width: 410px;
         max-height: 445px;
-        margin: auto;
+        margin-top: 23vh;
     }
 }
 
@@ -32,5 +32,6 @@
 @media screen and (min-width: 1280px) {
     .profile {
         max-height: 482px;
+        margin-top: 10.57vh;
     }
 }

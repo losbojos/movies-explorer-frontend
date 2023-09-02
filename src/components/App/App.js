@@ -82,13 +82,13 @@ function App() {
 
       setTimeout(() => {
 
-        if (++testCounter % 3 === 0) {
+        if (++testCounter % 2 === 0) {
           resolve();
         } else {
           reject("При обновлении профиля произошла ошибка.");
         }
 
-      }, 5000);
+      }, 3000);
     });
 
   }

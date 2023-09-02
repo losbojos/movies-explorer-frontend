@@ -9,7 +9,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .profile__inputs {
-        margin: 15px 0 auto;
+        margin: 96px 0 auto;
     }
 }
 
@@ -17,4 +17,8 @@
 @media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1280px) {
+    .profile__inputs {
+        margin: 123px 0 auto;
+    }
+}

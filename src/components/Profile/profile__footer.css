@@ -3,14 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    margin: auto 0 5.13vh;
+    margin: auto 0 40px;
     padding: 0;
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .profile__footer {
-        margin: auto 0 20px;
+        margin: auto 0 0;
     }
 }
 

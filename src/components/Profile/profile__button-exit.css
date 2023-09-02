@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .profile__button-exit {
     color: #EE3465;
     text-align: center;
@@ -12,3 +13,16 @@
 
     margin-top: 15px;
 }
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .profile__button-exit {
+        font-size: 13px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}
