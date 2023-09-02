@@ -11,7 +11,7 @@ import './navigation__link_active.css';
 import './navigation__list.css';
 import './navigation__list_horizontal.css';
 import './navigation__list_vertical.css';
-import './navigation__listitem.css';
+import './navigation__list-item.css';
 import './navigation__account-icon.css';
 import './navigation__account-icon_landing.css';
 import './navigation__account_text.css';
@@ -33,17 +33,17 @@ function Navigation(props) {
         <nav className={navClasses}>
             <ul className={listClasses}>
                 {type === 'vertical' && (
-                    <li className='navigation__listitem'>
+                    <li className='navigation__list-item'>
                         <a className='navigation__link' href={PAGES.MAIN}>Главная</a>
                     </li>
                 )}
-                <li className='navigation__listitem'>
+                <li className='navigation__list-item'>
                     <a className='navigation__link navigation__link_active' href={PAGES.MOVIES}>Фильмы</a>
                 </li>
-                <li className='navigation__listitem'>
+                <li className='navigation__list-item'>
                     <a className='navigation__link' href={PAGES.SAVED_MOVIES}>Сохранённые фильмы</a>
                 </li>
-                <li className='navigation__listitem'>
+                <li className='navigation__list-item'>
                     <a className='navigation__link_account' href={PAGES.PROFILE}>
                         <span className='navigation__account_text'>Аккаунт</span>
                         <img className={iconClasses} src={accountImage} alt="Иконка со ссылкой на страницу профиля" />

@@ -1,0 +1,6 @@
+.movie-card__button_remove-from-all {
+    background-image: url(../../images/movie_save.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}

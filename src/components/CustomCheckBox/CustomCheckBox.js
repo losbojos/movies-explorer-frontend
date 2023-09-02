@@ -1,5 +1,5 @@
 import react, { Fragment, useState } from 'react';
-import './customcheckbox.css';
+import './custom-checkbox.css';
 
 function CustomCheckBox({ caption, checked, onChanged }) {
 
@@ -15,14 +15,14 @@ function CustomCheckBox({ caption, checked, onChanged }) {
     return (
         <Fragment>
             <input
-                className='customcheckbox'
+                className='custom-checkbox'
                 type='checkbox'
-                id="customcheckbox"
-                name="customcheckbox"
+                id="custom-checkbox"
+                name="custom-checkbox"
                 checked={checkedValue}
                 onChange={handleChange}
             />
-            <label htmlFor='customcheckbox'>{caption}</label>
+            <label htmlFor='custom-checkbox'>{caption}</label>
         </Fragment>
     );
 }

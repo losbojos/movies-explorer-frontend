@@ -1,0 +1,17 @@
+/* FIGMA 320 design */
+.movie-card__name_liked-view {
+    font-weight: 700;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .movie-card__name_liked-view {
+        font-weight: 500;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

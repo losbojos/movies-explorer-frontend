@@ -1,9 +1,9 @@
 import React from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
-import './searchform.css';
-import './searchform__input.css';
-import './searchform__submit.css';
+import './search-form.css';
+import './search-form__input.css';
+import './search-form__submit.css';
 
 function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch }) {
 
@@ -17,9 +17,9 @@ function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handle
     const searchStringInput = 'searchString';
 
     return (
-        <form className='searchform' onSubmit={handleSubmit} noValidate>
+        <form className='search-form' onSubmit={handleSubmit} noValidate>
             <input
-                className='searchform__input'
+                className='search-form__input'
                 type="text"
                 required
                 placeholder={searchPlaceholder}
@@ -28,7 +28,7 @@ function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handle
                 onChange={handleChange}
             />
             <button
-                className="searchform__submit"
+                className="search-form__submit"
                 disabled={!isValid}
                 type="submit"
             >

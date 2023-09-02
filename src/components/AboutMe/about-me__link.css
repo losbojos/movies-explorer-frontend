@@ -1,0 +1,25 @@
+/* FIGMA 320 design */
+.about-me__link {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin: 40px 0 0;
+    text-decoration: none;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-me__link {
+        margin: 15px 0 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

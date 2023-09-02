@@ -1,0 +1,26 @@
+/* FIGMA 320 design */
+.movie-card__image {
+    width: 300px;
+    height: 168px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .movie-card__image {
+        width: 342px;
+        height: 190px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .movie-card__image {
+        width: 360px;
+        height: 200px;
+    }
+}

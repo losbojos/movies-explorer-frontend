@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
-import './searchmovies.css';
-import './searchmovies__checkbox-container.css';
+import './search-movies.css';
+import './search-movies__checkbox-container.css';
 
 function SearchMovies(props) {
 
@@ -20,9 +20,9 @@ function SearchMovies(props) {
     }
 
     return (
-        <section className='searchmovies'>
+        <section className='search-movies'>
             <SearchForm searchPlaceholder='Фильм' handleSearch={handleSearchString} />
-            <div className='searchmovies__checkbox-container'>
+            <div className='search-movies__checkbox-container'>
                 <CustomCheckBox
                     caption='Короткометражки'
                     checked={shortFilmsChecked}

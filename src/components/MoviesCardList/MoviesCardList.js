@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
-import './moviescardlist.css';
-import './moviescardlist__listitem.css';
+import './movies-card-list.css';
+import './movies-card-list__list-item.css';
 
 function MoviesCardList(props) {
 
@@ -11,11 +11,11 @@ function MoviesCardList(props) {
     } = props;
 
     return (
-        <ul className="moviescardlist">
+        <ul className="movies-card-list">
             {
                 movies.map(movie => {
                     return (
-                        <li className="moviescardlist__listitem" key={movie._id}>
+                        <li className="movies-card-list__list-item" key={movie._id}>
                             <MovieCard movie={movie} likedMoviesView={likedMovies} />
                         </li>
                     );

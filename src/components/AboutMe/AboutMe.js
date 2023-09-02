@@ -2,30 +2,30 @@ import React from 'react';
 import myFoto from '../../images/myfoto.png';
 import { HREFS } from '../../utils/consts';
 
-import './aboutme.css';
-import './aboutme__data-section.css';
-import './aboutme__text-data-section.css';
-import './aboutme__header.css';
-import './aboutme__line.css';
-import './aboutme__foto.css';
-import './aboutme__title.css';
-import './aboutme__bio.css';
-import './aboutme__text.css';
-import './aboutme__link.css';
+import './about-me.css';
+import './about-me__data-section.css';
+import './about-me__text-data-section.css';
+import './about-me__header.css';
+import './about-me__line.css';
+import './about-me__foto.css';
+import './about-me__title.css';
+import './about-me__bio.css';
+import './about-me__text.css';
+import './about-me__link.css';
 
 function AboutMe(props) {
 
     return (
-        <section className="aboutme">
-            <h2 className="aboutme__header">Студент</h2>
-            <hr className="aboutme__line"></hr>
-            <div className="aboutme__data-section">
-                <img className="aboutme__foto" src={myFoto} alt="Фото студента" />
-                <div className="aboutme__text-data-section">
-                    <h3 className="aboutme__title">Евгений</h3>
-                    <p className="aboutme__bio">Фронтенд-разработчик, 43 года</p>
-                    <p className="aboutme__text">Я родился и живу в Новосибирске, закончил факультет прикладной математики и информатики НГТУ. Ранее работал C++\C# разработчиком, а также менеджером проектов. У меня есть жена и трое детей. Увлекаюсь рынком акций. Стало интересно освоить WEB и сменить специализацию. Прошёл курс по веб-разработке от Я.Практикум.</p>
-                    <a className="aboutme__link" href={HREFS.GITHUB} target="_blank">Github</a>
+        <section className="about-me">
+            <h2 className="about-me__header">Студент</h2>
+            <hr className="about-me__line"></hr>
+            <div className="about-me__data-section">
+                <img className="about-me__foto" src={myFoto} alt="Фото студента" />
+                <div className="about-me__text-data-section">
+                    <h3 className="about-me__title">Евгений</h3>
+                    <p className="about-me__bio">Фронтенд-разработчик, 43 года</p>
+                    <p className="about-me__text">Я родился и живу в Новосибирске, закончил факультет прикладной математики и информатики НГТУ. Ранее работал C++\C# разработчиком, а также менеджером проектов. У меня есть жена и трое детей. Увлекаюсь рынком акций. Стало интересно освоить WEB и сменить специализацию. Прошёл курс по веб-разработке от Я.Практикум.</p>
+                    <a className="about-me__link" href={HREFS.GITHUB} target="_blank">Github</a>
                 </div>
             </div>
         </section >
