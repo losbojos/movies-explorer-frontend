@@ -32,6 +32,11 @@ function Navigation(props) {
     return (
         <nav className={navClasses}>
             <ul className={listClasses}>
+                {type === 'vertical' && (
+                    <li className='navigation__listitem'>
+                        <a className='navigation__link' href={PAGES.MAIN}>Главная</a>
+                    </li>
+                )}
                 <li className='navigation__listitem'>
                     <a className='navigation__link navigation__link_active' href={PAGES.MOVIES}>Фильмы</a>
                 </li>
