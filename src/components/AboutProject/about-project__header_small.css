@@ -1,9 +1,9 @@
 /* FIGMA 320 design */
-.about-project__header_h3 {}
+.about-project__header_small {}
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .about-project__header_h3 {
+    .about-project__header_small {
         font-size: 20px;
         letter-spacing: -0.8px;
     }
