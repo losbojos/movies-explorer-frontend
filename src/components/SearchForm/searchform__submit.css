@@ -25,18 +25,15 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .searchform__submit {
-        margin: 9px;
+        margin: 9px 10px;
+        /* Вертикальный отступ уменьшил на 1px для подгона к макету */
         padding: 17px 20px;
         min-width: 100px;
     }
 }
 
 /* Intermediate 1024 design - NO FIGMA */
-@media screen and (min-width: 1024px) {
-    .searchform__submit {}
-}
+@media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
-@media screen and (min-width: 1280px) {
-    .searchform__submit {}
-}
+@media screen and (min-width: 1280px) {}

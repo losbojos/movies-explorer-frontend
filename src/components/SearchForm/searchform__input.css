@@ -13,7 +13,7 @@
     border: none;
     width: 100%;
     margin: 0;
-    padding: 12px;
+    padding: 0 12px;
 
 }
 
@@ -25,7 +25,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .searchform__input {
-        padding: 25px;
+        padding: 0 25px;
         font-size: 18px;
         line-height: 20px;
         /* 111.111% */
