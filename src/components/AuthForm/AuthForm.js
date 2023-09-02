@@ -9,7 +9,7 @@ import './auth__input_invalid.css';
 import './auth__inputs.css';
 import './auth__submit.css';
 import './auth__text.css';
-import './auth__text_link.css';
+import './auth__link.css';
 import './auth__title.css';
 import './auth__label.css';
 import './auth__logo-container.css';

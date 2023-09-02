@@ -11,7 +11,7 @@ function Register({ handleRegister }) {
             buttonSubmitText='Зарегистрироваться'
             showInputName={true}
         >
-            <p className="auth__text">Уже зарегистрированы? <a href={PAGES.LOGIN} className="auth__text auth__text_link">Войти</a></p>
+            <p className="auth__text">Уже зарегистрированы? <a href={PAGES.LOGIN} className="auth__link">Войти</a></p>
         </AuthForm>
     );
 }

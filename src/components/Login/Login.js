@@ -11,7 +11,7 @@ function Login({ handleLogin }) {
             buttonSubmitText='Войти'
             showInputName={false}
         >
-            <p className="auth__text">Ещё не зарегистрированы? <a href={PAGES.REGISTER} className="auth__text auth__text_link">Регистрация</a></p>
+            <p className="auth__text">Ещё не зарегистрированы? <a href={PAGES.REGISTER} className="auth__link">Регистрация</a></p>
         </AuthForm>
     );
 }
