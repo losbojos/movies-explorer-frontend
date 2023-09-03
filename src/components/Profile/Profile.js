@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import Header from '../Header/Header';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
@@ -60,77 +59,73 @@ function Profile({ handleSave, handleLogOut }) {
     }
 
     return (
-        <Fragment>
+        <form
+            className='profile'
+            onSubmit={handleSubmit}
+            // onReset={handleReset} Не работает почему то
+            onKeyUp={handleKeyUp}
+            noValidate>
+            <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
+            <div className="profile__inputs">
 
-            <Header />
-            <form
-                className='profile'
-                onSubmit={handleSubmit}
-                // onReset={handleReset} Не работает почему то
-                onKeyUp={handleKeyUp}
-                noValidate>
-                <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
-                <div className="profile__inputs">
-
-                    <div className="profile__input-container">
-                        <label className="profile__label" htmlFor={inputName}>Имя</label>
-                        <input
-                            id={inputName}
-                            required
-                            name={inputName}
-                            type="text"
-                            value={values[inputName] || ''}
-                            onChange={handleChange}
-                            className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
-                            maxLength="30"
-                            disabled={formState === FORM_STATE.READ}
-                            placeholder='Ваше имя'
-                        />
-                    </div>
-                    <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
-
-                    <div className="profile__input-container">
-                        <label className="profile__label" htmlFor={inputEmail}>E-mail</label>
-                        <input
-                            id={inputEmail}
-                            required
-                            name={inputEmail}
-                            type="email"
-                            value={values[inputEmail] || ''}
-                            onChange={handleChange}
-                            className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
-                            maxLength="254"
-                            disabled={formState === FORM_STATE.READ}
-                            placeholder='Ваш email'
-                        />
-                    </div>
-                    <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
-
+                <div className="profile__input-container">
+                    <label className="profile__label" htmlFor={inputName}>Имя</label>
+                    <input
+                        id={inputName}
+                        required
+                        name={inputName}
+                        type="text"
+                        value={values[inputName] || ''}
+                        onChange={handleChange}
+                        className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
+                        maxLength="30"
+                        disabled={formState === FORM_STATE.READ}
+                        placeholder='Ваше имя'
+                    />
                 </div>
+                <ErrorSpan errors={errors[inputName]} addStyles='profile__error-span' />
 
-                <div className="profile__footer">
-                    {formState === FORM_STATE.READ && (
-                        <Fragment>
-                            <button className="profile__button-edit" type="button" onClick={handleEdit} >Редактировать</button>
-                            <button className="profile__button-exit" type="button" onClick={handleLogOut} >Выйти из аккаунта</button>
-                        </Fragment>
-                    )}
-                    {formState !== FORM_STATE.READ && (
-                        <Fragment>
-                            <span className="profile__save-error">{lastError}</span>
-                            <button
-                                type="submit"
-                                className="profile__button-save"
-                                disabled={!isValid || formState === FORM_STATE.SAVING}
-                            >
-                                {formState === FORM_STATE.SAVING ? 'Сохранение...' : 'Сохранить'}
-                            </button>
-                        </Fragment>
-                    )}
+                <div className="profile__input-container">
+                    <label className="profile__label" htmlFor={inputEmail}>E-mail</label>
+                    <input
+                        id={inputEmail}
+                        required
+                        name={inputEmail}
+                        type="email"
+                        value={values[inputEmail] || ''}
+                        onChange={handleChange}
+                        className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
+                        maxLength="254"
+                        disabled={formState === FORM_STATE.READ}
+                        placeholder='Ваш email'
+                    />
                 </div>
+                <ErrorSpan errors={errors[inputEmail]} addStyles='profile__error-span' />
 
-            </form>
-        </Fragment>
+            </div>
+
+            <div className="profile__footer">
+                {formState === FORM_STATE.READ && (
+                    <Fragment>
+                        <button className="profile__button-edit" type="button" onClick={handleEdit} >Редактировать</button>
+                        <button className="profile__button-exit" type="button" onClick={handleLogOut} >Выйти из аккаунта</button>
+                    </Fragment>
+                )}
+                {formState !== FORM_STATE.READ && (
+                    <Fragment>
+                        <span className="profile__save-error">{lastError}</span>
+                        <button
+                            type="submit"
+                            className="profile__button-save"
+                            disabled={!isValid || formState === FORM_STATE.SAVING}
+                        >
+                            {formState === FORM_STATE.SAVING ? 'Сохранение...' : 'Сохранить'}
+                        </button>
+                    </Fragment>
+                )}
+            </div>
+
+        </form>
     );
 }
 

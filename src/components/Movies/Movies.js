@@ -1,6 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import React, { useState } from 'react';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -32,27 +30,23 @@ function Movies(props) {
     }
 
     return (
-        <Fragment>
-            <Header />
-            <section className='movies'>
-                <SearchMovies handleSearch={preprocessSearch} />
-                {isLoading && (<Preloader />)}
-                <MoviesCardList movies={movies} likedMovies={likedMovies} />
-                <div className="movies__footer">
-                    {!likedMovies && (
-                        <button
-                            className='movies__button-more'
-                            type='button'
-                            aria-label='Показать больше фильмов'
-                            onClick={handleMore}
-                        >
-                            Ещё
-                        </button>
-                    )}
-                </div>
-            </section>
-            <Footer />
-        </Fragment>
+        <section className='movies'>
+            <SearchMovies handleSearch={preprocessSearch} />
+            {isLoading && (<Preloader />)}
+            <MoviesCardList movies={movies} likedMovies={likedMovies} />
+            <div className="movies__footer">
+                {!likedMovies && (
+                    <button
+                        className='movies__button-more'
+                        type='button'
+                        aria-label='Показать больше фильмов'
+                        onClick={handleMore}
+                    >
+                        Ещё
+                    </button>
+                )}
+            </div>
+        </section>
     );
 }
 

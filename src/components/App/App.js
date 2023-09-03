@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { PAGES } from '../../utils/consts';
 
-import Main from '../Main/Main';
+import Landing from '../Landing/Landing';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import Movies from '../Movies/Movies';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import { AuthorizationContext } from '../../contexts/AuthorizationContext'
 
 import './app.css';
+import './main.css';
 
 import image1 from '../../images/movies/img1.jpeg';
 import image2 from '../../images/movies/img2.jpeg';
@@ -105,16 +108,21 @@ function App() {
 
   return (
     <AuthorizationContext.Provider value={authorizationContext}>
-      <Routes>
-        <Route path={PAGES.MAIN} element={<Main />} />
-        <Route path={PAGES.REGISTER} element={<Register handleRegister={handleLogin} />} />
-        <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
-        <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
-        <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
-        <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
-        <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
-        <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
-      </Routes>
+      <Header />
+      <main className="main">
+        <Routes>
+          <Route path={PAGES.MAIN} element={<Landing />} />
+          <Route path={PAGES.REGISTER} element={<Register handleRegister={handleLogin} />} />
+          <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
+          <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
+          <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
+          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
+          <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
+          <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
+        </Routes>
+      </main >
+      <Footer />
+
     </AuthorizationContext.Provider>
   );
 }
