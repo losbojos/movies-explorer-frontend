@@ -2,9 +2,7 @@ import React, { useContext } from 'react';
 import "./movie-card.css";
 import './movie-card__header.css';
 import './movie-card__name.css';
-import './movie-card__name_liked-view.css';
 import './movie-card__duration.css';
-import './movie-card__duration_liked-view.css';
 import './movie-card__image.css';
 import './movie-card__button.css';
 import './movie-card__button_save.css';
@@ -19,14 +17,12 @@ function MovieCard(props) {
     const altValue = `карточка фильма ${nameRU} `;
     const ariaLabel = saved ? 'Убрать из избранных' : 'Сохранить в избранные';
     const buttonClasses = `movie-card__button ${likedMoviesView ? 'movie-card__button_remove-from-liked' : saved ? 'movie-card__button_remove-from-all' : 'movie-card__button_save'}`
-    const titleClasses = `movie-card__name ${likedMoviesView ? 'movie-card__name_liked-view' : ''}`;
-    const spanClasses = `movie-card__duration  ${likedMoviesView ? 'movie-card__duration_liked-view' : ''}`;
 
     return (
         <article className="movie-card">
             <div className="movie-card__header">
-                <h3 className={titleClasses}>{nameRU}</h3>
-                <span className={spanClasses}>{duration}</span>
+                <h3 className="movie-card__name">{nameRU}</h3>
+                <span className="movie-card__duration">{duration}</span>
             </div >
             <img
                 className="movie-card__image"
