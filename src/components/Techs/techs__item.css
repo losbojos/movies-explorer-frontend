@@ -1,7 +1,7 @@
 /* FIGMA 320 design */
 .techs__item {
     margin: 0;
-    padding: 21px 15.5px;
+    padding: 21px 15px;
     list-style-type: none;
 
     border-radius: 10px;
@@ -29,6 +29,6 @@
     .techs__item {
         font-size: 14px;
         letter-spacing: -0.56px;
-        padding: 21px 14px;
+        padding: 21px 14px 22px;
     }
 }
