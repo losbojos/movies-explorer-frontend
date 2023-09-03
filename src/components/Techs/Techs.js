@@ -2,7 +2,6 @@ import React from 'react';
 
 import './techs.css';
 import './techs__header.css';
-import './techs__line.css';
 import './techs__title.css';
 import './techs__text.css';
 import './techs__list.css';
@@ -13,7 +12,6 @@ function Techs(props) {
     return (
         <section className="techs">
             <h2 className="techs__header">Технологии</h2>
-            <hr className="techs__line"></hr>
             <h3 className="techs__title">7 технологий</h3>
             <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
             <ul className="techs__list">

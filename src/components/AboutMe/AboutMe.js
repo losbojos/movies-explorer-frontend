@@ -6,7 +6,6 @@ import './about-me.css';
 import './about-me__data-section.css';
 import './about-me__text-data-section.css';
 import './about-me__header.css';
-import './about-me__line.css';
 import './about-me__foto.css';
 import './about-me__title.css';
 import './about-me__bio.css';
@@ -18,7 +17,6 @@ function AboutMe(props) {
     return (
         <section className="about-me">
             <h2 className="about-me__header">Студент</h2>
-            <hr className="about-me__line"></hr>
             <div className="about-me__data-section">
                 <img className="about-me__foto" src={myFoto} alt="Фото студента" />
                 <div className="about-me__text-data-section">

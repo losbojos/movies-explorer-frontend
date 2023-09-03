@@ -13,7 +13,11 @@
 
     margin: 0;
     padding: 0;
-    align-self: flex-start;
+    align-self: stretch;
+
+    padding-bottom: 27px;
+    border-bottom: 1px solid #DADADA;
+
 }
 
 /* FIGMA 768 design */
@@ -22,6 +26,8 @@
         font-size: 22px;
         line-height: normal;
         letter-spacing: -0.88px;
+
+        padding-bottom: 23px;
     }
 }
 

@@ -10,7 +10,10 @@
 
     margin: 0;
     padding: 0;
-    align-self: flex-start;
+
+    align-self: stretch;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #000;
 }
 
 /* FIGMA 768 design */
@@ -18,6 +21,9 @@
     .techs__header {
         font-size: 22px;
         letter-spacing: -0.88px;
+
+        padding-bottom: 23px;
+        border-bottom-color: #DADADA;
     }
 }
 
