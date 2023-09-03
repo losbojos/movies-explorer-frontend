@@ -1,10 +1,10 @@
 import React from 'react';
-import PortfolioRef from '../PortfolioRef/PortfolioRef'
 
 import './portfolio.css';
 import './portfolio__header.css';
 import './portfolio__list.css';
 import './portfolio__list-item.css';
+import './portfolio__link.css';
 
 
 function Portfolio(props) {
@@ -14,21 +14,13 @@ function Portfolio(props) {
             <h2 className="portfolio__header">Портфолио</h2>
             <ul className="portfolio__list">
                 <li className="portfolio__list-item">
-                    <PortfolioRef
-                        title='Статичный сайт'
-                        link='https://losbojos.github.io/how-to-learn/index.html'
-                        showline={false} />
+                    <a className="portfolio__link" href='https://losbojos.github.io/how-to-learn/index.html' target="_blank">Статичный сайт</a>
                 </li>
                 <li className="portfolio__list-item">
-                    <PortfolioRef
-                        title='Адаптивный сайт'
-                        link='https://losbojos.github.io/russian-travel/index.html'
-                    />
+                    <a className="portfolio__link" href='https://losbojos.github.io/russian-travel/index.html' target="_blank">Адаптивный сайт</a>
                 </li>
                 <li className="portfolio__list-item">
-                    <PortfolioRef
-                        title='Одностраничное приложение'
-                        link='https://losbojos.mesto.nomoreparties.co' />
+                    <a className="portfolio__link" href='https://losbojos.mesto.nomoreparties.co' target="_blank">Одностраничное приложение</a>
                 </li>
             </ul>
         </section >

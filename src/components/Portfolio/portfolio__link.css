@@ -1,5 +1,5 @@
 /* FIGMA 320 design */
-.portfolio-ref__title {
+.portfolio__link {
     color: #FFF;
     font-family: Inter;
     font-size: 18px;
@@ -11,15 +11,29 @@
 
     margin: 0;
     padding: 0;
+
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.portfolio__link::after {
+    content: "↗";
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .portfolio-ref__title {
+    .portfolio__link {
         font-size: 28px;
         line-height: 50px;
         /* 178.571% */
         letter-spacing: -1.12px;
+    }
+
+    .portfolio__link::after {
+        line-height: 60px;
     }
 }
 
@@ -28,7 +42,7 @@
 
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
-    .portfolio-ref__title {
+    .portfolio__link {
         font-size: 30px;
         letter-spacing: -1.2px;
     }

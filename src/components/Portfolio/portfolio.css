@@ -16,7 +16,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .portfolio {
-        padding: 0 50px 90px;
+        padding: 0 50px 80px;
     }
 }
 
@@ -26,6 +26,6 @@
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
     .portfolio {
-        padding: 0 70px 125px;
+        padding: 0 70px 115px;
     }
 }
