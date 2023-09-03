@@ -1,5 +1,5 @@
 import React from 'react';
-import promoImage from '../../images/promo.svg';
+import promoImage from '../../images/promo.png';
 
 import './promo.css';
 import './promo__data-container.css';
