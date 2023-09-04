@@ -5,7 +5,11 @@
 }
 
 /* FIGMA 768 design */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .navigation__link_active {
+        padding-bottom: 4px;
+    }
+}
 
 /* Intermediate 1024 design - NO FIGMA */
 @media screen and (min-width: 1024px) {

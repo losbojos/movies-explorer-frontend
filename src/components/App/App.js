@@ -31,6 +31,13 @@ function App() {
     { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
     { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
     { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
+    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
     // { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: "" },
   ];
 

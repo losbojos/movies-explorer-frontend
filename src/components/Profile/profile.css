@@ -7,13 +7,10 @@
 
     margin: 0 auto;
     padding: 0;
-
-    height: 100%;
-    max-height: calc(100% - 74px);
-
     flex-shrink: 0;
-    width: 100%;
-    max-width: calc(100% - (2 * 30px));
+
+    width: calc(100vw - (2 * 30px));
+    height: calc(100vh - 74px);
 }
 
 /* FIGMA 768 design */

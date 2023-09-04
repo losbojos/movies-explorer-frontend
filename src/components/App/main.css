@@ -1,9 +1,15 @@
 /* FIGMA 320 design */
 .main {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+
+  /*
   width: 100%;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  */
+
 }
 
 /* FIGMA 768 design */
