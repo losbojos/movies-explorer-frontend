@@ -1,0 +1,33 @@
+/* FIGMA 320 design */
+.techs {
+    margin: 0;
+    padding: 70px 14px;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background: #202020;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .techs {
+        background: #272727;
+        padding: 90px 50px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .techs {
+        padding: 100px 70px;
+    }
+}

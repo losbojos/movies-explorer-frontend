@@ -1,0 +1,23 @@
+/* FIGMA 320 design */
+.about-project__roadmap {
+    margin: 60px auto 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__roadmap {
+        margin: 93px auto 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .about-project__roadmap {
+        margin: 110px auto 0;
+    }
+}

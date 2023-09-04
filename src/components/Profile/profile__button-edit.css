@@ -1,0 +1,25 @@
+/* FIGMA 320 design */
+.profile__button-edit {
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background-color: transparent;
+    border: none;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .profile__button-edit {
+        font-size: 13px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

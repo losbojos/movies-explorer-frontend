@@ -1,0 +1,24 @@
+/* FIGMA 320 design */
+.auth__logo-container {
+    margin: 56px auto 50px;
+    padding: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .auth__logo-container {
+        margin: 0 auto 40px;
+        justify-content: flex-start;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

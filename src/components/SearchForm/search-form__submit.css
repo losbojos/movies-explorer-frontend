@@ -1,0 +1,38 @@
+/* см также button:disabled в app.css */
+
+/* FIGMA 320 design */
+.search-form__submit {
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    /* 128.571% */
+
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: none;
+    background: #4285F4;
+    padding: 13px 10px;
+    box-sizing: border-box;
+    min-width: 80px;
+
+    margin: 6px;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .search-form__submit {
+        margin: 9px 10px;
+        /* Вертикальный отступ уменьшил на 1px для подгона к макету */
+        padding: 17px 20px;
+        min-width: 100px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

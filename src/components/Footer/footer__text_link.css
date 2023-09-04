@@ -1,0 +1,25 @@
+/* FIGMA 320 design */
+.footer__text_link {
+    color: #FFF;
+
+    margin: 12px 0 0;
+    text-decoration: none;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .footer__text_link {
+        margin: 0;
+        text-align: right;
+    }
+
+    .footer__text_link:not(:first-of-type) {
+        margin-left: 20px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

@@ -1,0 +1,26 @@
+/* FIGMA 320 design */
+.about-project__article-header {
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__article-header {
+        font-size: 20px;
+        letter-spacing: -0.8px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

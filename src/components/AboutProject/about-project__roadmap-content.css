@@ -1,0 +1,25 @@
+/* FIGMA 320 design */
+.about-project__roadmap-content {
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+
+    padding: 0;
+    margin: 0;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .about-project__roadmap-content {
+        font-size: 14px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

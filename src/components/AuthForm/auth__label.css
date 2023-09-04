@@ -1,0 +1,14 @@
+.auth__label {
+    color: #8B8B8B;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin: 0;
+    padding: 0;
+}
+
+.auth__label:not(:first-of-type) {
+    margin-top: 24px;
+}

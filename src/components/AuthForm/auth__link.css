@@ -1,0 +1,9 @@
+.auth__link {
+    /* Войти */
+    text-decoration: none;
+    color: #4285F4;
+}
+
+.auth__link:hover {
+    color: #A9A9A9;
+}

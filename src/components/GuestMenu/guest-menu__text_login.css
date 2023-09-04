@@ -1,0 +1,26 @@
+/* FIGMA 320 design */
+.guest-menu__text_login {
+    color: #000;
+
+    flex-shrink: 0;
+    border-radius: 3px;
+    background: #3DDC84;
+    box-sizing: border-box;
+
+    padding: 7px 12px;
+    margin-left: 14px;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .guest-menu__text_login {
+        padding: 8px 20px;
+        margin-left: 30px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

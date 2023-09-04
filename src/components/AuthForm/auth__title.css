@@ -1,0 +1,25 @@
+/* FIGMA 320 design */
+.auth__title {
+    margin: 0;
+    padding: 0;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .auth__title {
+        align-self: flex-start;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 */
+@media screen and (min-width: 1024px) {}

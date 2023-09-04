@@ -1,0 +1,12 @@
+.profile__save-error {
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin-bottom: 20px;
+    padding: 0;
+    flex-shrink: 0;
+}

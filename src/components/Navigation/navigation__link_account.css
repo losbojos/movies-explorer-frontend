@@ -1,0 +1,24 @@
+/* FIGMA 320 design */
+.navigation__link_account {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .navigation__link_account {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        /* 114.286% */
+    }
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

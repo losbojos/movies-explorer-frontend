@@ -1,0 +1,33 @@
+/* FIGMA 320 design */
+.not-found__title {
+    margin: 0;
+    padding: 0;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin-top: 42.18vh;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .not-found__title {
+        font-size: 140px;
+        margin-top: 39.84vh;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .not-found__title {
+        font-size: 140px;
+        margin-top: 35.14vh;
+    }
+}

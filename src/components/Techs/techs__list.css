@@ -1,0 +1,31 @@
+/* FIGMA 320 design */
+.techs__list {
+    margin: 50px 50px 0;
+    padding: 0;
+
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, 84px);
+    grid-template-rows: repeat(auto-fit, 57px);
+    justify-content: center;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .techs__list {
+        margin: 83px 10px 0;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .techs__list {
+        margin: 100px 0 0;
+
+        grid-template-columns: repeat(auto-fit, 90px);
+        grid-template-rows: repeat(auto-fit, 60px);
+    }
+}

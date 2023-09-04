@@ -1,0 +1,24 @@
+/* FIGMA 320 design */
+.profile__inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 10.26vh 0 0;
+    align-items: stretch;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .profile__inputs {
+        margin: 96px 0 auto;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .profile__inputs {
+        margin: 123px 0 auto;
+    }
+}

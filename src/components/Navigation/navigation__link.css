@@ -1,0 +1,30 @@
+/* FIGMA 320 design */
+.navigation__link {
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    text-decoration: none;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {
+    .navigation__link {
+        text-align: right;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        /* 128.571% */
+    }
+
+}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

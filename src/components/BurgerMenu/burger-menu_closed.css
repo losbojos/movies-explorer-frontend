@@ -1,0 +1,4 @@
+.burger-menu_closed {
+    visibility: hidden;
+    opacity: 0;
+}

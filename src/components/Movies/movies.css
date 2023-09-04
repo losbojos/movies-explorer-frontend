@@ -1,0 +1,11 @@
+/* FIGMA 320 design (default) */
+.movies {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+    flex-shrink: 0;
+}

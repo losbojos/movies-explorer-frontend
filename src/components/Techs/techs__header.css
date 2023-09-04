@@ -1,0 +1,35 @@
+/* FIGMA 320 design */
+.techs__header {
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+
+    margin: 0 4px;
+    padding: 0;
+
+    align-self: stretch;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #000;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .techs__header {
+        margin: 0;
+
+        font-size: 22px;
+        letter-spacing: -0.88px;
+
+        padding-bottom: 23px;
+        border-bottom-color: #DADADA;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

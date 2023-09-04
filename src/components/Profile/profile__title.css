@@ -1,0 +1,27 @@
+/* FIGMA 320 design */
+.profile__title {
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin: 8.97vh auto 0;
+    padding: 0;
+    max-width: 100%;
+    overflow: auto;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .profile__title {
+        margin: 0 auto;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}

@@ -1,0 +1,32 @@
+/* FIGMA 320 design */
+.footer {
+    margin: auto 0 0;
+    padding: 79px 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+    background: #202020;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .footer {
+        padding: 79px 30px 20px;
+    }
+
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .footer {
+        padding: 79px 70px 20px;
+    }
+}

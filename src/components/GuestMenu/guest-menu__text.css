@@ -1,0 +1,26 @@
+/* FIGMA 320 design */
+.guest-menu__text {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 160% */
+
+    padding: 0;
+    margin: 0;
+
+    text-decoration: none;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .guest-menu__text {
+        font-size: 12px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {}
