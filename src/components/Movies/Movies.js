@@ -2,28 +2,23 @@ import React, { useState } from 'react';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
-import { errorHandler } from '../../utils/errorHandler.js';
+import ErrorSpan from '../ErrorSpan/ErrorSpan';
+
 import './movies.css';
 import './movies__button-more.css';
 import './movies__footer.css';
+import './movies__error-span.css';
+import './movies__data-section.css';
 
 function Movies(props) {
 
     const {
         movies, // Массив фильмов
         handleSearch, // Обработчик поиска с параметрами { searchString, onlyShortFilms } должен возвращать Promise
-        likedMovies = false // Окно любимых фильмов
+        likedMovies = false, // Это окно любимых фильмов?
+        isLoadingMovies, // Состояние процесса загрузки фильмов (актуально только для окна всех фильмов)
+        loadMoviesError, // Сообщение об ошибке запроса фильмов
     } = props;
-
-    const [isLoading, setIsLoading] = useState(false);
-
-    const preprocessSearch = ({ searchString, onlyShortFilms }) => {
-        setIsLoading(true);
-        handleSearch({ searchString, onlyShortFilms })
-            .then()
-            .catch(error => errorHandler(error))
-            .finally(() => setIsLoading(false));
-    }
 
     const handleMore = () => {
 
@@ -31,9 +26,12 @@ function Movies(props) {
 
     return (
         <section className='movies'>
-            <SearchMovies handleSearch={preprocessSearch} />
-            {isLoading && (<Preloader />)}
-            <MoviesCardList movies={movies} likedMovies={likedMovies} />
+            <SearchMovies handleSearch={handleSearch} />
+            <div className="movies__data-section">
+                {isLoadingMovies && (<Preloader />)}
+                {loadMoviesError && (<ErrorSpan errors={loadMoviesError} addStyles='movies__error-span' />)}
+                <MoviesCardList movies={movies} likedMovies={likedMovies} />
+            </div>
             <div className="movies__footer">
                 {!likedMovies && (
                     <button

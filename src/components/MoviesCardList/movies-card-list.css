@@ -1,6 +1,6 @@
 /* FIGMA 320 design */
 .movies-card-list {
-    margin: 50px 10px 30px;
+    margin: 0;
     padding: 0;
 
     display: grid;
@@ -13,8 +13,6 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .movies-card-list {
-        margin: 80px 30px 30px;
-
         row-gap: 35px;
         column-gap: 24px;
 
@@ -31,7 +29,6 @@
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
     .movies-card-list {
-        margin: 80px 68px 30px;
         gap: 32px;
         /* grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); */
         grid-template-columns: auto auto auto;

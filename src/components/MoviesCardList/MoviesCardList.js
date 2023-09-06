@@ -15,7 +15,7 @@ function MoviesCardList(props) {
             {
                 movies.map(movie => {
                     return (
-                        <li className="movies-card-list__list-item" key={movie._id}>
+                        <li className="movies-card-list__list-item" key={movie.movieId}>
                             <MovieCard movie={movie} likedMoviesView={likedMovies} />
                         </li>
                     );

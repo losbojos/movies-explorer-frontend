@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { PAGES } from '../../utils/consts';
+import { PAGES, ERRORS, MOVIES_SERVER_URL } from '../../utils/consts';
 
 import Landing from '../Landing/Landing';
 import Register from '../Register/Register';
@@ -11,6 +11,9 @@ import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { AuthorizationContext } from '../../contexts/AuthorizationContext'
+import moviesApiInstance from '../../utils/MoviesApi';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import errorIcon from '../../images/infotooltip/error.svg';
 
 import './app.css';
 import './main.css';
@@ -25,25 +28,6 @@ let testCounter = 0;
 
 function App() {
 
-  const testMovies = [
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-    // { nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: "" },
-  ];
-
-  const [filteredMovies, setFilteredMovies] = useState(testMovies);
-  const [likedMovies, setLikedMovies] = useState(testMovies.slice(0, 3));
-
   // Текущий контекст авторизаци
   const [authorizationContext, setAuthorizationContext] = useState(
     { loggedIn: false }
@@ -51,20 +35,98 @@ function App() {
 
   const navigate = useNavigate();
 
+  ////////////////////////////////////////////////////////////////////
+  // Данные с фильмами
+
+  const testMovies = [
+    { movieId: 1, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
+    { movieId: 2, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
+    { movieId: 3, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
+    { movieId: 4, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
+    { movieId: 5, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
+    { movieId: 6, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
+    { movieId: 7, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
+    { movieId: 8, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
+    { movieId: 9, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
+    { movieId: 10, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
+    { movieId: 11, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
+    { movieId: 12, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
+  ];
+
+  const [allMovies, setAllMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [likedMovies, setLikedMovies] = useState(testMovies.slice(0, 3));
+
+  const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Загружены ли фильмы с сервера
+  const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Состояние ожидания загрузки фильмов с сервера
+  const [loadMoviesError, setLoadMoviesError] = useState(null); // Ошибка загрузки фильмов с сервера
+  const [filterAllString, setFilterAllString] = useState(''); // Строка фильтрации окна всех фильмов
+
+  // Установка отфильтрованных фильмов
+  useEffect(() => {
+    if (isMoviesLoaded) { // Пока не загрузили данные с сервера ничего не фильтруем
+
+      const lowerCaseSearchString = filterAllString.toLowerCase();
+      const filtered = allMovies.filter((movie) => {
+        return movie.nameEN.toLowerCase().includes(lowerCaseSearchString) ||
+          movie.nameRU.toLowerCase().includes(lowerCaseSearchString);
+      });
+
+      setFilteredMovies(filtered);
+      if (filtered.length === 0) {
+        setLoadMoviesError(ERRORS.NOTHING_FOUND);
+      }
+    }
+  }, [filterAllString, allMovies, isMoviesLoaded]);
+
+  ////////////////////////////////////////////////////////////////////
+  // Запрос всех фильмов
+
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
-    return new Promise((resolve, reject) => {
+    setFilterAllString(searchString);
 
-      // TODO: Здесь будет обращение к API за поиском
+    if (!isMoviesLoaded) {
+
+      setLoadMoviesError(null);
+      setIsLoadingMovies(true);
+
       console.log(`Running search... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
 
-      setTimeout(() => {
-        setFilteredMovies(testMovies);
-        resolve(); // эмулируем загрузку
-      }, 2000);
-    });
+      return moviesApiInstance.getMovies()
+        .then(result => {
+          setAllMovies(result.map((movie) => {
 
+            return {
+              country: movie.country,
+              director: movie.director,
+              duration: movie.duration,
+              year: movie.year,
+              description: movie.description,
+              image: MOVIES_SERVER_URL + movie.image.url,
+              trailerLink: movie.trailerLink,
+              thumbnail: MOVIES_SERVER_URL + movie.image.formats.thumbnail.url,
+              owner: null, // Здесь ID пользователя сохранившего фильм в любимые
+              movieId: movie.id,
+              nameRU: movie.nameRU,
+              nameEN: movie.nameEN,
+              saved: false, // saved вычислять по ID пользователя
+            }
+          }));
+          setIsMoviesLoaded(true);
+        })
+        .catch(error => {
+          setLoadMoviesError(ERRORS.GET_MOVIES_ERROR);
+          setAllMovies([]);
+          // errorHandler(error);
+        })
+        .finally(() => {
+          setIsLoadingMovies(false);
+        });
+    }
   }
+
+  ////////////////////////////////////////////////////////////////////
 
   const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
 
@@ -113,6 +175,40 @@ function App() {
     navigate(PAGES.MAIN);
   }
 
+  ////////////////////////////////////////////////////////////////////
+  // Обработка ошибок и всплывающих сообщений
+
+  function errorHandler(error, afterClose = null) {
+    console.log(error);
+
+    //alert(error);
+    handleInfoTooltip('Ошибка', error.message, errorIcon, afterClose);
+  }
+
+  const infoTooltipInitial =
+  {
+    isOpen: false, // Открыт попап с информационным сообщением?
+    title: '',
+    message: '',
+    iconSource: '',
+    afterClose: null
+  }
+
+  // Текст и иконка для всплывающего сообщения
+  const [infoTooltip, setInfoTooltip] = useState(infoTooltipInitial);
+
+  function handleInfoTooltip(title, msg, iconSource, afterClose = null) {
+    setInfoTooltip({
+      isOpen: true,
+      title: title,
+      message: msg,
+      iconSource: iconSource,
+      afterClose: afterClose
+    });
+  }
+
+  ////////////////////////////////////////////////////////////////////
+
   return (
     <AuthorizationContext.Provider value={authorizationContext}>
       <Header />
@@ -123,12 +219,24 @@ function App() {
           <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
           <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
           <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
-          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} />} />
+          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} />} />
+          {/* <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={true} loadMoviesError={null} />} /> */}
           <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
           <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
         </Routes>
       </main >
       <Footer />
+
+      <InfoTooltip
+        isOpen={infoTooltip.isOpen}
+        onClose={() => {
+          setInfoTooltip(infoTooltipInitial);
+        }}
+        afterClose={infoTooltip.afterClose}
+        message={infoTooltip.message}
+        iconLink={infoTooltip.iconSource}
+        title={infoTooltip.title}
+      />
 
     </AuthorizationContext.Provider>
   );
