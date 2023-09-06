@@ -22,7 +22,7 @@ function MovieCard(props) {
         <article className="movie-card">
             <div className="movie-card__header">
                 <h3 className="movie-card__name">{nameRU}</h3>
-                <span className="movie-card__duration">{duration}</span>
+                <span className="movie-card__duration">{formatDuration(duration)}</span>
             </div >
             <img
                 className="movie-card__image"
@@ -37,6 +37,10 @@ function MovieCard(props) {
             </button>
         </article >
     );
+}
+
+function formatDuration(duration) {
+    return `${Math.floor(duration / 60)}ч ${duration % 60}м`;
 }
 
 export default MovieCard;
