@@ -16,8 +16,6 @@ function InfoTooltip(props) {
         }
     }
 
-    console.log(message);
-
     return (
         <Popup title={title} isOpen={isOpen} onClose={combFunc} >
             <section className="info-tooltip">

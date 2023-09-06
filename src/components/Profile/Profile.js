@@ -46,7 +46,6 @@ function Profile({ handleSave, handleLogOut }) {
     }
 
     const handleReset = () => {
-        console.log('handle reset');
         setLastError("");
         setFormState(FORM_STATE.READ);
         resetForm();
