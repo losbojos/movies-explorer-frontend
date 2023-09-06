@@ -26,6 +26,8 @@ const ERRORS = {
     GET_MOVIES_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
 }
 
+const SHORT_FILM_DURATION_MAX = 40; // Максимальная длительность короткометражки включительно
+
 export {
-    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, REST_METHODS, AUTH_HEADER, ERRORS
+    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, REST_METHODS, AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX
 }

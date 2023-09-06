@@ -17,7 +17,9 @@ function Movies(props) {
         handleSearch, // Обработчик поиска с параметрами { searchString, onlyShortFilms } должен возвращать Promise
         likedMovies = false, // Это окно любимых фильмов?
         isLoadingMovies, // Состояние процесса загрузки фильмов (актуально только для окна всех фильмов)
-        loadMoviesError, // Сообщение об ошибке запроса фильмов
+        loadMoviesError, // Сообщение об ошибке запроса фильмов (актуально только для окна всех фильмов)
+        filterOptions, // опции фильтрации
+        setFilterOptions, // установщик опций фильтрации
     } = props;
 
     const handleMore = () => {
@@ -26,7 +28,7 @@ function Movies(props) {
 
     return (
         <section className='movies'>
-            <SearchMovies handleSearch={handleSearch} />
+            <SearchMovies handleSearch={handleSearch} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
             <div className="movies__data-section">
                 {isLoadingMovies && (<Preloader />)}
                 {loadMoviesError && (<ErrorSpan errors={loadMoviesError} addStyles='movies__error-span' />)}

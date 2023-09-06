@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { PAGES, ERRORS, MOVIES_SERVER_URL } from '../../utils/consts';
+import { PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX } from '../../utils/consts';
 
 import Landing from '../Landing/Landing';
 import Register from '../Register/Register';
@@ -60,38 +60,39 @@ function App() {
   const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Загружены ли фильмы с сервера
   const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Состояние ожидания загрузки фильмов с сервера
   const [loadMoviesError, setLoadMoviesError] = useState(null); // Ошибка загрузки фильмов с сервера
-  const [filterAllString, setFilterAllString] = useState(''); // Строка фильтрации окна всех фильмов
+  const [filterOptions, setFilterOptions] = useState({ searchString: '', onlyShortFilms: false }); // Опции фильтрации
 
   // Установка отфильтрованных фильмов
   useEffect(() => {
     if (isMoviesLoaded) { // Пока не загрузили данные с сервера ничего не фильтруем
 
-      const lowerCaseSearchString = filterAllString.toLowerCase();
+      console.log(`Process filtering movies... ${filterOptions.searchString}, onlyShortFilms:${filterOptions.onlyShortFilms}`);
+
+      const lowerCaseSearchString = filterOptions.searchString.toLowerCase();
       const filtered = allMovies.filter((movie) => {
-        return movie.nameEN.toLowerCase().includes(lowerCaseSearchString) ||
-          movie.nameRU.toLowerCase().includes(lowerCaseSearchString);
+        return (!filterOptions.onlyShortFilms || movie.duration <= SHORT_FILM_DURATION_MAX) &&
+          (movie.nameEN.toLowerCase().includes(lowerCaseSearchString) ||
+            movie.nameRU.toLowerCase().includes(lowerCaseSearchString));
       });
 
       setFilteredMovies(filtered);
-      if (filtered.length === 0) {
-        setLoadMoviesError(ERRORS.NOTHING_FOUND);
-      }
+      setLoadMoviesError(filtered.length === 0 ? ERRORS.NOTHING_FOUND : null);
     }
-  }, [filterAllString, allMovies, isMoviesLoaded]);
+  }, [filterOptions, allMovies, isMoviesLoaded]);
 
   ////////////////////////////////////////////////////////////////////
   // Запрос всех фильмов
 
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
-    setFilterAllString(searchString);
+    setFilterOptions({ searchString, onlyShortFilms });
 
     if (!isMoviesLoaded) {
 
       setLoadMoviesError(null);
       setIsLoadingMovies(true);
 
-      console.log(`Running search... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
+      console.log(`Process server movies request... `);
 
       return moviesApiInstance.getMovies()
         .then(result => {
@@ -219,7 +220,7 @@ function App() {
           <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
           <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
           <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
-          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} />} />
+          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />} />
           {/* <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={true} loadMoviesError={null} />} /> */}
           <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
           <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />

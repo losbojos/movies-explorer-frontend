@@ -6,26 +6,31 @@ import './search-movies__checkbox-container.css';
 
 function SearchMovies(props) {
 
-    const { handleSearch, onlyShortFilms = false } = props;
+    const { handleSearch, filterOptions, setFilterOptions } = props;
 
-    const [shortFilmsChecked, setShortFilmsChecked] = useState(onlyShortFilms);
+    const [cachedSearchString, setCachedSearchString] = useState(filterOptions.searchString);
+    // Закешируемое значение строки поиска из инпута, на случай если нажмут чек-бокс Короткометражки, а не Поиск
 
-    const handleSearchString = (props) => { /* props содержит уже searchString */
-        props.onlyShortFilms = shortFilmsChecked;
-        handleSearch(props);
+    const preprocessSearch = (options) => { /* options уже должен содержать поле searchString */
+        options.onlyShortFilms = filterOptions.onlyShortFilms; // Добавим поле
+        handleSearch(options);
     }
 
     const handleCheckBoxChanged = (newValue) => {
-        setShortFilmsChecked(newValue);
+        setFilterOptions({ searchString: cachedSearchString, onlyShortFilms: newValue });
+    }
+
+    const onSearchStringChanged = (newValue) => {
+        setCachedSearchString(newValue);
     }
 
     return (
         <section className='search-movies'>
-            <SearchForm searchPlaceholder='Фильм' handleSearch={handleSearchString} />
+            <SearchForm searchPlaceholder='Фильм' handleSearch={preprocessSearch} onSearchStringChanged={onSearchStringChanged} />
             <div className='search-movies__checkbox-container'>
                 <CustomCheckBox
                     caption='Короткометражки'
-                    checked={shortFilmsChecked}
+                    checked={filterOptions.onlyShortFilms}
                     onChanged={handleCheckBoxChanged}
                 />
             </div>

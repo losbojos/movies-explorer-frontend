@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
 import './search-form.css';
 import './search-form__input.css';
 import './search-form__submit.css';
 
-function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch }) {
+function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch, onSearchStringChanged = null }) {
+
+    const searchStringInput = 'searchString';
 
     const { values, handleChange, errors, isValid } = useFormAndValidation({}, false);
+
+    useEffect(() => {
+        if (onSearchStringChanged !== null) {
+            onSearchStringChanged(values[searchStringInput]);
+        }
+    }, [values]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         handleSearch({ searchString: values[searchStringInput] });
     }
-
-    const searchStringInput = 'searchString';
 
     return (
         <form className='search-form' onSubmit={handleSubmit} noValidate>
