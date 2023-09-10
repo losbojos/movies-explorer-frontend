@@ -11,6 +11,7 @@ import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { AuthorizationContext } from '../../contexts/AuthorizationContext'
+import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import moviesApiInstance from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import errorIcon from '../../images/infotooltip/error.svg';
@@ -36,15 +37,19 @@ function App() {
 
   // Текущий контекст авторизаци
   const [authorizationContext, setAuthorizationContext] = useState(
-    { loggedIn: false, email: null, token: null }
+    { loggedIn: false, token: null }
   );
+
+  // Текущий пользователь
+  const [currentUser, setCurrentUser] = useState(null);
 
   const [lastRegisterError, setLastRegisterError] = useState(null);
   const [lastLoginError, setLastLoginError] = useState(null);
 
   const updateAuthorizationData = (isLoggedIn, newUserData, newToken) => {
     localStorage.setItem(TOKEN_STORAGE_KEY, newToken);
-    setAuthorizationContext({ loggedIn: isLoggedIn, email: newUserData.email, token: newToken });
+    setAuthorizationContext({ loggedIn: isLoggedIn, token: newToken });
+    setCurrentUser(newUserData);
   }
 
   const handleRegister = ({ name, email, password }) => {
@@ -74,16 +79,16 @@ function App() {
     // Удаление токена из локального хранилища
     localStorage.removeItem(TOKEN_STORAGE_KEY);
 
-    setAuthorizationContext({ loggedIn: false, email: null, token: null });
+    setAuthorizationContext({ loggedIn: false, token: null });
+    setCurrentUser(null);
     navigate(PAGES.MAIN);
   }
 
   const tokenCheck = () => {
-    console.log('tokenCheck');
     const localToken = localStorage.getItem(TOKEN_STORAGE_KEY);
 
     if (localToken) {
-      mainApiInstance.getContent(localToken)
+      mainApiInstance.getMe(localToken)
         .then(user => {
           updateAuthorizationData(true, user, localToken);
         })
@@ -95,6 +100,12 @@ function App() {
     tokenCheck(); // Проверить наличие токена 1 раз на старте
   }, []);
 
+  ////////////////////////////////////////////////////////////////////
+  // Профиль пользователя
+
+  const saveProfile = (newValues) => {
+    return mainApiInstance.setMe(newValues, authorizationContext.token);
+  }
 
   ////////////////////////////////////////////////////////////////////
   // Данные с фильмами
@@ -207,26 +218,6 @@ function App() {
 
   }
 
-  const saveProfile = (newValues) => {
-
-    return new Promise((resolve, reject) => {
-
-      // TODO: Здесь будет обращение к API за сохранением профиля
-      console.log(`Running save profile... ${newValues}`);
-
-      setTimeout(() => {
-
-        if (++testCounter % 2 === 0) {
-          resolve();
-        } else {
-          reject("При обновлении профиля произошла ошибка.");
-        }
-
-      }, 3000);
-    });
-
-  }
-
   ////////////////////////////////////////////////////////////////////
   // Обработка ошибок и всплывающих сообщений
 
@@ -265,33 +256,34 @@ function App() {
 
   return (
     <AuthorizationContext.Provider value={authorizationContext}>
-      <Header />
-      <main className="main">
-        <Routes>
-          <Route path={PAGES.MAIN} element={<Landing />} />
-          <Route path={PAGES.REGISTER} element={<Register handleRegister={handleRegister} lastRegisterError={lastRegisterError} />} />
-          <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
-          <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
-          <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
-          <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />} />
-          {/* <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={true} loadMoviesError={null} />} /> */}
-          <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
-          <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
-        </Routes>
-      </main >
-      <Footer />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header />
+        <main className="main">
+          <Routes>
+            <Route path={PAGES.MAIN} element={<Landing />} />
+            <Route path={PAGES.REGISTER} element={<Register handleRegister={handleRegister} lastRegisterError={lastRegisterError} />} />
+            <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
+            <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
+            <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} handleUserUpdate={setCurrentUser} />} />
+            <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />} />
+            {/* <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={true} loadMoviesError={null} />} /> */}
+            <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
+            <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
+          </Routes>
+        </main >
+        <Footer />
 
-      <InfoTooltip
-        isOpen={infoTooltip.isOpen}
-        onClose={() => {
-          setInfoTooltip(infoTooltipInitial);
-        }}
-        afterClose={infoTooltip.afterClose}
-        message={infoTooltip.message}
-        iconLink={infoTooltip.iconSource}
-        title={infoTooltip.title}
-      />
-
+        <InfoTooltip
+          isOpen={infoTooltip.isOpen}
+          onClose={() => {
+            setInfoTooltip(infoTooltipInitial);
+          }}
+          afterClose={infoTooltip.afterClose}
+          message={infoTooltip.message}
+          iconLink={infoTooltip.iconSource}
+          title={infoTooltip.title}
+        />
+      </CurrentUserContext.Provider>
     </AuthorizationContext.Provider>
   );
 }

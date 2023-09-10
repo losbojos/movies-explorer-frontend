@@ -63,7 +63,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                         value={values[inputEmail] || ''} onChange={handleChange}
                         className={`auth__input ${errors[inputEmail] && 'auth__input_invalid'}`}
                         placeholder='Ваш email'
-                        pattern='([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})' /* Полная проверка почты, включая доменную зону .ru\com\итп */
+                        pattern='([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})'
                     />
                 </label>
                 <ErrorSpan errors={errors[inputEmail]} />

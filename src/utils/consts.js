@@ -33,6 +33,13 @@ const SHORT_FILM_DURATION_MAX = 40; // Максимальная длительн
 
 const TOKEN_STORAGE_KEY = 'jwt';
 
+/* Не работают паттерны с экспортом
+const REGEX_PATTERNS = {
+    EMAIL: new RegExp(/([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})/),
+    // Регулярное выражение для полной проверки почты, включая доменную зону .ru\com\итп
+    USER_NAME: new RegExp(/^([A-Za-zА-Яа-я\s\-])+$/, 'u'),
+};
+*/
 
 export {
     HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, MAIN_SERVER, REST_METHODS, AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY

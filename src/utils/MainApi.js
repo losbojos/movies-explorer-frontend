@@ -3,7 +3,7 @@ import { REST_METHODS, MAIN_SERVER, AUTH_HEADER } from './consts.js';
 class MainApi {
 
     constructor({ baseUrl }) {
-        this.baseUrl = baseUrl;
+        this._baseUrl = baseUrl;
     }
 
     _processError(res, conversionMap = null) {
@@ -25,43 +25,47 @@ class MainApi {
         });
     }
 
-    register({ name, email, password }) {
-        return fetch(`${this.baseUrl}/signup`, {
-            method: REST_METHODS.POST,
+    _requestServer(urlAddition, method, bodyObject = null, token = null) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        if (token) {
+            myHeaders.append([AUTH_HEADER], `Bearer ${token}`);
+        }
+
+        const requestOptions = {
+            method: method,
             credentials: "include",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, password }),
-        }).then(res => res.ok ? res.json() : this._processError(res));
+            headers: myHeaders,
+        };
+
+        if (bodyObject)
+            requestOptions.body = JSON.stringify(bodyObject);
+
+        return fetch(this._baseUrl + urlAddition, requestOptions)
+            .then(response =>
+                response.ok ? response.json()
+                    : this._processError(response)
+            );
+    }
+
+    register({ name, email, password }) {
+        return this._requestServer('/signup', REST_METHODS.POST, { name, email, password });
     };
 
     authorize({ email, password }) {
-        return fetch(`${this.baseUrl}/signin`, {
-            method: REST_METHODS.POST,
-            credentials: "include",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        }).then(res => res.ok ? res.json() : this._processError(res));
+        return this._requestServer('/signin', REST_METHODS.POST, { email, password });
     };
 
-    getContent(token) {
-        return fetch(`${this.baseUrl}/users/me`, {
-            method: REST_METHODS.GET,
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                [AUTH_HEADER]: `Bearer ${token}`,
-            },
-        })
-            .then(
-                res =>
-                    res.ok ? res.json() :
-                        this._processError(res)
-            );
+    getMe(token) {
+        return this._requestServer('/users/me', REST_METHODS.GET, null, token);
     };
+
+    setMe({ name, email }, token) {
+        return this._requestServer('/users/me', REST_METHODS.PATCH, { name, email }, token);
+    }
+
+
 }
 
 const mainApiInstance = new MainApi({
