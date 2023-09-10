@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX } from '../../utils/consts';
+import { PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY } from '../../utils/consts';
 
 import Landing from '../Landing/Landing';
 import Register from '../Register/Register';
@@ -14,6 +14,7 @@ import { AuthorizationContext } from '../../contexts/AuthorizationContext'
 import moviesApiInstance from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import errorIcon from '../../images/infotooltip/error.svg';
+import mainApiInstance from '../../utils/MainApi';
 
 import './app.css';
 import './main.css';
@@ -28,12 +29,72 @@ let testCounter = 0;
 
 function App() {
 
+  const navigate = useNavigate();
+
+  ////////////////////////////////////////////////////////////////////
+  // Регистрация и авторизация
+
   // Текущий контекст авторизаци
   const [authorizationContext, setAuthorizationContext] = useState(
-    { loggedIn: false }
+    { loggedIn: false, email: null, token: null }
   );
 
-  const navigate = useNavigate();
+  const [lastRegisterError, setLastRegisterError] = useState(null);
+  const [lastLoginError, setLastLoginError] = useState(null);
+
+  const updateAuthorizationData = (isLoggedIn, newUserData, newToken) => {
+    localStorage.setItem(TOKEN_STORAGE_KEY, newToken);
+    setAuthorizationContext({ loggedIn: isLoggedIn, email: newUserData.email, token: newToken });
+  }
+
+  const handleRegister = ({ name, email, password }) => {
+    mainApiInstance.register({ name, email, password })
+      .then((user) => {
+        updateAuthorizationData(true, user, user.token);
+        setLastRegisterError('');
+        navigate(PAGES.MOVIES);
+      })
+      .catch(err => {
+        setLastRegisterError(err);
+      });
+  }
+
+  const handleLogin = ({ email, password }) => {
+    mainApiInstance.authorize({ email, password })
+      .then(user => {
+        updateAuthorizationData(true, user, user.token);
+        setLastLoginError(null);
+        navigate(PAGES.MOVIES);
+      })
+      .catch(err => setLastLoginError(err));
+
+  }
+
+  const handleLogOut = () => {
+    // Удаление токена из локального хранилища
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
+
+    setAuthorizationContext({ loggedIn: false, email: null, token: null });
+    navigate(PAGES.MAIN);
+  }
+
+  const tokenCheck = () => {
+    console.log('tokenCheck');
+    const localToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+
+    if (localToken) {
+      mainApiInstance.getContent(localToken)
+        .then(user => {
+          updateAuthorizationData(true, user, localToken);
+        })
+        .catch(error => errorHandler(error));
+    }
+  }
+
+  useEffect(() => {
+    tokenCheck(); // Проверить наличие токена 1 раз на старте
+  }, []);
+
 
   ////////////////////////////////////////////////////////////////////
   // Данные с фильмами
@@ -166,24 +227,16 @@ function App() {
 
   }
 
-  const handleLogin = () => {
-    setAuthorizationContext({ loggedIn: true });
-    navigate(PAGES.MOVIES);
-  }
-
-  const handleLogOut = () => {
-    setAuthorizationContext({ loggedIn: false });
-    navigate(PAGES.MAIN);
-  }
-
   ////////////////////////////////////////////////////////////////////
   // Обработка ошибок и всплывающих сообщений
 
   function errorHandler(error, afterClose = null) {
     console.log(error);
-
     //alert(error);
-    handleInfoTooltip('Ошибка', error.message, errorIcon, afterClose);
+
+    let errorMessage = (typeof error === 'string' || error instanceof String) ? error : ('message' in error) ? error.message : error.toString();
+
+    handleInfoTooltip('Ошибка', errorMessage, errorIcon, afterClose);
   }
 
   const infoTooltipInitial =
@@ -216,8 +269,8 @@ function App() {
       <main className="main">
         <Routes>
           <Route path={PAGES.MAIN} element={<Landing />} />
-          <Route path={PAGES.REGISTER} element={<Register handleRegister={handleLogin} />} />
-          <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} />} />
+          <Route path={PAGES.REGISTER} element={<Register handleRegister={handleRegister} lastRegisterError={lastRegisterError} />} />
+          <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
           <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
           <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} />} />
           <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />} />

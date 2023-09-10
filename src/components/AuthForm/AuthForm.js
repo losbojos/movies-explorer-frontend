@@ -14,8 +14,9 @@ import './auth__title.css';
 import './auth__label.css';
 import './auth__logo-container.css';
 import './auth__footer.css';
+import './auth__error.css';
 
-function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = false, children }) {
+function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInputName = false, children }) {
 
     const inputName = 'name'; // Имя инпута с именем
     const inputEmail = 'email'; // Имя инпута с email
@@ -61,6 +62,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
                         value={values[inputEmail] || ''} onChange={handleChange}
                         className={`auth__input ${errors[inputEmail] && 'auth__input_invalid'}`}
                         placeholder='Ваш email'
+                        pattern='([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})' /* Полная проверка почты, включая доменную зону .ru\com\итп */
                     />
                 </label>
                 <ErrorSpan errors={errors[inputEmail]} />
@@ -78,6 +80,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, showInputName = fal
             </div>
 
             <div className="auth__footer">
+                <span className="auth__error">{lastError}</span>
                 <button
                     type="submit"
                     className="auth__submit"

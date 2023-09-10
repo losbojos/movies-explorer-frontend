@@ -17,6 +17,9 @@ const PAGES = {
 const MOVIES_SERVER_URL = 'https://api.nomoreparties.co';
 const MOVIES_SERVER_API = '/beatfilm-movies';
 
+// const MAIN_SERVER = 'https://api.lifemovie.nomoreparties.co';
+const MAIN_SERVER = 'http://localhost:3003';
+
 const REST_METHODS = { GET: 'GET', PATCH: 'PATCH', POST: 'POST', PUT: 'PUT', DELETE: 'DELETE' };
 
 const AUTH_HEADER = "authorization";
@@ -28,6 +31,9 @@ const ERRORS = {
 
 const SHORT_FILM_DURATION_MAX = 40; // Максимальная длительность короткометражки включительно
 
+const TOKEN_STORAGE_KEY = 'jwt';
+
+
 export {
-    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, REST_METHODS, AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX
+    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, MAIN_SERVER, REST_METHODS, AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY
 }

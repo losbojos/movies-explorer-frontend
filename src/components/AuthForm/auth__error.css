@@ -1,0 +1,12 @@
+.auth__error {
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin: 10px;
+    padding: 0;
+    flex-shrink: 0;
+}
