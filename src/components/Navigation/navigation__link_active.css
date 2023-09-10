@@ -2,6 +2,10 @@
 .navigation__link_active {
     border-bottom: 2px solid #fff;
     padding-bottom: 7px;
+
+    cursor: not-allowed;
+    text-decoration: none;
+    pointer-events: none;
 }
 
 /* FIGMA 768 design */

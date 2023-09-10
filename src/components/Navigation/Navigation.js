@@ -1,4 +1,7 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
+
+
 import { PAGES } from '../../utils/consts';
 import accountImage from '../../images/account.svg';
 
@@ -29,22 +32,32 @@ function Navigation(props) {
     const listClasses = `navigation__list navigation__list_${type}`;
     const iconClasses = `navigation__account-icon ${isLandingPage ? 'navigation__account-icon_landing' : ''}`;
 
+    const locationPath = useLocation().pathname;
+
     return (
         <nav className={navClasses}>
             <ul className={listClasses}>
                 {type === 'vertical' && (
                     <li className='navigation__list-item'>
-                        <a className='navigation__link' href={PAGES.MAIN}>Главная</a>
+                        <a className={`navigation__link ${locationPath === PAGES.MAIN ? 'navigation__link_active' : ''}`}
+                            href={PAGES.MAIN}
+                        >Главная</a>
                     </li>
                 )}
                 <li className='navigation__list-item'>
-                    <a className='navigation__link navigation__link_active' href={PAGES.MOVIES}>Фильмы</a>
+                    <a className={`navigation__link ${locationPath === PAGES.MOVIES ? 'navigation__link_active' : ''}`}
+                        href={PAGES.MOVIES}
+                    >Фильмы</a>
                 </li>
                 <li className='navigation__list-item'>
-                    <a className='navigation__link' href={PAGES.SAVED_MOVIES}>Сохранённые фильмы</a>
+                    <a className={`navigation__link ${locationPath === PAGES.SAVED_MOVIES ? 'navigation__link_active' : ''}`}
+                        href={PAGES.SAVED_MOVIES}
+                    >Сохранённые фильмы</a>
                 </li>
                 <li className='navigation__list-item'>
-                    <a className='navigation__link_account' href={PAGES.PROFILE}>
+                    <a className={`navigation__link navigation__link_account ${locationPath === PAGES.PROFILE ? 'navigation__link_active' : ''}`}
+                        href={PAGES.PROFILE}
+                    >
                         <span className='navigation__account_text'>Аккаунт</span>
                         <img className={iconClasses} src={accountImage} alt="Иконка со ссылкой на страницу профиля" />
                     </a>
