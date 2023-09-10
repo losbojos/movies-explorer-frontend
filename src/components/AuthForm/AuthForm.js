@@ -49,7 +49,8 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                                 value={values[inputName] || ''}
                                 onChange={handleChange}
                                 className={`auth__input ${errors[inputName] && 'auth__input_invalid'}`}
-                                placeholder='Ваше имя'
+                                placeholder='Ваше имя, состоящее из букв, пробела и дефиса.'
+                                pattern='([A-Za-zА-Яа-я\s\-])+'
                             />
                         </label>
                         <ErrorSpan errors={errors[inputName]} />
