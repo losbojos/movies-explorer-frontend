@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY } from '../../utils/consts';
+import {
+  PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX,
+  TOKEN_STORAGE_KEY, ALL_MOVIES_FILTER_STORAGE_KEY,
+  ALL_MOVIES_LIST_STORAGE_KEY, LIKED_MOVIES_LIST_STORAGE_KEY
+} from '../../utils/consts';
 
 import Landing from '../Landing/Landing';
 import Register from '../Register/Register';
@@ -16,17 +20,15 @@ import moviesApiInstance from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import errorIcon from '../../images/infotooltip/error.svg';
 import mainApiInstance from '../../utils/MainApi';
+import LocalStorage from '../../utils/LocalStorage';
 
 import './app.css';
 import './main.css';
 
-import image1 from '../../images/movies/img1.jpeg';
-import image2 from '../../images/movies/img2.jpeg';
-import image3 from '../../images/movies/img3.jpeg';
-import image4 from '../../images/movies/img4.jpeg';
-import image5 from '../../images/movies/img5.jpeg';
-
-let testCounter = 0;
+const tokenStorage = new LocalStorage(TOKEN_STORAGE_KEY);
+const filterStorage = new LocalStorage(ALL_MOVIES_FILTER_STORAGE_KEY, { searchString: '', onlyShortFilms: false });
+const allMoviesStorage = new LocalStorage(ALL_MOVIES_LIST_STORAGE_KEY, []);
+const likedMoviesStorage = new LocalStorage(LIKED_MOVIES_LIST_STORAGE_KEY, []);
 
 function App() {
 
@@ -47,7 +49,7 @@ function App() {
   const [lastLoginError, setLastLoginError] = useState(null);
 
   const updateAuthorizationData = (isLoggedIn, newUserData, newToken) => {
-    localStorage.setItem(TOKEN_STORAGE_KEY, newToken);
+    tokenStorage.save(newToken);
     setAuthorizationContext({ loggedIn: isLoggedIn, token: newToken });
     setCurrentUser(newUserData);
   }
@@ -76,23 +78,23 @@ function App() {
   }
 
   const handleLogOut = () => {
-    // Удаление токена из локального хранилища
-    localStorage.removeItem(TOKEN_STORAGE_KEY);
-
     setAuthorizationContext({ loggedIn: false, token: null });
     setCurrentUser(null);
     navigate(PAGES.MAIN);
   }
 
   const tokenCheck = () => {
-    const localToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+    const localToken = tokenStorage.load();
 
     if (localToken) {
       mainApiInstance.getMe(localToken)
         .then(user => {
           updateAuthorizationData(true, user, localToken);
         })
-        .catch(error => errorHandler(error));
+        .catch(error => {
+          //errorHandler(error);
+          tokenStorage.clear();
+        });
     }
   }
 
@@ -110,16 +112,23 @@ function App() {
   ////////////////////////////////////////////////////////////////////
   // Данные с фильмами
 
-  const [allMovies, setAllMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState(allMoviesStorage.load());
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [likedMovies, setLikedMovies] = useState([]);
+  const [likedMovies, setLikedMovies] = useState(likedMoviesStorage.load());
+  const [likedFilteredMovies, setLikedFilteredMovies] = useState([]);
 
-  const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Загружены ли фильмы с внешнего сервера
-  const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(false); // Загружены ли сохраненные фильмы со своего сервера
+
+  const [isMoviesLoaded, setIsMoviesLoaded] = useState(allMovies != null && allMovies.length > 0); // Загружены ли фильмы с внешнего сервера
+  const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(likedMovies != null && likedMovies.length > 0); // Загружены ли сохраненные фильмы со своего сервера
 
   const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Состояние ожидания загрузки фильмов с сервера
+
   const [loadMoviesError, setLoadMoviesError] = useState(null); // Ошибка загрузки фильмов с сервера
-  const [filterOptions, setFilterOptions] = useState({ searchString: '', onlyShortFilms: false }); // Опции фильтрации
+  const [loadLikedMoviesError, setLoadLikedMoviesError] = useState(null); // Ошибка загрузки сохраненных фильмов с сервера
+
+
+  const [filterOptions, setFilterOptions] = useState(filterStorage.load()); // Опции фильтрации окна всех фильмов
+  const [likedFilterOptions, setLikedFilterOptions] = useState({ searchString: '', onlyShortFilms: false }); // Опции фильтрации окна всех фильмов
 
   // Установка отфильтрованных фильмов
   useEffect(() => {
@@ -140,7 +149,9 @@ function App() {
   }, [filterOptions, allMovies, isMoviesLoaded]);
 
 
-  // Запрос всех фильмов
+  ///////////////////////////////////
+  // Обработка Поиска по всем фильмам
+
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
     setFilterOptions({ searchString, onlyShortFilms });
@@ -187,6 +198,14 @@ function App() {
     }
   }
 
+  //////////////////////////////////////////
+  // Обработка Поиска по сохраненным фильмам
+
+  const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
+    console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
+    setLikedFilterOptions({ searchString, onlyShortFilms });
+  }
+
   //////////////////////////////////////
   // Запрос сохраненных фильмов
 
@@ -197,9 +216,16 @@ function App() {
           setLikedMovies(movies);
           setIsLikedMoviesLoaded(true);
         })
-        .catch(error => errorHandler(error));
+        .catch(error => {
+          setLoadLikedMoviesError(ERRORS.GET_LIKED_MOVIES_ERROR);
+          setLikedMovies([]);
+          // errorHandler(error) 
+        });
     } else {
-      setLikedMovies([]); // При разлогине чистим текущий список сохраненных фильмов
+      tokenStorage.clear(); // Удаление токена из локального хранилища
+      filterStorage.clear(); // Удаление фильтра
+      allMoviesStorage.clear();
+      likedMoviesStorage.clear();
     }
   }, [authorizationContext]); // Запрос после авторизации, т.к. получаем список для текущего пользователя
 
@@ -267,11 +293,38 @@ function App() {
   }
 
   ////////////////////////////////////////////////////////////////////
+  // Установка отфильтрованных сохраненных фильмов
+  useEffect(() => {
+    if (isLikedMoviesLoaded) { // Пока не загрузили данные с сервера ничего не фильтруем
 
-  const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
-    console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
-    // TODO: Реализовать
-  }
+      console.log(`Process filtering saved movies... ${likedFilterOptions.searchString}, onlyShortFilms:${likedFilterOptions.onlyShortFilms}`);
+
+      const lowerCaseSearchString = likedFilterOptions.searchString.toLowerCase();
+      const filtered = likedMovies.filter((movie) => {
+        return (!likedFilterOptions.onlyShortFilms || movie.duration <= SHORT_FILM_DURATION_MAX) &&
+          (movie.nameEN.toLowerCase().includes(lowerCaseSearchString) ||
+            movie.nameRU.toLowerCase().includes(lowerCaseSearchString));
+      });
+
+      setLikedFilteredMovies(filtered);
+      setLoadLikedMoviesError(filtered.length === 0 ? ERRORS.NOTHING_FOUND : null);
+    }
+  }, [likedFilterOptions, likedMovies, isLikedMoviesLoaded]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // Сохранение в локальном хранилище параметров фильтрации и загруженных с сервера фильмов
+
+  useEffect(() => {
+    filterStorage.save(filterOptions);
+  }, [filterOptions]);
+
+  useEffect(() => {
+    allMoviesStorage.save(allMovies);
+  }, [allMovies]);
+
+  useEffect(() => {
+    likedMoviesStorage.save(likedMovies);
+  }, [likedMovies]);
 
   ////////////////////////////////////////////////////////////////////
   // Обработка ошибок и всплывающих сообщений
@@ -329,9 +382,20 @@ function App() {
               filterOptions={filterOptions}
               setFilterOptions={setFilterOptions}
               handleToggleLike={handleToggleLike}
-            />}
-            />
-            <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} onlyLikedView={true} />} />
+            />} />
+            <Route path={PAGES.SAVED_MOVIES} element={<Movies
+              movies={likedFilteredMovies}
+              handleSearch={handleSearchLiked}
+              onlyLikedView={true}
+              isLoadingMovies={null}
+              loadMoviesError={loadLikedMoviesError}
+
+              filterOptions={likedFilterOptions}
+              setFilterOptions={setLikedFilterOptions}
+
+              handleToggleLike={handleToggleLike}
+
+            />} />
             <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
           </Routes>
         </main >

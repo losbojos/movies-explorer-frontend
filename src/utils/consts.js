@@ -26,12 +26,18 @@ const AUTH_HEADER = "authorization";
 
 const ERRORS = {
     NOTHING_FOUND: 'Ничего не найдено',
-    GET_MOVIES_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
+    GET_MOVIES_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
+    GET_LIKED_MOVIES_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте обновить страницу.'
 }
 
 const SHORT_FILM_DURATION_MAX = 40; // Максимальная длительность короткометражки включительно
 
 const TOKEN_STORAGE_KEY = 'jwt';
+
+const ALL_MOVIES_FILTER_STORAGE_KEY = 'all_movies_filter';
+
+const ALL_MOVIES_LIST_STORAGE_KEY = 'all_movies';
+const LIKED_MOVIES_LIST_STORAGE_KEY = 'liked_movies';
 
 /* Не работают паттерны с экспортом
 const REGEX_PATTERNS = {
@@ -42,5 +48,8 @@ const REGEX_PATTERNS = {
 */
 
 export {
-    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, MAIN_SERVER, REST_METHODS, AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY
+    HREFS, PAGES, MOVIES_SERVER_URL, MOVIES_SERVER_API, MAIN_SERVER, REST_METHODS,
+    AUTH_HEADER, ERRORS, SHORT_FILM_DURATION_MAX, TOKEN_STORAGE_KEY, ALL_MOVIES_FILTER_STORAGE_KEY,
+    ALL_MOVIES_LIST_STORAGE_KEY,
+    LIKED_MOVIES_LIST_STORAGE_KEY,
 }

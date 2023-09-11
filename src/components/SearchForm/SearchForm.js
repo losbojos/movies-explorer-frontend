@@ -5,11 +5,15 @@ import './search-form.css';
 import './search-form__input.css';
 import './search-form__submit.css';
 
-function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch, onSearchStringChanged = null }) {
+function SearchForm({ searchPlaceholder, buttonSubmitText = 'Поиск', handleSearch, initialSearchString, onSearchStringChanged = null }) {
 
     const searchStringInput = 'searchString';
 
-    const { values, handleChange, errors, isValid } = useFormAndValidation({}, false);
+    const { values, handleChange, errors, isValid } = useFormAndValidation(
+        {
+            [searchStringInput]: initialSearchString
+        },
+        false);
 
     useEffect(() => {
         if (onSearchStringChanged !== null) {

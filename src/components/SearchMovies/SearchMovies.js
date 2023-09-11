@@ -26,7 +26,12 @@ function SearchMovies(props) {
 
     return (
         <section className='search-movies'>
-            <SearchForm searchPlaceholder='Фильм' handleSearch={preprocessSearch} onSearchStringChanged={onSearchStringChanged} />
+            <SearchForm
+                searchPlaceholder='Фильм'
+                handleSearch={preprocessSearch}
+                initialSearchString={filterOptions.searchString}
+                onSearchStringChanged={onSearchStringChanged}
+            />
             <div className='search-movies__checkbox-container'>
                 <CustomCheckBox
                     caption='Короткометражки'
