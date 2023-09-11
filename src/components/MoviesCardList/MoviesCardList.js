@@ -7,7 +7,8 @@ function MoviesCardList(props) {
 
     const {
         movies,
-        likedMovies
+        onlyLikedView,
+        handleToggleLike
     } = props;
 
     return (
@@ -16,7 +17,7 @@ function MoviesCardList(props) {
                 movies.map(movie => {
                     return (
                         <li className="movies-card-list__list-item" key={movie.movieId}>
-                            <MovieCard movie={movie} likedMoviesView={likedMovies} />
+                            <MovieCard movie={movie} onlyLikedView={onlyLikedView} handleToggleLike={handleToggleLike} />
                         </li>
                     );
                 })

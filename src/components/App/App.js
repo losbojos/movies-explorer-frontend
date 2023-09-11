@@ -110,26 +110,13 @@ function App() {
   ////////////////////////////////////////////////////////////////////
   // Данные с фильмами
 
-  const testMovies = [
-    { movieId: 1, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
-    { movieId: 2, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
-    { movieId: 3, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
-    { movieId: 4, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { movieId: 5, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-    { movieId: 6, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image1 },
-    { movieId: 7, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image2 },
-    { movieId: 8, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image3 },
-    { movieId: 9, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { movieId: 10, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-    { movieId: 11, nameRU: "В погоне за Бенкси", duration: "0ч 42м", saved: true, image: image4 },
-    { movieId: 12, nameRU: "В погоне за Бенкси", duration: "0ч 42м", image: image5 },
-  ];
-
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [likedMovies, setLikedMovies] = useState(testMovies.slice(0, 3));
+  const [likedMovies, setLikedMovies] = useState([]);
 
-  const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Загружены ли фильмы с сервера
+  const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Загружены ли фильмы с внешнего сервера
+  const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(false); // Загружены ли сохраненные фильмы со своего сервера
+
   const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Состояние ожидания загрузки фильмов с сервера
   const [loadMoviesError, setLoadMoviesError] = useState(null); // Ошибка загрузки фильмов с сервера
   const [filterOptions, setFilterOptions] = useState({ searchString: '', onlyShortFilms: false }); // Опции фильтрации
@@ -152,9 +139,8 @@ function App() {
     }
   }, [filterOptions, allMovies, isMoviesLoaded]);
 
-  ////////////////////////////////////////////////////////////////////
-  // Запрос всех фильмов
 
+  // Запрос всех фильмов
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
     setFilterOptions({ searchString, onlyShortFilms });
@@ -179,11 +165,13 @@ function App() {
               image: MOVIES_SERVER_URL + movie.image.url,
               trailerLink: movie.trailerLink,
               thumbnail: MOVIES_SERVER_URL + movie.image.formats.thumbnail.url,
-              owner: null, // Здесь ID пользователя сохранившего фильм в любимые
+              // owner: null, // ID пользователя сохранившего фильм в любимые здесь не используется
               movieId: movie.id,
               nameRU: movie.nameRU,
               nameEN: movie.nameEN,
-              saved: false, // saved вычислять по ID пользователя
+
+              // Вычисляемые поля
+              saved: false, // Заполняется через useEffect
             }
           }));
           setIsMoviesLoaded(true);
@@ -199,23 +187,90 @@ function App() {
     }
   }
 
+  //////////////////////////////////////
+  // Запрос сохраненных фильмов
+
+  useEffect(() => {
+    if (authorizationContext.loggedIn) {
+      mainApiInstance.getMovies(authorizationContext.token)
+        .then(movies => {
+          setLikedMovies(movies);
+          setIsLikedMoviesLoaded(true);
+        })
+        .catch(error => errorHandler(error));
+    } else {
+      setLikedMovies([]); // При разлогине чистим текущий список сохраненных фильмов
+    }
+  }, [authorizationContext]); // Запрос после авторизации, т.к. получаем список для текущего пользователя
+
+  //////////////////////////////////////
+  // Проставляем значение saved для сохраненных фильмов
+
+  useEffect(() => {
+
+    if (isMoviesLoaded && isLikedMoviesLoaded) {
+      const savedMoviesIDs = new Object();
+
+      if (likedMovies) {
+        likedMovies.forEach((elem) => {
+          savedMoviesIDs[elem.movieId] = null;
+        });
+      }
+
+      if (allMovies) {
+        allMovies.forEach((movie) => {
+          movie.saved = savedMoviesIDs.hasOwnProperty(movie.movieId);
+        });
+      }
+    }
+
+  }, [isMoviesLoaded, isLikedMoviesLoaded]); // После загрузки обоих коллекций фильмов нужно пересчитать все сохраненные фильмы
+
+  //////////////////////////////////////
+  // Обработка переключения лайка (сохранить\удалить в\из избранных)
+
+  const handleToggleLike = (movie) => {
+
+    if (movie.saved) {
+      mainApiInstance.deleteMovie(movie.movieId, authorizationContext.token)
+        .then(deletedMovie => {
+          setLikedMovies(likedMovies.filter(iMovie => iMovie.movieId !== deletedMovie.movieId));
+
+          const newAllMovies = allMovies.map((iMovie) => {
+            if (iMovie.movieId === deletedMovie.movieId)
+              iMovie.saved = false;
+            return iMovie;
+          });
+          setAllMovies(newAllMovies);
+        })
+        .catch(error => errorHandler(error));
+
+    } else {
+      const savingMovie = { ...movie };
+      delete savingMovie.saved;
+
+      mainApiInstance.saveMovie(savingMovie, authorizationContext.token)
+        .then(savedMovie => {
+          savedMovie.saved = true;
+          setLikedMovies([...likedMovies, savedMovie]);
+
+          const newAllMovies = allMovies.map((iMovie) => {
+            if (iMovie.movieId === savedMovie.movieId)
+              iMovie.saved = true;
+            return iMovie;
+          });
+          setAllMovies(newAllMovies);
+
+        })
+        .catch(error => errorHandler(error));
+    }
+  }
+
   ////////////////////////////////////////////////////////////////////
 
   const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
-
-    return new Promise((resolve, reject) => {
-
-      // TODO: Здесь будет фильтрация
-      console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
-
-      let testLikeMovies = testMovies.slice(0, 3);
-
-      setTimeout(() => {
-        setLikedMovies(testLikeMovies);
-        resolve();
-      }, 3000); // эмулируем загрузку
-    });
-
+    console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
+    // TODO: Реализовать
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -253,6 +308,7 @@ function App() {
   }
 
   ////////////////////////////////////////////////////////////////////
+  // JSX содержимое
 
   return (
     <AuthorizationContext.Provider value={authorizationContext}>
@@ -265,9 +321,17 @@ function App() {
             <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
             <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
             <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} handleUserUpdate={setCurrentUser} />} />
-            <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={isLoadingMovies} loadMoviesError={loadMoviesError} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />} />
-            {/* <Route path={PAGES.MOVIES} element={<Movies movies={filteredMovies} handleSearch={handleSearchAll} isLoadingMovies={true} loadMoviesError={null} />} /> */}
-            <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} likedMovies={true} />} />
+            <Route path={PAGES.MOVIES} element={<Movies
+              movies={filteredMovies}
+              handleSearch={handleSearchAll}
+              isLoadingMovies={isLoadingMovies}
+              loadMoviesError={loadMoviesError}
+              filterOptions={filterOptions}
+              setFilterOptions={setFilterOptions}
+              handleToggleLike={handleToggleLike}
+            />}
+            />
+            <Route path={PAGES.SAVED_MOVIES} element={<Movies movies={likedMovies} handleSearch={handleSearchLiked} onlyLikedView={true} />} />
             <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
           </Routes>
         </main >

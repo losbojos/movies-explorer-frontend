@@ -11,12 +11,16 @@ import './movie-card__button_remove-from-liked.css';
 
 function MovieCard(props) {
 
-    const { movie, likedMoviesView } = props;
+    const { movie, onlyLikedView, handleToggleLike } = props;
     const { duration, image, nameRU, saved } = movie;
 
     const altValue = `карточка фильма ${nameRU} `;
     const ariaLabel = saved ? 'Убрать из избранных' : 'Сохранить в избранные';
-    const buttonClasses = `movie-card__button ${likedMoviesView ? 'movie-card__button_remove-from-liked' : saved ? 'movie-card__button_remove-from-all' : 'movie-card__button_save'}`
+    const buttonClasses = `movie-card__button ${onlyLikedView ? 'movie-card__button_remove-from-liked' : saved ? 'movie-card__button_remove-from-all' : 'movie-card__button_save'}`
+
+    const preprocessToggleLike = () => {
+        handleToggleLike(movie);
+    }
 
     return (
         <article className="movie-card">
@@ -33,7 +37,8 @@ function MovieCard(props) {
                 className={buttonClasses}
                 aria-label={ariaLabel}
                 type="button"
-            >{(!saved && !likedMoviesView) ? 'Сохранить' : ''}
+                onClick={preprocessToggleLike}
+            >{(!saved && !onlyLikedView) ? 'Сохранить' : ''}
             </button>
         </article >
     );

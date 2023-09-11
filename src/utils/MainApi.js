@@ -16,6 +16,7 @@ class MainApi {
                     if (jsonObj && jsonObj.message) {
                         errorInfo = jsonObj.message;
                     }
+                    console.log('processError: ', jsonObj);
                     reject(`Ошибка ${res.status}: ${errorInfo}`);
                 })
             }
@@ -65,6 +66,17 @@ class MainApi {
         return this._requestServer('/users/me', REST_METHODS.PATCH, { name, email }, token);
     }
 
+    getMovies(token) {
+        return this._requestServer('/movies', REST_METHODS.GET, null, token);
+    }
+
+    saveMovie(movie, token) {
+        return this._requestServer('/movies', REST_METHODS.POST, movie, token);
+    }
+
+    deleteMovie(movieId, token) {
+        return this._requestServer(`/movies/${movieId}`, REST_METHODS.DELETE, null, token);
+    }
 
 }
 
