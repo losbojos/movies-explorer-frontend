@@ -216,7 +216,7 @@ function App() {
 
           const newLikedMovies = movies.map((iMovie) => {
             iMovie.saved = true;
-            delete iMovie._id;
+            //delete iMovie._id; // Нельзя удалять, т.к. нужен для последующего удаления экземпляра из собственной базы при снятии лайка
             delete iMovie.__v;
             return iMovie;
           });
@@ -247,13 +247,22 @@ function App() {
 
       if (likedMovies) {
         likedMovies.forEach((elem) => {
-          savedMoviesIDs[elem.movieId] = null;
+          savedMoviesIDs[elem.movieId] = elem;
         });
       }
 
       if (allMovies) {
         allMovies.forEach((movie) => {
-          movie.saved = savedMoviesIDs.hasOwnProperty(movie.movieId);
+          if (savedMoviesIDs.hasOwnProperty(movie.movieId)) {
+
+            const likedMovie = savedMoviesIDs[movie.movieId];
+            movie.saved = true;
+
+            // Поля, отсутствующие в списке всех фильмов, но необходимые в некоторых запросах
+            movie._id = likedMovie._id;
+            movie.owner = likedMovie.owner;
+          }
+
         });
       }
     }
@@ -266,7 +275,7 @@ function App() {
   const handleToggleLike = (movie) => {
 
     if (movie.saved) {
-      mainApiInstance.deleteMovie(movie.movieId, authorizationContext.token)
+      mainApiInstance.deleteMovie(movie._id, authorizationContext.token)
         .then(deletedMovie => {
           setLikedMovies(likedMovies.filter(iMovie => iMovie.movieId !== deletedMovie.movieId));
 
@@ -282,6 +291,8 @@ function App() {
     } else {
       const savingMovie = { ...movie };
       delete savingMovie.saved;
+      delete savingMovie._id;
+      delete savingMovie.owner;
 
       mainApiInstance.saveMovie(savingMovie, authorizationContext.token)
         .then(savedMovie => {
@@ -289,8 +300,13 @@ function App() {
           setLikedMovies([...likedMovies, savedMovie]);
 
           const newAllMovies = allMovies.map((iMovie) => {
-            if (iMovie.movieId === savedMovie.movieId)
+            if (iMovie.movieId === savedMovie.movieId) {
+              // Вычисляемое поле
               iMovie.saved = true;
+              // Поля, отсутствующие в списке всех фильмов, пока не лайкнули
+              iMovie._id = savedMovie._id;
+              iMovie.owner = savedMovie.owner;
+            }
             return iMovie;
           });
           setAllMovies(newAllMovies);

@@ -74,8 +74,8 @@ class MainApi {
         return this._requestServer('/movies', REST_METHODS.POST, movie, token);
     }
 
-    deleteMovie(movieId, token) {
-        return this._requestServer(`/movies/${movieId}`, REST_METHODS.DELETE, null, token);
+    deleteMovie(id, token) {
+        return this._requestServer(`/movies/${id}`, REST_METHODS.DELETE, null, token);
     }
 
 }

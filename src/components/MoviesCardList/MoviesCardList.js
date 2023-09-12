@@ -77,7 +77,7 @@ function MoviesCardList(props) {
     return (
         <ul className="movies-card-list">
             {
-                movies.slice(0, onlyLikedView ? -1 : initialCardsNumber + pageCount * addingCardsNumber).map(movie => {
+                movies.slice(0, onlyLikedView ? movies.length : initialCardsNumber + pageCount * addingCardsNumber).map(movie => {
                     return (
                         <li className="movies-card-list__list-item" key={movie.movieId}>
                             <MovieCard movie={movie} onlyLikedView={onlyLikedView} handleToggleLike={handleToggleLike} />
