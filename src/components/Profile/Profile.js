@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -27,6 +27,7 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
     const FORM_STATE = { READ: 0, EDIT: 1, SAVING: 2 };
     const [formState, setFormState] = useState(FORM_STATE.READ);
     const [lastProfileError, setLastProfileError] = useState("");
+    const [isChanged, setIsChanged] = useState(false); // Изменилось одно из значений в инпутах от текущих
 
     const currentUser = useContext(CurrentUserContext); // Текущий пользователь в глобальном контексте
 
@@ -37,6 +38,12 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
     React.useEffect(() => {
         resetInputs();
     }, [currentUser]);
+
+    useEffect(() => {
+
+        setIsChanged(currentUser && (values[inputName] != currentUser.name || values[inputEmail] != currentUser.email));
+    }, [values, currentUser]);
+
 
     const handleEdit = () => {
         setFormState(FORM_STATE.EDIT);
@@ -131,7 +138,7 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
                         <button
                             type="submit"
                             className="profile__button-save"
-                            disabled={!isValid || formState === FORM_STATE.SAVING}
+                            disabled={!isValid || formState === FORM_STATE.SAVING || !isChanged}
                         >
                             {formState === FORM_STATE.SAVING ? 'Сохранение...' : 'Сохранить'}
                         </button>
