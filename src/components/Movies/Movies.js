@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -23,20 +23,39 @@ function Movies(props) {
         handleToggleLike, // Обработчик переключения лайка (добавить\удалить сохраненные)
     } = props;
 
-    const handleMore = () => {
+    // Количество дополнительных страниц для отображения карточек (не считая начальную)
+    const [pageCount, setPageCount] = useState(0);
 
+    // Все карточки уже отображены?
+    const [allCardsDisplayed, setAllCardsDisplayed] = useState(false);
+
+    const handleMore = () => {
+        setPageCount(pageCount + 1);
+    }
+
+    const preprocessHandleSearch = (params) => {
+        if (!onlyLikedView) {
+            setPageCount(0); // Сбрасываем счетчик страниц при новом поиске
+        }
+        handleSearch(params);
     }
 
     return (
         <section className='movies'>
-            <SearchMovies handleSearch={handleSearch} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
+            <SearchMovies handleSearch={preprocessHandleSearch} filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
             <div className="movies__data-section">
                 {isLoadingMovies && (<Preloader />)}
                 {loadMoviesError && (<ErrorSpan errors={loadMoviesError} addStyles='movies__error-span' />)}
-                <MoviesCardList movies={movies} onlyLikedView={onlyLikedView} handleToggleLike={handleToggleLike} />
+                <MoviesCardList
+                    movies={movies}
+                    onlyLikedView={onlyLikedView}
+                    handleToggleLike={handleToggleLike}
+                    pageCount={pageCount}
+                    setAllCardsDisplayed={setAllCardsDisplayed}
+                />
             </div>
             <div className="movies__footer">
-                {!onlyLikedView && (
+                {!onlyLikedView && !allCardsDisplayed && (
                     <button
                         className='movies__button-more'
                         type='button'
