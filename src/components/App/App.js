@@ -213,7 +213,15 @@ function App() {
     if (authorizationContext.loggedIn) {
       mainApiInstance.getMovies(authorizationContext.token)
         .then(movies => {
-          setLikedMovies(movies);
+
+          const newLikedMovies = movies.map((iMovie) => {
+            iMovie.saved = true;
+            delete iMovie._id;
+            delete iMovie.__v;
+            return iMovie;
+          });
+
+          setLikedMovies(newLikedMovies);
           setIsLikedMoviesLoaded(true);
         })
         .catch(error => {
