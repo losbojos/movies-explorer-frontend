@@ -12,7 +12,7 @@ import './movie-card__button_remove-from-liked.css';
 function MovieCard(props) {
 
     const { movie, onlyLikedView, handleToggleLike } = props;
-    const { duration, image, nameRU, saved } = movie;
+    const { duration, image, trailerLink, nameRU, saved } = movie;
 
     const altValue = `карточка фильма ${nameRU} `;
     const ariaLabel = saved ? 'Убрать из избранных' : 'Сохранить в избранные';
@@ -27,12 +27,14 @@ function MovieCard(props) {
             <div className="movie-card__header">
                 <h3 className="movie-card__name">{nameRU}</h3>
                 <span className="movie-card__duration">{formatDuration(duration)}</span>
-            </div >
-            <img
-                className="movie-card__image"
-                src={image}
-                alt={altValue}
-            />
+            </div>
+            <a href={trailerLink} target="_blank" rel="noreferrer">
+                <img
+                    className="movie-card__image"
+                    src={image}
+                    alt={altValue}
+                />
+            </a>
             <button
                 className={buttonClasses}
                 aria-label={ariaLabel}
