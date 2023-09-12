@@ -21,6 +21,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import errorIcon from '../../images/infotooltip/error.svg';
 import mainApiInstance from '../../utils/MainApi';
 import LocalStorage from '../../utils/LocalStorage';
+import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 
 import './app.css';
 import './main.css';
@@ -397,29 +398,43 @@ function App() {
             <Route path={PAGES.REGISTER} element={<Register handleRegister={handleRegister} lastRegisterError={lastRegisterError} />} />
             <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
             <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
-            <Route path={PAGES.PROFILE} element={<Profile handleSave={saveProfile} handleLogOut={handleLogOut} handleUserUpdate={setCurrentUser} />} />
-            <Route path={PAGES.MOVIES} element={<Movies
-              movies={filteredMovies}
-              handleSearch={handleSearchAll}
-              isLoadingMovies={isLoadingMovies}
-              loadMoviesError={loadMoviesError}
-              filterOptions={filterOptions}
-              setFilterOptions={setFilterOptions}
-              handleToggleLike={handleToggleLike}
-            />} />
-            <Route path={PAGES.SAVED_MOVIES} element={<Movies
-              movies={likedFilteredMovies}
-              handleSearch={handleSearchLiked}
-              onlyLikedView={true}
-              isLoadingMovies={null}
-              loadMoviesError={loadLikedMoviesError}
 
-              filterOptions={likedFilterOptions}
-              setFilterOptions={setLikedFilterOptions}
 
-              handleToggleLike={handleToggleLike}
+            <Route path={PAGES.PROFILE}
+              element={<ProtectedRoute element={Profile}
+                handleSave={saveProfile}
+                handleLogOut={handleLogOut}
+                handleUserUpdate={setCurrentUser}
+              />}
+            />
 
-            />} />
+            <Route path={PAGES.MOVIES}
+              element={<ProtectedRoute element={Movies}
+                movies={filteredMovies}
+                handleSearch={handleSearchAll}
+                isLoadingMovies={isLoadingMovies}
+                loadMoviesError={loadMoviesError}
+                filterOptions={filterOptions}
+                setFilterOptions={setFilterOptions}
+                handleToggleLike={handleToggleLike}
+              />}
+            />
+
+            <Route path={PAGES.SAVED_MOVIES}
+              element={<ProtectedRoute element={Movies}
+                movies={likedFilteredMovies}
+                handleSearch={handleSearchLiked}
+                onlyLikedView={true}
+                isLoadingMovies={null}
+                loadMoviesError={loadLikedMoviesError}
+
+                filterOptions={likedFilterOptions}
+                setFilterOptions={setLikedFilterOptions}
+
+                handleToggleLike={handleToggleLike}
+              />}
+            />
+
             <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
           </Routes>
         </main >
