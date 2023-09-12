@@ -2,6 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Utils from '../../utils/Utils';
 
 import './profile.css';
 import './profile__title.css';
@@ -16,6 +17,7 @@ import './profile__button-edit.css';
 import './profile__button-exit.css';
 import './profile__save-error.css';
 import './profile__button-save.css';
+import { ERRORS } from '../../utils/consts';
 
 function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
 
@@ -61,8 +63,8 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
                 setFormState(FORM_STATE.READ);
             })
             .catch(error => {
-                setLastProfileError(error);
-                setFormState(FORM_STATE.EDIT)
+                setLastProfileError(Utils.isString(error) ? error : ERRORS.SAVE_PROFILE_ERROR);
+                setFormState(FORM_STATE.EDIT);
             });
     }
 
