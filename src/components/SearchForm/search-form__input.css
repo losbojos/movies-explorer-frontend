@@ -12,8 +12,8 @@
     border: none;
     width: 100%;
     margin: 0;
-    padding: 0 12px;
-
+    padding: 0;
+    /* padding: 0 12px; Ушло в родительский div */
 }
 
 .search-form__input::placeholder {
@@ -24,7 +24,7 @@
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .search-form__input {
-        padding: 0 25px;
+        /* padding: 0 25px; Ушло в родительский div */
         font-size: 18px;
         line-height: 20px;
         /* 111.111% */

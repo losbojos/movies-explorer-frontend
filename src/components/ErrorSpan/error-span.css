@@ -1,3 +1,4 @@
+/* FIGMA 320 design */
 .error-span {
     color: #EE3465;
     font-size: 10px;
@@ -16,4 +17,21 @@
 
     /* Чтобы слишком длинный текст ошибки не вылезал за пределы страницы */
     overflow: auto;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .error-span {
+        font-size: 12px;
+    }
+}
+
+/* Intermediate 1024 design - NO FIGMA */
+@media screen and (min-width: 1024px) {}
+
+/* FIGMA 1280 design */
+@media screen and (min-width: 1280px) {
+    .error-span {
+        font-size: 14px;
+    }
 }
