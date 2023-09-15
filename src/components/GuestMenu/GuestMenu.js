@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 import { PAGES } from '../../utils/consts';
 import './guest-menu.css';
 import './guest-menu__text.css';
@@ -9,8 +11,8 @@ function GuestMenu(props) {
 
     return (
         <nav className="guest-menu">
-            <a href={PAGES.REGISTER} className="guest-menu__text guest-menu__text_register">Регистрация</a>
-            <a href={PAGES.LOGIN} className="guest-menu__text guest-menu__text_login">Войти</a>
+            <Link to={PAGES.REGISTER} className="guest-menu__text guest-menu__text_register">Регистрация</Link>
+            <Link to={PAGES.LOGIN} className="guest-menu__text guest-menu__text_login">Войти</Link>
         </nav>
     );
 

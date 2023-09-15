@@ -81,7 +81,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
             </div>
 
             <div className="auth__footer">
-                <span className="auth__error">{lastError}</span>
+                <span className="auth__error">{lastError ? lastError : ''}</span>
                 <button
                     type="submit"
                     className="auth__submit"

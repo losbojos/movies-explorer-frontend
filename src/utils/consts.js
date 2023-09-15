@@ -17,8 +17,8 @@ const PAGES = {
 const MOVIES_SERVER_URL = 'https://api.nomoreparties.co';
 const MOVIES_SERVER_API = '/beatfilm-movies';
 
-// const MAIN_SERVER = 'https://api.lifemovie.nomoreparties.co';
-const MAIN_SERVER = 'http://localhost:3003';
+const MAIN_SERVER = 'https://api.lifemovie.nomoreparties.co';
+//const MAIN_SERVER = 'http://localhost:3003';
 
 const REST_METHODS = { GET: 'GET', PATCH: 'PATCH', POST: 'POST', PUT: 'PUT', DELETE: 'DELETE' };
 

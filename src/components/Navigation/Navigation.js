@@ -1,6 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom'
-
+import { useLocation, Link } from 'react-router-dom'
 
 import { PAGES } from '../../utils/consts';
 import accountImage from '../../images/account.svg';
@@ -21,7 +20,7 @@ import './navigation__account_text.css';
 
 function Navigation(props) {
 
-    const { type, isLandingPage = false } = props;
+    const { type, isLandingPage = false, onClick = null } = props;
     /* type: horizontal \ vertical */
 
     if (type !== 'horizontal' && type !== 'vertical') {
@@ -34,33 +33,46 @@ function Navigation(props) {
 
     const locationPath = useLocation().pathname;
 
+
+    const preprocessClick = () => {
+        if (onClick) {
+            onClick();
+        }
+    }
+
+
     return (
         <nav className={navClasses}>
             <ul className={listClasses}>
                 {type === 'vertical' && (
                     <li className='navigation__list-item'>
-                        <a className={`navigation__link ${locationPath === PAGES.MAIN ? 'navigation__link_active' : ''}`}
-                            href={PAGES.MAIN}
-                        >Главная</a>
+                        <Link className={`navigation__link ${locationPath === PAGES.MAIN ? 'navigation__link_active' : ''}`}
+                            to={PAGES.MAIN}
+                            onClick={preprocessClick}
+                        >Главная</Link>
                     </li>
                 )}
                 <li className='navigation__list-item'>
-                    <a className={`navigation__link ${locationPath === PAGES.MOVIES ? 'navigation__link_active' : ''}`}
-                        href={PAGES.MOVIES}
-                    >Фильмы</a>
+                    <Link className={`navigation__link ${locationPath === PAGES.MOVIES ? 'navigation__link_active' : ''}`}
+                        to={PAGES.MOVIES}
+                        onClick={preprocessClick}
+                    >Фильмы</Link>
                 </li>
                 <li className='navigation__list-item'>
-                    <a className={`navigation__link ${locationPath === PAGES.SAVED_MOVIES ? 'navigation__link_active' : ''}`}
-                        href={PAGES.SAVED_MOVIES}
-                    >Сохранённые фильмы</a>
+                    <Link className={`navigation__link ${locationPath === PAGES.SAVED_MOVIES ? 'navigation__link_active' : ''}`}
+                        to={PAGES.SAVED_MOVIES}
+                        onClick={preprocessClick}
+                    >Сохранённые фильмы</Link>
                 </li>
+
                 <li className='navigation__list-item'>
-                    <a className={`navigation__link navigation__link_account ${locationPath === PAGES.PROFILE ? 'navigation__link_active' : ''}`}
-                        href={PAGES.PROFILE}
+                    <Link className={`navigation__link navigation__link_account ${locationPath === PAGES.PROFILE ? 'navigation__link_active' : ''}`}
+                        to={PAGES.PROFILE}
+                        onClick={preprocessClick}
                     >
                         <span className='navigation__account_text'>Аккаунт</span>
                         <img className={iconClasses} src={accountImage} alt="Иконка со ссылкой на страницу профиля" />
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

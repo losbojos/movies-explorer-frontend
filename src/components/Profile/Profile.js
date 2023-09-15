@@ -1,7 +1,12 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+
 import ErrorSpan from '../ErrorSpan/ErrorSpan';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { AuthorizationContext } from '../../contexts/AuthorizationContext';
+import mainApiInstance from '../../utils/MainApi';
+import { ERRORS, PAGES, TOKEN_STORAGE_KEY } from '../../utils/consts';
 import Utils from '../../utils/Utils';
 
 import './profile.css';
@@ -17,9 +22,10 @@ import './profile__button-edit.css';
 import './profile__button-exit.css';
 import './profile__save-error.css';
 import './profile__button-save.css';
-import { ERRORS } from '../../utils/consts';
 
-function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
+function Profile() {
+
+    const navigate = useNavigate();
 
     const inputName = 'profileName'; // Имя инпута с именем
     const inputEmail = 'profileEmail'; // Имя инпута с email
@@ -31,7 +37,8 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
     const [lastProfileError, setLastProfileError] = useState("");
     const [isChanged, setIsChanged] = useState(false); // Изменилось одно из значений в инпутах от текущих
 
-    const currentUser = useContext(CurrentUserContext); // Текущий пользователь в глобальном контексте
+    const { authorizationContext, setAuthorizationContext } = useContext(AuthorizationContext);
+    const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
     const resetInputs = () => {
         resetForm({ [inputName]: currentUser ? currentUser.name : '', [inputEmail]: currentUser ? currentUser.email : '' });
@@ -51,15 +58,24 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
         setFormState(FORM_STATE.EDIT);
     }
 
+    const handleLogOut = () => {
+
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+        setAuthorizationContext({ loggedIn: false, token: null });
+        setCurrentUser(null);
+
+        navigate(PAGES.MAIN);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         setLastProfileError("");
         setFormState(FORM_STATE.SAVING);
 
-        handleSave({ name: values[inputName], email: values[inputEmail] })
+        mainApiInstance.setMe({ name: values[inputName], email: values[inputEmail] }, authorizationContext.token)
             .then((user) => {
-                handleUserUpdate(user);
+                setCurrentUser(user);
                 setFormState(FORM_STATE.READ);
             })
             .catch(error => {
@@ -86,7 +102,7 @@ function Profile({ handleSave, handleLogOut, handleUserUpdate }) {
             onSubmit={handleSubmit}
             onKeyUp={handleKeyUp}
             noValidate>
-            <h1 className="profile__title">Привет, {values[inputName] || ''}!</h1>
+            <h1 className="profile__title">Привет, {currentUser ? currentUser.name : ''}!</h1>
             <div className="profile__inputs">
 
                 <div className="profile__input-container">

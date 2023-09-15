@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
 import {
-  PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX,
-  TOKEN_STORAGE_KEY, ALL_MOVIES_FILTER_STORAGE_KEY,
+  PAGES, ERRORS, MOVIES_SERVER_URL, SHORT_FILM_DURATION_MAX, ALL_MOVIES_FILTER_STORAGE_KEY,
   ALL_MOVIES_LIST_STORAGE_KEY, LIKED_MOVIES_LIST_STORAGE_KEY
 } from '../../utils/consts';
 
@@ -15,7 +15,6 @@ import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { AuthorizationContext } from '../../contexts/AuthorizationContext'
-import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import moviesApiInstance from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import errorIcon from '../../images/infotooltip/error.svg';
@@ -26,89 +25,22 @@ import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import './app.css';
 import './main.css';
 
-const tokenStorage = new LocalStorage(TOKEN_STORAGE_KEY);
-const filterStorage = new LocalStorage(ALL_MOVIES_FILTER_STORAGE_KEY, { searchString: '', onlyShortFilms: false });
+const DEFAULT_FILTER = { searchString: '', onlyShortFilms: false };
+const filterStorage = new LocalStorage(ALL_MOVIES_FILTER_STORAGE_KEY, DEFAULT_FILTER);
 const allMoviesStorage = new LocalStorage(ALL_MOVIES_LIST_STORAGE_KEY, []);
 const likedMoviesStorage = new LocalStorage(LIKED_MOVIES_LIST_STORAGE_KEY, []);
 
+// Состояние списка фсех фильмов
+const MOVIES_STATE = {
+  EMPTY: 0, // Пустое
+  LOADING: 1, // Ожидание загрузки с сервера
+  READY: 2 // Загружено
+}
+
 function App() {
 
-  const navigate = useNavigate();
-
-  ////////////////////////////////////////////////////////////////////
-  // Регистрация и авторизация
-
-  // Текущий контекст авторизаци
-  const [authorizationContext, setAuthorizationContext] = useState(
-    { loggedIn: false, token: null }
-  );
-
-  // Текущий пользователь
-  const [currentUser, setCurrentUser] = useState(null);
-
-  const [lastRegisterError, setLastRegisterError] = useState(null);
-  const [lastLoginError, setLastLoginError] = useState(null);
-
-  const updateAuthorizationData = (isLoggedIn, newUserData, newToken) => {
-    tokenStorage.save(newToken);
-    setAuthorizationContext({ loggedIn: isLoggedIn, token: newToken });
-    setCurrentUser(newUserData);
-  }
-
-  const handleRegister = ({ name, email, password }) => {
-    mainApiInstance.register({ name, email, password })
-      .then((user) => {
-        updateAuthorizationData(true, user, user.token);
-        setLastRegisterError('');
-        navigate(PAGES.MOVIES);
-      })
-      .catch(err => {
-        setLastRegisterError(err);
-      });
-  }
-
-  const handleLogin = ({ email, password }) => {
-    mainApiInstance.authorize({ email, password })
-      .then(user => {
-        updateAuthorizationData(true, user, user.token);
-        setLastLoginError(null);
-        navigate(PAGES.MOVIES);
-      })
-      .catch(err => setLastLoginError(err));
-
-  }
-
-  const handleLogOut = () => {
-    setAuthorizationContext({ loggedIn: false, token: null });
-    setCurrentUser(null);
-    navigate(PAGES.MAIN);
-  }
-
-  const tokenCheck = () => {
-    const localToken = tokenStorage.load();
-
-    if (localToken) {
-      mainApiInstance.getMe(localToken)
-        .then(user => {
-          updateAuthorizationData(true, user, localToken);
-        })
-        .catch(error => {
-          //errorHandler(error);
-          tokenStorage.clear();
-        });
-    }
-  }
-
-  useEffect(() => {
-    tokenCheck(); // Проверить наличие токена 1 раз на старте
-  }, []);
-
-  ////////////////////////////////////////////////////////////////////
-  // Профиль пользователя
-
-  const saveProfile = (newValues) => {
-    return mainApiInstance.setMe(newValues, authorizationContext.token);
-  }
+  // Текущий контекст авторизаци { loggedIn, token }
+  const { authorizationContext } = useContext(AuthorizationContext);
 
   ////////////////////////////////////////////////////////////////////
   // Данные с фильмами
@@ -118,28 +50,30 @@ function App() {
   const [likedMovies, setLikedMovies] = useState(likedMoviesStorage.load());
   const [likedFilteredMovies, setLikedFilteredMovies] = useState([]);
 
-
-  const [isMoviesLoaded, setIsMoviesLoaded] = useState(allMovies != null && allMovies.length > 0); // Загружены ли фильмы с внешнего сервера
+  const [allMoviesState, setAllMoviesState] = useState(allMovies != null && allMovies.length > 0 ? MOVIES_STATE.READY : MOVIES_STATE.EMPTY);
   const [isLikedMoviesLoaded, setIsLikedMoviesLoaded] = useState(likedMovies != null && likedMovies.length > 0); // Загружены ли сохраненные фильмы со своего сервера
-
-  const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Состояние ожидания загрузки фильмов с сервера
 
   const [loadMoviesError, setLoadMoviesError] = useState(null); // Ошибка загрузки фильмов с сервера
   const [loadLikedMoviesError, setLoadLikedMoviesError] = useState(null); // Ошибка загрузки сохраненных фильмов с сервера
 
+  const [allFilterOptions, setAllFilterOptions] = useState(filterStorage.load()); // Опции фильтрации окна всех фильмов
+  const [likedFilterOptions, setLikedFilterOptions] = useState(DEFAULT_FILTER); // Опции фильтрации окна всех фильмов
 
-  const [filterOptions, setFilterOptions] = useState(filterStorage.load()); // Опции фильтрации окна всех фильмов
-  const [likedFilterOptions, setLikedFilterOptions] = useState({ searchString: '', onlyShortFilms: false }); // Опции фильтрации окна всех фильмов
+  const isAllMoviesLoaded = () => {
+    return (allMoviesState == MOVIES_STATE.READY);
+  }
+
+  //console.log('APP FUNCTION START: loggedIn= ', authorizationContext.loggedIn, '  allFilter: ', allFilterOptions);
 
   // Установка отфильтрованных фильмов
   useEffect(() => {
-    if (isMoviesLoaded) { // Пока не загрузили данные с сервера ничего не фильтруем
+    if (isAllMoviesLoaded()) { // Пока не загрузили данные с сервера ничего не фильтруем
 
-      console.log(`Process filtering movies... ${filterOptions.searchString}, onlyShortFilms:${filterOptions.onlyShortFilms}`);
+      // console.log('Process filtering movies... ', allFilterOptions);
 
-      const lowerCaseSearchString = filterOptions.searchString.toLowerCase();
+      const lowerCaseSearchString = allFilterOptions.searchString.toLowerCase();
       const filtered = allMovies.filter((movie) => {
-        return (!filterOptions.onlyShortFilms || movie.duration <= SHORT_FILM_DURATION_MAX) &&
+        return (!allFilterOptions.onlyShortFilms || movie.duration <= SHORT_FILM_DURATION_MAX) &&
           (movie.nameEN.toLowerCase().includes(lowerCaseSearchString) ||
             movie.nameRU.toLowerCase().includes(lowerCaseSearchString));
       });
@@ -147,22 +81,22 @@ function App() {
       setFilteredMovies(filtered);
       setLoadMoviesError(filtered.length === 0 ? ERRORS.NOTHING_FOUND : null);
     }
-  }, [filterOptions, allMovies, isMoviesLoaded]);
-
+  }, [allFilterOptions, allMoviesState]);
 
   ///////////////////////////////////
-  // Обработка Поиска по всем фильмам
+  // Обработка загрузки всех фильмов
 
   const handleSearchAll = ({ searchString, onlyShortFilms }) => {
 
-    setFilterOptions({ searchString, onlyShortFilms });
+    setAllFilterOptions({ searchString, onlyShortFilms });
 
-    if (!isMoviesLoaded) {
+    if (allMoviesState == MOVIES_STATE.EMPTY) {
 
       setLoadMoviesError(null);
-      setIsLoadingMovies(true);
 
-      console.log(`Process server movies request... `);
+      setAllMoviesState(MOVIES_STATE.LOADING);
+
+      // console.log(`Process server movies request... `);
 
       return moviesApiInstance.getMovies()
         .then(result => {
@@ -186,15 +120,14 @@ function App() {
               saved: false, // Заполняется через useEffect
             }
           }));
-          setIsMoviesLoaded(true);
+          calculateLiked();
+          setAllMoviesState(MOVIES_STATE.READY);
         })
         .catch(error => {
           setLoadMoviesError(ERRORS.GET_MOVIES_ERROR);
           setAllMovies([]);
           // errorHandler(error);
-        })
-        .finally(() => {
-          setIsLoadingMovies(false);
+          setAllMoviesState(MOVIES_STATE.EMPTY);
         });
     }
   }
@@ -203,7 +136,7 @@ function App() {
   // Обработка Поиска по сохраненным фильмам
 
   const handleSearchLiked = ({ searchString, onlyShortFilms }) => {
-    console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
+    // console.log(`Running search liked... ${searchString}, onlyShortFilms:${onlyShortFilms}`);
     setLikedFilterOptions({ searchString, onlyShortFilms });
   }
 
@@ -211,7 +144,9 @@ function App() {
   // Запрос сохраненных фильмов
 
   useEffect(() => {
+
     if (authorizationContext.loggedIn) {
+
       mainApiInstance.getMovies(authorizationContext.token)
         .then(movies => {
 
@@ -223,16 +158,28 @@ function App() {
           });
 
           setLikedMovies(newLikedMovies);
+          calculateLiked();
           setIsLikedMoviesLoaded(true);
         })
         .catch(error => {
+          console.log(error);
           setLoadLikedMoviesError(ERRORS.GET_LIKED_MOVIES_ERROR);
           setLikedMovies([]);
           // errorHandler(error) 
         });
     } else {
-      tokenStorage.clear(); // Удаление токена из локального хранилища
-      filterStorage.clear(); // Удаление фильтра
+      setAllMovies([]);
+      setFilteredMovies([]);
+      setLikedMovies([]);
+      setLikedFilteredMovies([]);
+      setAllMoviesState(MOVIES_STATE.EMPTY);
+      setIsLikedMoviesLoaded(false);
+      setLoadMoviesError(null);
+      setLoadLikedMoviesError(null);
+      setAllFilterOptions(DEFAULT_FILTER);
+      setLikedFilterOptions(DEFAULT_FILTER);
+
+      filterStorage.clear();
       allMoviesStorage.clear();
       likedMoviesStorage.clear();
     }
@@ -241,9 +188,18 @@ function App() {
   //////////////////////////////////////
   // Проставляем значение saved для сохраненных фильмов
 
-  useEffect(() => {
+  const applyLikedStatus = (movie, likedMovie) => {
+    // Вычисляемое поле
+    movie.saved = true;
 
-    if (isMoviesLoaded && isLikedMoviesLoaded) {
+    // Поля, отсутствующие в списке всех фильмов, пока не лайкнули, но необходимые в некоторых запросах (дизлайк)
+    movie._id = likedMovie._id;
+    movie.owner = likedMovie.owner;
+  }
+
+  const calculateLiked = () => {
+    // только после загрузки обоих коллекций фильмов нужно пересчитать все сохраненные фильмы    
+    if (isAllMoviesLoaded() && isLikedMoviesLoaded) {
       const savedMoviesIDs = new Object();
 
       if (likedMovies) {
@@ -253,22 +209,22 @@ function App() {
       }
 
       if (allMovies) {
-        allMovies.forEach((movie) => {
+
+        let isSomeChanged = false;
+        const newAllMovies = allMovies.map((movie) => {
           if (savedMoviesIDs.hasOwnProperty(movie.movieId)) {
-
             const likedMovie = savedMoviesIDs[movie.movieId];
-            movie.saved = true;
-
-            // Поля, отсутствующие в списке всех фильмов, но необходимые в некоторых запросах
-            movie._id = likedMovie._id;
-            movie.owner = likedMovie.owner;
+            applyLikedStatus(movie, likedMovie);
+            isSomeChanged = true;
           }
-
+          return movie;
         });
+        if (isSomeChanged) {
+          setAllMovies(newAllMovies);
+        }
       }
     }
-
-  }, [isMoviesLoaded, isLikedMoviesLoaded]); // После загрузки обоих коллекций фильмов нужно пересчитать все сохраненные фильмы
+  }
 
   //////////////////////////////////////
   // Обработка переключения лайка (сохранить\удалить в\из избранных)
@@ -302,11 +258,7 @@ function App() {
 
           const newAllMovies = allMovies.map((iMovie) => {
             if (iMovie.movieId === savedMovie.movieId) {
-              // Вычисляемое поле
-              iMovie.saved = true;
-              // Поля, отсутствующие в списке всех фильмов, пока не лайкнули
-              iMovie._id = savedMovie._id;
-              iMovie.owner = savedMovie.owner;
+              applyLikedStatus(iMovie, savedMovie);
             }
             return iMovie;
           });
@@ -319,10 +271,11 @@ function App() {
 
   ////////////////////////////////////////////////////////////////////
   // Установка отфильтрованных сохраненных фильмов
+
   useEffect(() => {
     if (isLikedMoviesLoaded) { // Пока не загрузили данные с сервера ничего не фильтруем
 
-      console.log(`Process filtering saved movies... ${likedFilterOptions.searchString}, onlyShortFilms:${likedFilterOptions.onlyShortFilms}`);
+      //console.log(`Process filtering saved movies... ${likedFilterOptions.searchString}, onlyShortFilms:${likedFilterOptions.onlyShortFilms}`);
 
       const lowerCaseSearchString = likedFilterOptions.searchString.toLowerCase();
       const filtered = likedMovies.filter((movie) => {
@@ -340,8 +293,8 @@ function App() {
   // Сохранение в локальном хранилище параметров фильтрации и загруженных с сервера фильмов
 
   useEffect(() => {
-    filterStorage.save(filterOptions);
-  }, [filterOptions]);
+    filterStorage.save(allFilterOptions);
+  }, [allFilterOptions]);
 
   useEffect(() => {
     allMoviesStorage.save(allMovies);
@@ -386,72 +339,79 @@ function App() {
   }
 
   ////////////////////////////////////////////////////////////////////
-  // JSX содержимое
+  // JSX содержимое App
 
   return (
-    <AuthorizationContext.Provider value={authorizationContext}>
-      <CurrentUserContext.Provider value={currentUser}>
-        <Header />
-        <main className="main">
-          <Routes>
-            <Route path={PAGES.MAIN} element={<Landing />} />
-            <Route path={PAGES.REGISTER} element={<Register handleRegister={handleRegister} lastRegisterError={lastRegisterError} />} />
-            <Route path={PAGES.LOGIN} element={<Login handleLogin={handleLogin} lastLoginError={lastLoginError} />} />
-            <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
+    <Fragment>
+      <Header />
+
+      <main className="main">
+        <Routes>
+          <Route path={PAGES.MAIN} element={<Landing />} />
+          <Route path={PAGES.REGISTER} element={<Register />} />
+          <Route path={PAGES.LOGIN} element={<Login />} />
+          <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
 
 
-            <Route path={PAGES.PROFILE}
-              element={<ProtectedRoute element={Profile}
-                handleSave={saveProfile}
-                handleLogOut={handleLogOut}
-                handleUserUpdate={setCurrentUser}
-              />}
-            />
+          <Route path={PAGES.PROFILE}
+            element={<ProtectedRoute element={Profile} />}
+          />
 
-            <Route path={PAGES.MOVIES}
-              element={<ProtectedRoute element={Movies}
-                movies={filteredMovies}
-                handleSearch={handleSearchAll}
-                isLoadingMovies={isLoadingMovies}
-                loadMoviesError={loadMoviesError}
-                filterOptions={filterOptions}
-                setFilterOptions={setFilterOptions}
-                handleToggleLike={handleToggleLike}
-              />}
-            />
 
-            <Route path={PAGES.SAVED_MOVIES}
-              element={<ProtectedRoute element={Movies}
-                movies={likedFilteredMovies}
-                handleSearch={handleSearchLiked}
-                onlyLikedView={true}
-                isLoadingMovies={null}
-                loadMoviesError={loadLikedMoviesError}
+          <Route path={PAGES.MOVIES}
+            element={<ProtectedRoute element={Movies}
 
-                filterOptions={likedFilterOptions}
-                setFilterOptions={setLikedFilterOptions}
+              /* Render the Same Component with Different props Inside React Router:
+              Use the key prop to ensure that the component is re-rendered when the route changes. */
+              key="movies"
 
-                handleToggleLike={handleToggleLike}
-              />}
-            />
+              movies={filteredMovies}
+              handleSearch={handleSearchAll}
+              isLoadingMovies={allMoviesState == MOVIES_STATE.LOADING}
+              loadMoviesError={loadMoviesError}
+              filterOptions={allFilterOptions}
+              setFilterOptions={setAllFilterOptions}
+              handleToggleLike={handleToggleLike}
+            />}
+          />
 
-            <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
-          </Routes>
-        </main >
-        <Footer />
+          <Route path={PAGES.SAVED_MOVIES}
+            element={<ProtectedRoute element={Movies}
 
-        <InfoTooltip
-          isOpen={infoTooltip.isOpen}
-          onClose={() => {
-            setInfoTooltip(infoTooltipInitial);
-          }}
-          afterClose={infoTooltip.afterClose}
-          message={infoTooltip.message}
-          iconLink={infoTooltip.iconSource}
-          title={infoTooltip.title}
-        />
-      </CurrentUserContext.Provider>
-    </AuthorizationContext.Provider>
+              /* Render the Same Component with Different props Inside React Router:
+              Use the key prop to ensure that the component is re-rendered when the route changes. */
+              key="saved-movies"
+
+              movies={likedFilteredMovies}
+              handleSearch={handleSearchLiked}
+              onlyLikedView={true}
+              isLoadingMovies={false}
+              loadMoviesError={loadLikedMoviesError}
+
+              filterOptions={likedFilterOptions}
+              setFilterOptions={setLikedFilterOptions}
+
+              handleToggleLike={handleToggleLike}
+            />}
+          />
+
+          <Route path="*" element={<Navigate to={PAGES.NOT_FOUNT} replace />} />
+        </Routes>
+      </main >
+
+      <Footer />
+
+      <InfoTooltip
+        isOpen={infoTooltip.isOpen}
+        onClose={() => {
+          setInfoTooltip(infoTooltipInitial);
+        }}
+        afterClose={infoTooltip.afterClose}
+        message={infoTooltip.message}
+        iconLink={infoTooltip.iconSource}
+        title={infoTooltip.title}
+      />
+    </Fragment>
   );
 }
 
