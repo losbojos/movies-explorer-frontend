@@ -1,18 +1,22 @@
 # Проект: Movies-explorer. Поиск и сохранение карточек любимых фильмов.
-Дипломная работа курса веб-разработчик от Я.Практикум
-Автор: Евгений Борисов
-mailto: losbojos_собаКо_yandex.ru
-© 2023 :dove:
+
+## Пулл-реквест для обзора кода
+https://github.com/losbojos/movies-explorer-frontend/pull/4
+
+## Описание
++ Дипломная работа курса веб-разработчик от Я.Практикум
++ Автор: Евгений Борисов © 2023 :dove:
++ mailto: losbojos_собаКо_yandex.ru
 
 ## Ссылки:
 ### Хостинг (деплой)
-Домашняя страница сайта (frontend): https://lifemovie.nomoreparties.co
-API сервера (backend): https://api.lifemovie.nomoreparties.co
-IP: 51.250.85.65
++ Домашняя страница сайта (frontend): https://lifemovie.nomoreparties.co
++ API сервера (backend): https://api.lifemovie.nomoreparties.co
++ IP: 51.250.85.65
 
 ### Репозитории (исходный код)
-frontend: https://github.com/losbojos/movies-explorer-frontend
-backend: https://github.com/losbojos/movies-explorer-api
++ frontend: https://github.com/losbojos/movies-explorer-frontend
++ backend: https://github.com/losbojos/movies-explorer-api
 
 ## Инструкции:
 ### Выбранный макет дизайна
