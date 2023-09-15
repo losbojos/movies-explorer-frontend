@@ -20,7 +20,9 @@ import './profile__error-span.css';
 import './profile__footer.css';
 import './profile__button-edit.css';
 import './profile__button-exit.css';
-import './profile__save-error.css';
+import './profile__save-result.css';
+import './profile__save-result_error.css';
+import './profile__save-result_info.css';
 import './profile__button-save.css';
 
 function Profile() {
@@ -34,11 +36,15 @@ function Profile() {
 
     const FORM_STATE = { READ: 0, EDIT: 1, SAVING: 2 };
     const [formState, setFormState] = useState(FORM_STATE.READ);
-    const [lastProfileError, setLastProfileError] = useState("");
+    const [lastSubmitResult, setLastSubmitResult] = useState({ text: "", isError: false });
     const [isChanged, setIsChanged] = useState(false); // Изменилось одно из значений в инпутах от текущих
 
     const { authorizationContext, setAuthorizationContext } = useContext(AuthorizationContext);
     const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+    const setResult = (text, isError = false) => {
+        setLastSubmitResult({ text, isError });
+    }
 
     const resetInputs = () => {
         resetForm({ [inputName]: currentUser ? currentUser.name : '', [inputEmail]: currentUser ? currentUser.email : '' });
@@ -70,22 +76,28 @@ function Profile() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setLastProfileError("");
+        setResult('');
         setFormState(FORM_STATE.SAVING);
 
         mainApiInstance.setMe({ name: values[inputName], email: values[inputEmail] }, authorizationContext.token)
             .then((user) => {
                 setCurrentUser(user);
-                setFormState(FORM_STATE.READ);
+                setResult(ERRORS.SAVE_PROFILE_OK);
+
+                setTimeout(() => {
+                    setFormState(FORM_STATE.READ);
+                    setResult('');
+                }, 2000);
+
             })
             .catch(error => {
-                setLastProfileError(Utils.isString(error) ? error : ERRORS.SAVE_PROFILE_ERROR);
+                setResult(Utils.isString(error) ? error : ERRORS.SAVE_PROFILE_ERROR, true);
                 setFormState(FORM_STATE.EDIT);
             });
     }
 
     const handleReset = () => {
-        setLastProfileError("");
+        setResult('');
         setFormState(FORM_STATE.READ);
         resetInputs();
     }
@@ -152,7 +164,7 @@ function Profile() {
                 )}
                 {formState !== FORM_STATE.READ && (
                     <Fragment>
-                        <span className="profile__save-error">{lastProfileError}</span>
+                        <span className={`profile__save-result profile__save-result_${lastSubmitResult.isError ? 'error' : 'info'}`}>{lastSubmitResult ? lastSubmitResult.text : ''}</span>
                         <button
                             type="submit"
                             className="profile__button-save"
