@@ -4,19 +4,21 @@
 mailto: losbojos_собаКо_yandex.ru
 © 2023 :dove:
 
+## Ссылки:
+### Хостинг (деплой)
+Домашняя страница сайта (frontend): https://lifemovie.nomoreparties.co
+API сервера (backend): https://api.lifemovie.nomoreparties.co
+IP: 51.250.85.65
+
+### Репозитории (исходный код)
+frontend: https://github.com/losbojos/movies-explorer-frontend
+backend: https://github.com/losbojos/movies-explorer-api
+
 ## Инструкции:
 ### Выбранный макет дизайна
 dark-4
 https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-9662&mode=design&t=NGK34yb7P31H0KQj-0
-### Меню авторизованного пользователя
-Для проверки меню авторизованного пользователя, можно сэмулировать вход с любым логином и паролем.
-### Редактирование профиля
-Для выхода из режима редактирования можно надать Esc.
-При нажатии Сохранить каждое 2-е нажатие приводит к эмуляции успешного выполнения и выхода из режима редактирования, остальные попытки эмулируют ошибку выполнения.
-### Адреса страниц
-См. ниже раздел Роуты
-
-## Роуты (доступные страницы)
+### Доступные страницы (роуты)
 + "/"             - Главная страница (лэндинг)
 + "/signin"       - Вход (логин)
 + "/signup"       - Регистрация
@@ -24,6 +26,8 @@ https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-
 + "/saved-movies" - Сохраненные фильмы
 + "/profile"      - Профиль пользователя
 + "/404"          - Страница не найдена
+### Редактирование профиля
+Для выхода из режима редактирования можно надать Esc.
 
 ## Используемые техники и технологии:
 + БЭМ методология и структура файлов.
@@ -46,7 +50,3 @@ https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-
 + Регистрация и авторизация пользователей
 + Защищенные роуты (страницы открываются только после авторизации).
 + Сохранение токена в локальном хранилище (не требуется повторно логиниться пока не вышел)
-
-## Ссылки:
-Адрес репозитория frontend: https://github.com/losbojos/movies-explorer-frontend
-Адрес репозитория backend: https://github.com/losbojos/movies-explorer-api
