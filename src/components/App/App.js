@@ -348,18 +348,29 @@ function App() {
       <main className="main">
         <Routes>
           <Route path={PAGES.MAIN} element={<Landing />} />
-          <Route path={PAGES.REGISTER} element={<Register />} />
-          <Route path={PAGES.LOGIN} element={<Login />} />
           <Route path={PAGES.NOT_FOUNT} element={<NotFound />} />
 
+          <Route path={PAGES.REGISTER} element={
+            <ProtectedRoute
+              element={Register}
+              checkValue={!authorizationContext.loggedIn}
+            />}
+          />
+
+          <Route path={PAGES.LOGIN} element={
+            <ProtectedRoute
+              element={Login}
+              checkValue={!authorizationContext.loggedIn}
+            />}
+          />
 
           <Route path={PAGES.PROFILE}
-            element={<ProtectedRoute element={Profile} />}
+            element={<ProtectedRoute element={Profile} checkValue={authorizationContext.loggedIn} />}
           />
 
 
           <Route path={PAGES.MOVIES}
-            element={<ProtectedRoute element={Movies}
+            element={<ProtectedRoute element={Movies} checkValue={authorizationContext.loggedIn}
 
               /* Render the Same Component with Different props Inside React Router:
               Use the key prop to ensure that the component is re-rendered when the route changes. */
@@ -376,7 +387,7 @@ function App() {
           />
 
           <Route path={PAGES.SAVED_MOVIES}
-            element={<ProtectedRoute element={Movies}
+            element={<ProtectedRoute element={Movies} checkValue={authorizationContext.loggedIn}
 
               /* Render the Same Component with Different props Inside React Router:
               Use the key prop to ensure that the component is re-rendered when the route changes. */
