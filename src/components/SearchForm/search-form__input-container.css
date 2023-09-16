@@ -1,0 +1,15 @@
+/* FIGMA 320 design */
+.search-form__input-container {
+    width: 100%;
+    margin: 0;
+    padding: 0 12px;
+
+    position: relative;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .search-form__input-container {
+        padding: 0 25px;
+    }
+}

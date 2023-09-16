@@ -1,33 +1,27 @@
 /* FIGMA 320 design */
-.movies {
+.movies__data-section {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
-    min-width: 320px;
 
-    margin: 0 auto;
+    margin: 50px 10px 30px;
     padding: 0;
-    flex-shrink: 0;
+    min-height: 140px;
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .movies {
-        min-width: 768px;
+    .movies__data-section {
+        margin: 80px 30px 30px;
     }
 }
 
 /* Intermediate 1024 design - NO FIGMA */
-@media screen and (min-width: 1024px) {
-    .movies {
-        min-width: 1024px;
-    }
-}
+@media screen and (min-width: 1024px) {}
 
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
-    .movies {
-        min-width: 1280px;
+    .movies__data-section {
+        margin: 80px 68px 30px;
     }
 }

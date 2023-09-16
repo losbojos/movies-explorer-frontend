@@ -32,7 +32,7 @@ function BurgerMenu(props) {
                     aria-label="Закрыть меню"
                     onClick={closeBurgerMenu}>
                 </button>
-                <Navigation type='vertical' />
+                <Navigation type='vertical' onClick={closeBurgerMenu} />
             </section>
         </Fragment>
     );

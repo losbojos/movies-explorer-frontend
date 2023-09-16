@@ -1,25 +1,23 @@
 /* FIGMA 320 design */
 .movies-card-list {
-    margin: 50px 10px 30px;
+    margin: 0;
     padding: 0;
 
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 300px;
     grid-template-rows: repeat(auto-fit, minmax(271px, 1fr));
+    justify-content: center;
 
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
     .movies-card-list {
-        margin: 80px 30px 30px;
-
         row-gap: 35px;
         column-gap: 24px;
 
-        /* grid-template-columns: repeat(auto-fit, minmax(342px, 1fr)); */
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(2, 342px);
         grid-template-rows: repeat(auto-fit, minmax(309px, 1fr));
 
     }
@@ -31,10 +29,8 @@
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
     .movies-card-list {
-        margin: 80px 68px 30px;
         gap: 32px;
-        /* grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); */
-        grid-template-columns: auto auto auto;
+        grid-template-columns: repeat(3, 360px);
         grid-template-rows: repeat(auto-fit, minmax(319px, 1fr));
     }
 }

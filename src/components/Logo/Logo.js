@@ -1,11 +1,14 @@
 import React from 'react';
-import './logo.css';
+import { Link } from 'react-router-dom'
+
 import { PAGES } from '../../utils/consts';
+
+import './logo.css';
 
 function Logo() {
 
     return (
-        <a className="logo" href={PAGES.MAIN} aria-label="Главная" />
+        <Link className="logo" to={PAGES.MAIN} aria-label="Главная" />
     );
 }
 

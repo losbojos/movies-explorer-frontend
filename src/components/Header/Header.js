@@ -21,7 +21,7 @@ function Header() {
 
     const isLandingPage = locationPath === PAGES.MAIN;
 
-    const authorizationContext = useContext(AuthorizationContext);
+    const { authorizationContext } = useContext(AuthorizationContext);
 
     const headerClasses = `header ${isLandingPage ? 'header_landing' : ''}`;
 

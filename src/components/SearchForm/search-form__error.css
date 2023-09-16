@@ -1,0 +1,13 @@
+/* FIGMA 320 design */
+.search-form__error {
+    position: absolute;
+    top: 22px;
+    left: 12px;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .search-form__error {
+        left: 25px;
+    }
+}
