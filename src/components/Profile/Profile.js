@@ -128,7 +128,7 @@ function Profile() {
                         onChange={handleChange}
                         className={`profile__input ${errors[inputName] && 'profile__input_invalid'}`}
                         maxLength="30"
-                        disabled={formState === FORM_STATE.READ}
+                        disabled={formState !== FORM_STATE.EDIT}
                         placeholder='Ваше имя'
                         pattern='([A-Za-zА-Яа-я\s\-])+'
                     />
@@ -146,7 +146,7 @@ function Profile() {
                         onChange={handleChange}
                         className={`profile__input ${errors[inputEmail] && 'profile__input_invalid'}`}
                         maxLength="254"
-                        disabled={formState === FORM_STATE.READ}
+                        disabled={formState !== FORM_STATE.EDIT}
                         placeholder='Ваш email'
                         pattern='([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})'
                     />

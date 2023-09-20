@@ -16,7 +16,8 @@ import './auth__logo-container.css';
 import './auth__footer.css';
 import './auth__error.css';
 
-function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInputName = false, children }) {
+function AuthForm({ handleAuth, titleText, buttonSubmitText,
+    lastError, showInputName = false, isLoading, children }) {
 
     const inputName = 'name'; // Имя инпута с именем
     const inputEmail = 'email'; // Имя инпута с email
@@ -51,6 +52,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                                 className={`auth__input ${errors[inputName] && 'auth__input_invalid'}`}
                                 placeholder='Ваше имя, состоящее из букв, пробела и дефиса.'
                                 pattern='([A-Za-zА-Яа-я\s\-])+'
+                                disabled={isLoading}
                             />
                         </label>
                         <ErrorSpan errors={errors[inputName]} />
@@ -64,6 +66,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                         className={`auth__input ${errors[inputEmail] && 'auth__input_invalid'}`}
                         placeholder='Ваш email'
                         pattern='([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})'
+                        disabled={isLoading}
                     />
                 </label>
                 <ErrorSpan errors={errors[inputEmail]} />
@@ -74,6 +77,7 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                         value={values[inputPwd] || ''} onChange={handleChange}
                         className={`auth__input ${errors[inputPwd] && 'auth__input_invalid'}`}
                         placeholder='Ваш пароль'
+                        disabled={isLoading}
                     />
                 </label>
                 <ErrorSpan errors={errors[inputPwd]} />
@@ -85,9 +89,9 @@ function AuthForm({ handleAuth, titleText, buttonSubmitText, lastError, showInpu
                 <button
                     type="submit"
                     className="auth__submit"
-                    disabled={!isValid}
+                    disabled={!isValid || isLoading}
                 >
-                    {buttonSubmitText}
+                    {buttonSubmitText + (isLoading ? '...' : '')}
                 </button>
                 {children}
             </div>

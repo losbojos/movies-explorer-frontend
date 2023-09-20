@@ -12,6 +12,7 @@ function Register() {
     const navigate = useNavigate();
 
     const [lastRegisterError, setLastRegisterError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Текущий контекст авторизаци { loggedIn, token }
     const { setAuthorizationContext } = useContext(AuthorizationContext);
@@ -20,6 +21,8 @@ function Register() {
     const { setCurrentUser } = useContext(CurrentUserContext);
 
     const handleRegister = ({ name, email, password }) => {
+        setIsLoading(true);
+
         mainApiInstance.register({ name, email, password })
             .then((user) => {
 
@@ -32,8 +35,11 @@ function Register() {
             })
             .catch(err => {
                 setLastRegisterError(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
-    }
+    };
 
     return (
         <AuthForm
@@ -42,8 +48,13 @@ function Register() {
             buttonSubmitText='Зарегистрироваться'
             lastError={lastRegisterError}
             showInputName={true}
+            isLoading={isLoading}
         >
-            <p className="auth__text">Уже зарегистрированы? <Link to={PAGES.LOGIN} className="auth__link">Войти</Link></p>
+            <p className="auth__text">Уже зарегистрированы? <Link
+                to={PAGES.LOGIN}
+                className="auth__link"
+                style={isLoading ? { pointerEvents: "none" } : null}
+            >Войти</Link></p>
         </AuthForm>
     );
 }

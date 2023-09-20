@@ -12,6 +12,7 @@ function Login() {
     const navigate = useNavigate();
 
     const [lastLoginError, setLastLoginError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Текущий контекст авторизаци { loggedIn, token }
     const { setAuthorizationContext } = useContext(AuthorizationContext);
@@ -20,6 +21,7 @@ function Login() {
     const { setCurrentUser } = useContext(CurrentUserContext);
 
     const handleLogin = ({ email, password }) => {
+        setIsLoading(true);
         mainApiInstance.authorize({ email, password })
             .then(user => {
                 localStorage.setItem(TOKEN_STORAGE_KEY, user.token);
@@ -29,7 +31,11 @@ function Login() {
 
                 navigate(PAGES.MOVIES);
             })
-            .catch(err => setLastLoginError(err));
+            .catch(err => setLastLoginError(err))
+            .finally(() => {
+                setIsLoading(false);
+            });
+
     }
 
     return (
@@ -39,8 +45,13 @@ function Login() {
             buttonSubmitText='Войти'
             lastError={lastLoginError}
             showInputName={false}
+            isLoading={isLoading}
         >
-            <p className="auth__text">Ещё не зарегистрированы? <Link to={PAGES.REGISTER} className="auth__link">Регистрация</Link></p>
+            <p className="auth__text">Ещё не зарегистрированы? <Link
+                to={PAGES.REGISTER}
+                className="auth__link"
+                style={isLoading ? { pointerEvents: "none" } : null}
+            >Регистрация</Link></p>
         </AuthForm>
     );
 }
