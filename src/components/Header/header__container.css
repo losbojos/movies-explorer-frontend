@@ -1,24 +1,26 @@
 /* FIGMA 320 design */
-.footer__container {
-    margin: auto 0 0;
-    padding: 79px 10px 20px;
-    box-sizing: border-box;
-    width: 100%;
+.header__container {
     max-width: 1280px;
+
+    margin: 0;
+    padding: 18px 14px;
+    width: 100%;
+    box-sizing: border-box;
     flex-shrink: 0;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
+    /* position: relative; */
 }
 
 /* FIGMA 768 design */
 @media screen and (min-width: 768px) {
-    .footer__container {
-        padding: 79px 30px 20px;
+    .header__container {
+        padding: 18px 30px;
     }
-
 }
 
 /* Intermediate 1024 design - NO FIGMA */
@@ -26,7 +28,7 @@
 
 /* FIGMA 1280 design */
 @media screen and (min-width: 1280px) {
-    .footer__container {
-        padding: 79px 70px 20px;
+    .header__container {
+        padding: 18px 70px;
     }
 }

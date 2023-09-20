@@ -1,4 +1,5 @@
 import React from 'react';
+import LandingSection from '../LandingSection/LandingSection';
 
 import './portfolio.css';
 import './portfolio__header.css';
@@ -10,7 +11,7 @@ import './portfolio__link.css';
 function Portfolio(props) {
 
     return (
-        <section className="portfolio">
+        <LandingSection innerSectionClass="portfolio">
             <h2 className="portfolio__header">Портфолио</h2>
             <ul className="portfolio__list">
                 <li className="portfolio__list-item">
@@ -23,7 +24,7 @@ function Portfolio(props) {
                     <a className="portfolio__link" href='https://losbojos.mesto.nomoreparties.co' target="_blank">Одностраничное приложение</a>
                 </li>
             </ul>
-        </section >
+        </LandingSection>
     );
 }
 

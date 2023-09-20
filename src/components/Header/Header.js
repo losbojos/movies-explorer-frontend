@@ -9,6 +9,7 @@ import { PAGES } from '../../utils/consts';
 
 import './header.css';
 import './header_landing.css';
+import './header__container.css';
 
 function Header() {
 
@@ -29,8 +30,10 @@ function Header() {
         <Fragment>
             {showHeader && (
                 <header className={headerClasses}>
-                    <Logo />
-                    {authorizationContext.loggedIn ? (<MainMenu isLandingPage={isLandingPage} />) : (<GuestMenu />)}
+                    <div className="header__container">
+                        <Logo />
+                        {authorizationContext.loggedIn ? (<MainMenu isLandingPage={isLandingPage} />) : (<GuestMenu />)}
+                    </div>
                 </header>
             )}
         </Fragment>

@@ -1,7 +1,9 @@
 import React from 'react';
 import promoImage from '../../images/promo.png';
+import LandingSection from '../LandingSection/LandingSection';
 
 import './promo.css';
+import './promo-background.css';
 import './promo__data-container.css';
 import './promo__text-container.css';
 import './promo__banner.css';
@@ -12,7 +14,7 @@ import './promo__button.css';
 function Promo() {
 
     return (
-        <section className="promo">
+        <LandingSection outerSectionClass="promo-background" innerSectionClass="promo">
             <div className="promo__data-container">
                 <img className="promo__banner" alt="баннер" src={promoImage} />
                 <div className="promo__text-container">
@@ -21,7 +23,7 @@ function Promo() {
                 </div>
             </div>
             <a href='#about-project-section' className="promo__button">Узнать больше</a>
-        </section>
+        </LandingSection>
     );
 }
 

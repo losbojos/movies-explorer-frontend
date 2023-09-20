@@ -1,0 +1,11 @@
+/* FIGMA 320 design */
+.techs-background {
+    background: #202020;
+}
+
+/* FIGMA 768 design */
+@media screen and (min-width: 768px) {
+    .techs-background {
+        background: #272727;
+    }
+}

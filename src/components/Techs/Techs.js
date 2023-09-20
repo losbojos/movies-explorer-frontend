@@ -1,5 +1,8 @@
 import React from 'react';
 
+import LandingSection from '../LandingSection/LandingSection';
+
+import './techs-background.css';
 import './techs.css';
 import './techs__header.css';
 import './techs__title.css';
@@ -10,7 +13,7 @@ import './techs__item.css';
 function Techs(props) {
 
     return (
-        <section className="techs">
+        <LandingSection outerSectionClass="techs-background" innerSectionClass="techs">
             <h2 className="techs__header">Технологии</h2>
             <h3 className="techs__title">7 технологий</h3>
             <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
@@ -23,7 +26,7 @@ function Techs(props) {
                 <li className="techs__item">Express.js</li>
                 <li className="techs__item">mongoDB</li>
             </ul>
-        </section >
+        </LandingSection>
     );
 }
 

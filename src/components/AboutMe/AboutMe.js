@@ -1,6 +1,7 @@
 import React from 'react';
 import myFoto from '../../images/myfoto.png';
 import { HREFS } from '../../utils/consts';
+import LandingSection from '../LandingSection/LandingSection';
 
 import './about-me.css';
 import './about-me__data-section.css';
@@ -15,7 +16,7 @@ import './about-me__link.css';
 function AboutMe(props) {
 
     return (
-        <section className="about-me">
+        <LandingSection innerSectionClass="about-me">
             <h2 className="about-me__header">Студент</h2>
             <div className="about-me__data-section">
                 <img className="about-me__foto" src={myFoto} alt="Фото студента" />
@@ -26,7 +27,7 @@ function AboutMe(props) {
                     <a className="about-me__link" href={HREFS.GITHUB} target="_blank">Github</a>
                 </div>
             </div>
-        </section >
+        </LandingSection>
     );
 }
 

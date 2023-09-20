@@ -1,4 +1,7 @@
 import React from 'react';
+
+import LandingSection from '../LandingSection/LandingSection';
+
 import './about-project.css';
 import './about-project__header.css';
 import './about-project__article-header.css';
@@ -16,7 +19,7 @@ import './about-project__roadmap-content_text.css';
 function AboutProject(props) {
 
     return (
-        <section className="about-project" id="about-project-section">
+        <LandingSection innerSectionClass="about-project" id="about-project-section">
             <h2 className="about-project__header">О проекте</h2>
             <ul className="about-project__list">
                 <li className="about-project__item">
@@ -49,7 +52,7 @@ function AboutProject(props) {
                     </li>
                 </ul>
             </div>
-        </section >
+        </LandingSection>
     );
 }
 

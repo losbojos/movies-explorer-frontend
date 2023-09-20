@@ -1,8 +1,5 @@
 # Проект: Movies-explorer. Поиск и сохранение карточек любимых фильмов.
 
-## Пулл-реквест для обзора кода
-https://github.com/losbojos/movies-explorer-frontend/pull/4
-
 ## Описание
 + Дипломная работа курса веб-разработчик от Я.Практикум
 + Автор: Евгений Борисов © 2023 :dove:
@@ -18,10 +15,11 @@ https://github.com/losbojos/movies-explorer-frontend/pull/4
 + frontend: https://github.com/losbojos/movies-explorer-frontend
 + backend: https://github.com/losbojos/movies-explorer-api
 
-## Инструкции:
-### Выбранный макет дизайна
+### Макет дизайна
 dark-4
 https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-9662&mode=design&t=NGK34yb7P31H0KQj-0
+
+## Инструкции:
 ### Доступные страницы (роуты)
 + "/"             - Главная страница (лэндинг)
 + "/signin"       - Вход (логин)
