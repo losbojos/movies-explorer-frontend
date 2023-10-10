@@ -1,6 +1,6 @@
 # Movies-explorer. Поиск и сохранение карточек любимых фильмов.
 
-[Демо](https://lifemovie.nomoreparties.co "https://lifemovie.nomoreparties.co")
+[ Домашняя страница (демо)](https://lifemovie.nomoreparties.co "https://lifemovie.nomoreparties.co")
 
 ## Описание
 
@@ -43,8 +43,10 @@
 $ npm install
 ```
 4. Создайте файл .env в корневой папке с содержимым: 
+```bash
 ALLOW_LOCALHOST=true # Разрешить доступ к серверу с локального адреса
 PORT=3003 # Порт запуска сервера
+```
 5. Запустите локально сервер командой 
 ```bash
 $ npm start
@@ -58,13 +60,13 @@ $ npm start
 ```bash
 $ npm install
 ```
-4. Измените значение константы MAIN_SERVER в файле ./src/utils/consts.js:
-const MAIN_SERVER = 'http://localhost:3003'; // Для подключения к локально запущенному серверу
+4. Измените значение константы MAIN_SERVER в файле ./src/utils/consts.js для подключения к локально запущенному серверу:  
+const MAIN_SERVER = 'http://localhost:3003';
 5. Запустите приложение командой 
 ```bash
 $ npm start
 ```
-Автоматически откроется страница в браузере.
+Автоматически откроется страница в браузере.  
 6. Регистрируйтесь в приложении и пользуйтесь.
 
 ### Доступные страницы (роуты)
