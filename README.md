@@ -23,7 +23,7 @@
 + [backend](https://github.com/losbojos/movies-explorer-api)
 + [Дизайн (вариант dark-4)](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-9662&mode=design&t=NGK34yb7P31H0KQj-0)
 
-### Деплой (развертывание)
+### Деплой
 
 + [Домашняя страница (демо)](https://lifemovie.nomoreparties.co)
 + [API сервера](https://api.lifemovie.nomoreparties.co)
@@ -36,23 +36,9 @@
 
 ### Развертывание сервера
 
-1. Склонируйте или скачайте архив и распакуйте [исходный код бэк-енда](https://github.com/losbojos/movies-explorer-api.git)
-2. Откройте папку с исходным кодом в Visual Studio Code.
-3. Откройте окно терминала и запустите в корневой папке проекта команду установки зависимостей.
-```bash
-$ npm install
-```
-4. Создайте файл .env в корневой папке с содержимым: 
-```bash
-ALLOW_LOCALHOST=true # Разрешить доступ к серверу с локального адреса
-PORT=3003 # Порт запуска сервера
-```
-5. Запустите локально сервер командой 
-```bash
-$ npm start
-```
+Смотрите на [странице серверной части проекта](https://github.com/losbojos/movies-explorer-api)
 
-### Развертывание страницы проекта (фронтенд)
+### Развертывание клиента (фронтенд)
 
 1. Склонируйте или скачайте архивом и распакуйте [исходный код фронт-енда](https://github.com/losbojos/movies-explorer-frontend.git)
 2. Откройте папку с исходным кодом в Visual Studio Code.
@@ -60,7 +46,7 @@ $ npm start
 ```bash
 $ npm install
 ```
-4. Измените значение константы MAIN_SERVER в файле ./src/utils/consts.js для подключения к локально запущенному серверу:  
+4. Измените значение константы MAIN_SERVER в файле ./src/utils/consts.js для подключения к необходимому серверу:
 ```bash
 const MAIN_SERVER = 'http://localhost:3003';
 ```
